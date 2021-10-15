@@ -1,0 +1,507 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../../home']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-th-large"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                        Dashboard
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../../calendar']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-calendar"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Calendar
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../../clients']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-address-book"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Client Profiles
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../../exercises']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-id-card"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Exercises
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../rehabplans']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-archive"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Rehabilitation Plans
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../../assessmenttests']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block navBar" style="text-align: center; color:white;">
+                          <i class="fa fa-paste"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Assessment Tests
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-cog"></i>                        
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="margin-left: 10px; color:white;">
+                     Settings
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 *ngIf="client" class="title" style="color: #0275d8">
+                  Good {{ timeOfDay }}<a *ngIf="client">, {{ client?.givenName }}.</a>
+               </h3>
+               <p class="quote">
+                 Navigate between the tabs to discover more insight on your patients treatment.
+               </p>
+          </div>
+        </div>
+        <div style="min-height: 100vh; margin: 2%;" class="page col-11">
+          <mat-card style="min-height: 75vh;">
+            <mat-card-content>
+              <br>
+              <mat-tab-group>
+                <mat-tab label="Client Report">
+                  <div style="margin-left: auto; margin-right: auto; text-align: center;" class="row col-11">
+                    <mat-card class="col">
+                        <div>
+                          <mat-card-title>
+                            <b style="color: #0275d8;">List of Completed Assessment Tests</b>
+                          </mat-card-title>
+                          <mat-divider></mat-divider>
+                          <mat-card-content clas="col-10">
+                              <mat-list style="margin-left: auto; margin-right: auto; text-align: center;" *ngIf="completedTests?.length > 0" class="col">
+                                <div>
+                                  <mat-list-item *ngFor="let completed of completedTests" class="row col justify-content-center">
+                                        <div class="col-3">
+                                          <b>{{ completed?.name }}</b>
+                                        </div>
+                                        <div class="col">
+                                          Completed on: {{ completed?.dateCompleted | date:'mediumDate' }}
+                                        </div>
+                                        <mat-card-subtitle style="top: 10px;" class="col-3">
+                                          Rating: {{ completed?.physioRate }}/10
+                                        </mat-card-subtitle>
+                                      <mat-divider></mat-divider>
+                                  </mat-list-item>
+                                </div>
+                              </mat-list>
+                              <br>
+                              <div *ngIf=" completedTests?.length == 0">
+                                <mat-card-subtitle>
+                                  <b>This client has yet to complete any assesment tests.</b>
+                                  <br>
+                                  <hr>
+                                  <p>Once the patient has been assigned an assessment test, and has completed it, check back here to generate a report.</p>
+                                </mat-card-subtitle>
+                              </div>
+                          </mat-card-content>
+                        </div>
+                    </mat-card>
+
+                    <mat-card class="col">
+                        <mat-card-title>
+                            <b style="color: #0275d8;">Generate Client Report</b>
+                        </mat-card-title>
+                        <mat-divider></mat-divider>
+                        <mat-card-content>
+                          <div>
+                            <br>
+                            <mat-card-subtitle>
+                              <h4>Based off the Completed Assessment Test Results, provide any insight and recommendations to the client:</h4>
+                            </mat-card-subtitle>
+                            <br>
+                            <div class="form-group">
+                                <textarea #textAreaVal='ngModel' ngModel class="form-control" placeholder="Based off your results, you need to..." rows="5"></textarea>
+                            </div>
+                            <br><br><br>
+                            <hr>
+                            <div class="row justify-content-center">
+                              <button class="col-3 btn btn-primary" [disabled]="completedTests.length == 0" (click)="PrintReport()">
+                                Print
+                              </button>
+                              <button class="col-3 btn btn-primary" [disabled]="completedTests.length == 0" (click)="emailModal.show()" >
+                                Email
+                              </button>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                    </mat-card>
+                  </div>
+                  <br>
+
+                  <div #test style="display: none;">
+                        <h1 style="color: #0275d8;">Client: {{ currClient?.givenName }} {{ currClient?.familyName }}</h1>
+                          <div >
+                            <div >
+                              <b>DOB:</b> {{ currClient?.DOB | date:'mediumDate' }}
+                            </div>
+                            <div>
+                              <b>Email:</b> {{ currClient?.email }}
+                            </div>
+                            <div>
+                              <b>Phone:</b> {{ currClient?.phone }}
+                            </div>
+                          </div>
+                          <h3>Current Exercise Menu: {{ currClient?.rehabPlan?.name }}</h3>
+                          <p>Menu Description: {{ currClient?.rehabPlan?.description }}</p>
+                          <p>Number of Exercises: {{ currClient?.rehabPlan?.exerciseObjects?.length }} </p>
+                          <p><b>Your Physiotherapists Recommendation:</b></p>
+                          <p>{{ textAreaVal.value }}</p>
+                  </div>
+                </mat-tab>
+                <mat-tab  label="Client Summary Report">
+                  <div class="col-11 centerme">
+                    <mat-card>
+                        <br>
+                        <h3><b>Client Summary Report</b></h3> 
+                        <hr>
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                             
+                              <div class="col">
+                                  <h4>Personal Information</h4>
+                                  <br>
+                                  <div *ngIf="patient">
+                                    <p><b>Name: </b>&nbsp; {{patient?.givenName}} {{patient?.familyName}}</p>
+                                    <p><b>Username: </b> &nbsp; {{patient?.account?.userAccountName}}</p>
+                                    <p><b>Email: </b>&nbsp; {{patient?.email}}</p>
+                                    <p><b>Hometown: </b> &nbsp; {{patient?.city?.name}}, {{patient?.province?.name}}, {{patient?.country?.name}}</p>
+                                    <p><b>Age: </b> &nbsp; {{CalculateAge(patient.DOB)}} years old</p>
+                                  </div>
+                              </div>
+                              
+                              <div class="col">
+                                  <h4>Diagnosed Case</h4>
+                                  <br>
+                                  <div *ngIf="initialInjury">
+                                    <p><b>Injured Area: </b>&nbsp; {{initialInjury?.injuryarea}}</p>
+                                    <p><b>How the injury started: </b>&nbsp; {{initialInjury?.started}}</p>     
+                                    <p><b>Injury description: </b>&nbsp; {{initialInjury?.describe}}</p> 
+                                    <p><b>Date the Injury Started: </b>&nbsp; {{initialInjury?.dateStarted | date: 'yyyy-MM-dd'}}</p>   
+                                    <p><b>Client Rehabilitation Goal: </b>&nbsp; {{initialInjury?.goals}}</p> 
+                                    <p><b>Activity the Client Wants to Return to:</b>&nbsp; {{initialInjury?.hobbies}}</p>                
+                                  </div>
+                              </div>
+                              
+                              <div class="col">
+                                  <h4>Treatment Plan</h4>
+                                  <br>
+                                  <div *ngIf="rehabPlan"> 
+                                      <p><b>Treatment Plan Name: </b>&nbsp; {{rehabPlan?.name}}</p>
+                                      <p><b>Treatment Plan Description: </b>&nbsp; {{rehabPlan?.description}}</p>
+                                      <p><b>Treatment Plan Author: </b>&nbsp; {{rehabPlan?.authorName}}</p>
+                                      <p><b>Number of Exercises in Plan: </b> &nbsp; {{rehabPlan?.exerciseObjects?.length}}</p>
+                                      <div *ngIf="!rehabPlan">
+                                          <p>A rehab plan hasn't been assigned to this client yet.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col">
+                                  <h4>Payments</h4>
+                                  <br>
+                                  <div *ngIf="paymentHistory">
+                                    <div *ngFor="let payment of paymentHistory; let i = index">
+                                      <h6><em>Payment {{i}}</em></h6>
+                                      <p><b>Date: </b> &nbsp;  {{payment?.dayTimeStamp | date: 'yyyy-MM-dd'}}</p>
+                                      <p><b>Amount: </b> &nbsp;  ${{payment?.amount}}</p>
+                                      <p><b>Note: </b> &nbsp; {{payment?.note}}</p>
+                                    </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="col">
+                                  <h4>Appointments</h4>
+                                  <br>
+                                  <div *ngIf="appointments">
+                                    <div *ngFor="let appointment of appointments">
+                                      <p><b>Appointment Date: </b> &nbsp; {{appointment?.date | date: 'yyyy-MM-dd'}}</p>
+                                      <p><b>Appointment Reason: </b> &nbsp; {{appointment?.reason}}</p>
+                                      <p><b>Other: </b> &nbsp; {{appointment?.other}}</p>
+                                    </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="col">
+                                  <h4>Final Outcome</h4>
+                                  <br>
+                                  <div *ngIf="!finalOutcome">
+                                    <p>This treatment is still ongoing.</p>
+                                  </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <mat-card-actions align="end">
+                            <button type="button" class="btn btn-primary waves-light col-3" mdbRippleRadius (click)="PrintPatientSummary()">Print Summary</button>
+                            <button type="button" class="btn btn-primary waves-light col-3" mdbRippleRadius (click)="emailSummaryModal.show()">Email Summary to Client</button>
+                          </mat-card-actions>
+                        </mat-card>
+                      </div>
+                        <div #summarytest style="display: none;">
+                            <h1 *ngIf="patient" style="color: #0275d8;"><u>{{patient?.givenName}} {{patient?.familyName}} - Summary Report</u></h1>
+                              <p *ngIf="patient">The patient summary for {{patient?.givenName}} {{patient?.familyName}} generated on {{GetTodaysDate() | date: 'medium'}}.</p>
+                              <h3 style="color: #0275d8;">Personal Information</h3>                        
+                              <br>
+                              <div *ngIf="patient">
+                                <p><b>Name: </b>&nbsp; {{patient?.givenName}} {{patient?.familyName}}</p>
+                                <p><b>Username: </b> &nbsp; {{patient?.account?.userAccountName}}</p>
+                                <p><b>Email: </b>&nbsp; {{patient?.email}}</p>
+                                <p><b>Hometown: </b> &nbsp; {{patient?.city?.name}}, {{patient?.province?.name}}, {{patient?.country?.name}}</p>
+                                <p><b>Age: </b> &nbsp; {{CalculateAge(patient.DOB)}} years old</p>
+                              </div>
+                              <br>
+                              <h3 style="color: #0275d8;">Diagnosed Case</h3>
+                              <br>
+                              <div *ngIf="initialInjury">
+                                <p><b>Injured Area: </b>&nbsp; {{initialInjury?.injuryarea}}</p>
+                                <p><b>How the injury started: </b>&nbsp; {{initialInjury?.started}}</p>     
+                                <p><b>Injury description: </b>&nbsp; {{initialInjury?.describe}}</p> 
+                                <p><b>Date the Injury Started: </b>&nbsp; {{initialInjury?.dateStarted | date: 'yyyy-MM-dd'}}</p>   
+                                <p><b>Client Rehabilitation Goal: </b>&nbsp; {{initialInjury?.goals}}</p> 
+                                <p><b>Activity the Client Wants to Return to:</b>&nbsp; {{initialInjury?.hobbies}}</p>                
+                              </div>
+                              <br>
+                              <h3 style="color: #0275d8;">Treatment Plan</h3>
+                              <br>
+                              <div *ngIf="rehabPlan"> 
+                                  <p><b>Treatment Plan Name: </b>&nbsp; {{rehabPlan?.name}}</p>
+                                  <p><b>Treatment Plan Description: </b>&nbsp; {{rehabPlan?.description}}</p>
+                                  <p><b>Treatment Plan Author: </b>&nbsp; {{rehabPlan?.authorName}}</p>
+                                  <p><b>Number of Exercises in Plan: </b> &nbsp; {{rehabPlan?.exerciseObjects?.length}}</p>
+                                  <div *ngIf="!rehabPlan">
+                                      <p>A rehab plan hasn't been assigned to this client yet.</p>
+                                  </div>
+                              </div>
+                              <br>
+                              <h3 style="color: #0275d8;">Payments</h3>
+                              <br>
+                              <div *ngIf="paymentHistory">
+                                <div *ngFor="let payment of paymentHistory; let i = index">
+                                  <h4><em>Payment {{i}}</em></h4>
+                                  <p><b>Date: </b> &nbsp;  {{payment?.dayTimeStamp | date: 'yyyy-MM-dd'}}</p>
+                                  <p><b>Amount: </b> &nbsp;  ${{payment?.amount}}</p>
+                                  <p><b>Note: </b> &nbsp; {{payment?.note}}</p>
+                                </div>
+                              </div>
+                              <br>
+                              <h3 style="color: #0275d8;">Appointments</h3>
+                              <br>
+                              <div *ngIf="appointments">
+                                <div *ngFor="let appointment of appointments">
+                                  <p><b>Appointment Date: </b> &nbsp; {{appointment?.date | date: 'yyyy-MM-dd'}}</p>
+                                  <p><b>Appointment Reason: </b> &nbsp; {{appointment?.reason}}</p>
+                                  <p><b>Other: </b> &nbsp; {{appointment?.other}}</p>
+                                </div>
+                              </div>
+                              <br>
+                              <h3 style="color: #0275d8;">Final Outcome</h3>
+                              <br>
+                              <div *ngIf="!finalOutcome">
+                                <p>This treatment is still ongoing.</p>
+                              </div>
+                              <br>
+                          </div>
+                  <br> 
+                </mat-tab>
+                <mat-tab label="Visualize Client Progress">
+                  <div class="col-11 centerme">
+                    <mat-card>
+                        <br>
+                        <div style="display: block" *ngIf="completedTests?.length > 1">
+                            <canvas mdbChart 
+                                [chartType]="chartType"
+                                [datasets]="chartDatasets" 
+                                [labels]="chartLabels"
+                                [colors]="chartColors"
+                                [options]="chartOptions"
+                                [legend]="true"
+                                (chartHover)="chartHovered($event)" 
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                        <div *ngIf="completedTests?.length == 1">
+                          <br>
+                          <mat-card-title style="color: #0275d8;">
+                            {{ singleTest?.name }}
+                          </mat-card-title>
+                          <mat-list style="margin-left: auto; margin-right: auto; text-align: center;" class="col">
+                              <div>
+                                <mat-list-item class="row col justify-content-center">
+                                  <div class="col">
+                                      <b>Description:</b>
+                                    </div>    
+                                  <div class="col">
+                                      {{ singleTest?.description }}
+                                  </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <mat-list-item class="row col justify-content-center">
+                                    <div class="col">
+                                        <b>Date Completed:</b>
+                                      </div>    
+                                    <div class="col">
+                                        {{ singleTest?.dateCompleted | date:'mediumDate' }}
+                                    </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <mat-list-item class="row col justify-content-center">
+                                    <div class="col">
+                                        <b>Physio Rating:</b>
+                                      </div>    
+                                    <mat-card-subtitle class="col">
+                                        {{ singleTest?.physioRate }}/10
+                                    </mat-card-subtitle>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <mat-list-item class="row col justify-content-center">
+                                    <div class="col">
+                                        <b>Physio Thoughts:</b>
+                                      </div>    
+                                    <div class="col">
+                                        {{ singleTest?.physioDescription }}
+                                    </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                              </div>
+                            </mat-list>
+                        </div>
+                        <div *ngIf="completedTests?.length == 0">
+                          <br>
+                          <mat-card-title style="color: #0275d8;">
+                            This Patient has No Completed Assessment Tests
+                          </mat-card-title>
+                          <mat-card-subtiitle>
+                            Assign them an assessment test, and after they complete it, check back here.
+                          </mat-card-subtiitle>
+                        </div>
+                        <br>
+                  </mat-card>
+                </div>
+                <br>
+                </mat-tab>
+              </mat-tab-group>
+            </mat-card-content>
+          </mat-card>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+        <!-- Confirmation modal for email -->
+        <div mdbModal #emailModal="mdb-modal" class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100" id="myModalLabel">Email sent to {{ currClient?.givenName }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Message to be included in the email: </p>
+                        <textarea #emailBody2='ngModel' ngModel class="form-control" placeholder="Additional comments..." rows="5"></textarea>                      
+                      </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="emailModal.hide(); EmailReport(emailBody2.value)" mdbRippleRadius>Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div mdbModal #emailSummaryModal="mdb-modal" class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100" id="myModalLabel">Email {{ patient?.givenName }} {{patient?.familyName}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Message to be included in the email: </p>
+                        <textarea #emailBody='ngModel' ngModel class="form-control" placeholder="Additional comments..." rows="5"></textarea>                      
+                      </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="EmailPatientSummary(patient.email, emailBody.value); emailSummaryModal.hide()" mdbRippleRadius>Send Email</button>
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="emailSummaryModal.hide()" mdbRippleRadius>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>

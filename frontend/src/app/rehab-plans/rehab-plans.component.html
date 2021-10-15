@@ -1,0 +1,380 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-th-large"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                          Dashboard
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../calendar']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-calendar"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            Calendar
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../clients']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-address-book"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            Client Profiles
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../exercises']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-id-card"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            Exercises
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-archive"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style=" color:white;">
+                          Rehabilitation Plans
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../assessmenttests']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-paste"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style=" color:white;">
+                          Assessment Tests
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-cog"></i>                        
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style=" color:white;">
+                         Settings
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+              <br>
+              <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+            <br>
+            <div style="margin-top: -10px;">
+                <h3 *ngIf="physio" class="title" style="color: #0275d8">
+                    Good {{ timeOfDay }}<a *ngIf="physio">, {{ physio?.givenName }}.</a>
+                </h3>
+                <p class="quote">
+                    Manage, Create, or Assign a Tailored Exercise Menu.
+                </p>
+                <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-2">
+                        <hr>
+                        <b>{{ today | date:'shortTime'}}</b>
+                      </div>
+            </div>
+        </div>
+        <div style="min-height: 100vh;" class="page col-11">
+            <mat-card style="min-height: 75vh;">
+                <mat-tab-group>
+                    <mat-tab label="Create and Manage Menus">
+                        <br><br>
+                        <div style="margin-left:auto; margin-right:auto; text-align: center;" class="col-5">
+                            <button class="btn btn-primary btn-block" (click)="plan(create)">Create a new, custom Exercise Menu</button>
+                        </div>
+                        <br><br>
+                        <div>
+                            <ng-template let-c="close" let-d="dismiss" #create>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Create a new plan</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-3 col-form-label">Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="name" placeholder="Name" #name>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="description" class="col-sm-3 col-form-label">Description</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="description" placeholder="Description" #description>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="authorName" class="col-sm-3 col-form-label">Author Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="authorName" placeholder="Author Name" #authorName>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="goal" class="col-sm-3 col-form-label">Goal</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="goal" placeholder="Goal" #goal>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-sm align-left" (click)="createPlan(name.value, description.value, 
+                                      authorName.value, goal.value); c('Close click')">Confirm</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-11">
+                            <div class="row">
+                                <div class="col">
+                                    <mat-card>
+                                        <mat-card-title style="color: #0275d8;">Current Rehab Plans</mat-card-title>
+                                        <mat-card-content>
+                                            <br><br>
+                                            <mat-form-field style = "float: left;">
+                                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search current plans..." #searchString>
+                                            </mat-form-field>
+                                            <br><br><br>
+                                            <mat-list>
+                                                <mat-list-item class="listItems" *ngFor="let plan of rehabPlans">
+                                                    <br><br>
+                                                    <button class="btn-block button" (click)="viewPlan(plan)">
+                                                            <div class="row">
+                                                              <div class="col-sm-1">
+                                                                  <i class="fa fa-columns"></i> &nbsp;
+                                                              </div>
+                                                              <br><br>
+                                                              <div class="col-sm-5">
+                                                                  <h5 style = "color: #0275d8; "> &nbsp; {{ plan?.name }} </h5>
+                                                              </div>
+                                                              <!--<div class="col-sm-4">-->
+                                                              <!--    <b>Author:</b> &nbsp; {{ plan?.authorName }}-->
+                                                              <!--</div>-->
+                                                            </div>
+                                            
+                                                        </button>
+                                                    <br><br>
+                                                    <div class="divider">
+                                                        <mat-divider></mat-divider>
+                                                    </div>
+                                                </mat-list-item>
+                                            </mat-list>
+                                            <mat-paginator [pageSizeOptions]="[10]" [length]="total" (page)="switchPage($event, searchString.value);"></mat-paginator>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="col">
+                                    <mat-card>
+                                        <mat-card-title>
+                                            <div class="row form-inline">
+                                                <div class="col">
+                                                    <b style="color: #0275d8;"> {{ currPlan?.name }}</b>
+                                                </div>
+                                                <div align="end" class="col">
+                                                    <button class = "btn btn-primary btn-sm" (click)="open(editPlan)">Edit</button>
+                                                    <button class = "btn btn-secondary btn-sm" (click)="open(delete)">Delete</button>
+                                                    <!--<i class="fa fa-edit" style="color: #0275d8;" (click)="open(editPlan)"></i>-->
+                                                    <!--<i class="fa fa-trash" style="color:red;" (click)="open(delete)"></i>-->
+                                                </div>
+                                            </div>
+                                        </mat-card-title>
+
+                                        <div class="divider2">
+                                            <mat-divider></mat-divider>
+                                        </div>
+                                        <br>
+                                        <mat-card-content>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <b> Description: </b>
+                                                </div>
+                                                <div class="col-sm-10 descrip">
+                                                    {{ currPlan?.description }}
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <b>Goal: </b>
+                                                </div>
+                                                <div class="col-sm-10 descrip">
+                                                    {{ currPlan?.goal }}
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                        <mat-divider></mat-divider>
+                                        <br>
+                                        <h6>
+                                            <b style="color: #0275d8;">Exercises Currently using this Plan:</b>
+                                        </h6>
+                                        <mat-list class="currList">
+                                            <mat-list-item class="listItems" *ngFor="let exercise of exercisesInCurrPlan">
+                                                <button class="btn-block clientList">
+                                                  <div class="row">
+                                                    <!--<div class="col-sm-1">-->
+                                                    <!--    <i class="fa fa-user"></i> &nbsp;-->
+                                                    <!--</div>-->
+                                                    <div class="col-sm-6">
+                                                        <h5><b>Exercise: </b> &nbsp; {{ exercise?.name }} </h5>
+                                                    </div>
+                                                    <!--<div style = "text-align: right;">-->
+                                                    <div class="col-6">
+                                                    <div class="pull-right delete">
+                                                        <i class="fa fa-times-circle"  style = "float:right;"(click)="removeExercise(exercise, searchString.value)"></i>
+                                                    </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="divider">
+                                                    <mat-divider></mat-divider>
+                                                  </div>
+                                              </button>
+                                            </mat-list-item>
+                                        </mat-list>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        
+                                            <h6>
+                                                <b style="color: #0275d8;">Select Exercises you wish to add</b>
+                                            </h6>
+                                            <mat-form-field style = "float: left;">
+                                                <input style = "text-align: left;" matInput (keyup)="applyFilter1($event.target.value)" placeholder="Search for Exercises" #searchString2>
+                                            </mat-form-field>
+                                            <br><br><br><br>
+                                            <mat-selection-list style = "text-align: left;">
+                                                <mat-list-option style = "text-align: left;" *ngFor="let exercise of allExercises" (click)="addExercise(exercise, searchString.value)">
+                                                    {{exercise.name}}
+                                                </mat-list-option>
+                                            </mat-selection-list>
+                                            <mat-paginator #paginator [length]="length2" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="SwitchPageEvent($event, searchString2.value);"></mat-paginator>
+                                        
+                                    </mat-card>
+                                    <ng-template #editPlan let-c="close" let-d="dismiss">
+                                        <div class="modal-header" style="text-align: center;">
+                                            <h4 class="modal-title">Edit plan "{{currPlan.name}}"</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="c('Close click')">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+
+                                                <div class="form-group row">
+                                                    <label for="inputFirstName" class="col-sm-3 col-form-label">Name</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="inputFirstName" placeholder="Name" value="{{currPlan.name}}" #newName>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="description" class="col-sm-3 col-form-label">Description</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="description" placeholder="Description" value="{{currPlan.description}}" #description>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="form-group row">-->
+                                                <!--    <label for="inputFirstName" class="col-sm-3 col-form-label">Author Name </label>-->
+                                                <!--    <div class="col-sm-9">-->
+                                                <!--        <input type="text" class="form-control" id="inputFirstName" placeholder="Author Name" value="{{currPlan.authorName}}" #newAuthorName>-->
+                                                <!--    </div>-->
+                                                <!--</div>-->
+                                                <div class="form-group row">
+                                                    <label  for="inputFirstName" class="col-sm-3 col-form-label">Goal</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="inputFirstName" placeholder="Goal" value="{{currPlan.goal}}" #newGoalName>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary btn-sm" (click)="c('Close click'); editThePlan(currPlan, newName.value, newAuthorName.value, newGoalName.value, description.value, searchString.value);">Confirm</button>
+                                                <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                                            </div>
+
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #delete let-c="close" let-d="dismiss">
+                                        <div class="modal-header" style="text-align: center;">
+                                            <h4 class="modal-title">Are you sure you want to remove {{currPlan.name}}?</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="c('Close click'); ">
+                                                     <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <button type="button" class="btn btn-primary btn-sm" style="float:right" (click)="c('Close click'); removePlan(searchString.value);">Confirm</button>
+                                            <button type="button" class="btn btn-secondary btn-sm" style="float:right" (click)="c('Close click')">Cancel</button>
+
+                                        </div>
+                                    </ng-template>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                    </mat-tab>
+                    <mat-tab label="Assign Exercise Menus">
+                        <app-assign-plan></app-assign-plan>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

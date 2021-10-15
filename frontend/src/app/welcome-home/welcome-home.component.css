@@ -1,0 +1,22 @@
+.title {
+    color: #0275d8;
+}
+
+.col-sm {
+    padding: 2em;
+}
+
+.home-pic {
+    width: 100%;
+    min-height: 92vh;
+    max-height: 92vh;
+}
+
+.scroll-text {
+    margin-bottom: 1em;
+}
+
+i {
+    font-size: 400%;
+}
+

@@ -1,0 +1,58 @@
+.title {
+    color: #0275d8;
+}
+
+#believe {
+    padding-top: 1em;
+}
+
+#benefit {
+    border-left: solid rgba(0, 0, 0, 0.1) 1px;
+    border-right: solid rgba(0, 0, 0, 0.1) 1px;
+}
+
+#simple {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.disclaimer {
+    color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: Arial;
+    font-weight: 400;
+    letter-spacing: 0px;
+    padding: 1em;
+}
+
+.list-msg {
+    background-color: rgba(2,117,216, 0.2);
+}
+
+.list-last {
+    border-top: solid rgba(0, 0, 0, 0.1) 1px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.pic-content {
+    border-left: solid rgba(0, 0, 0, 0.1) 1px;
+}
+
+.mid-page {
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 2em;
+}
+
+.display-12 {
+    margin-bottom: 1em;
+}
+
+p li {
+    font-family:Arial;
+    font-weight: 400;
+    letter-spacing: 0px;
+}
+

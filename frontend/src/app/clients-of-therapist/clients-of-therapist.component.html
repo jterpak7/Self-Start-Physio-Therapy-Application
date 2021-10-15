@@ -1,0 +1,555 @@
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
+
+    <!--<p style = "color: white; margin-left:10px;">client List</p>-->
+    <!--<br>-->
+
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <br><br>
+      <mat-list-item>
+        <p style="color:white;">Admin Dashboard</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p style="color:white;">Client List</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p style="color:white;">Exercise Library</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p style="color:white;">Forms</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p style="color:white;">Admin</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <mat-sidenav-content style=" background-color: white;">
+
+
+    <br><br>
+
+    <div class="input-group mb-3 searchbar" id="custom-search-input">
+      <input type="text" class="form-control" (keyup.enter)="searchPlans(searchValue.value)" placeholder="Search for clients here..." aria-label="Search for plans here..." aria-describedby="basic-addon2" #searchValue>
+      <span class="input-group-btn">
+
+              <button class="btn btn-info btn-lg" type="button" (click)="searchPlans(searchValue.value)"  location="top" ngbTooltip="Search">
+                  <fa name="search"></fa>
+                </button>
+            </span>
+    </div>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="tab">
+      <h1>Clients for {{therapist.givenName}} {{therapist.familyName}}</h1>
+      <br>
+      <!--<button style = "margin-left: 2.5%; "type="button" class="btn btn-primary createbtn" (click)="open(newmodal)">Add New Client to Physio</button>-->
+      <ngb-tabset>
+        <ngb-tab title="Clients For Physio">
+          <ng-template ngbTabContent>
+            <br><br><br>
+            <div *ngFor="let patient of clients">
+
+              <button class="accordion" (click)="show(patient)">{{patient.givenName}}</button>
+
+              <div *ngIf="patient == activated">
+                <hr class="hr1">
+                <br>
+
+                <div class="info">
+                  <button style="float: right; background-color: white; border:none; margin-top:4px; margin-left: 2px;" class="w3-xlarge" (click)="open(edit)"><i class="material-icons">mode_edit</i></button>
+                  <button style="float: right; background-color: white; border:none; margin-top: none; margin-right: 2px " class=" w3-xlarge" (click)="open(delete)"><i  class="fa fa-trash"></i></button>
+                  <p><b>Name:  </b> {{patient.familyName}}, {{patient.givenName}}</p>
+                  <p><b>Patient ID:  </b> {{patient.ID}}</p>
+                  <p><b>Email:  </b> {{patient.email}}</p>
+                  <p><b>Date of Birth:  </b> {{patient.DOB}}</p>
+                  <p><b>Gender:  </b> {{patient.gender.name}}</p>
+                  <p><b>Postal Code:  </b> {{patient.postalCode}}</p>
+                  <p><b>Phone Number:  </b> {{patient.phone}}</p>
+                  <!--<p><b>Marital Status:  </b> {{patient.maritalStatus}}</p>-->
+                  <!--<p><b>Health Card Number:  </b> {{patient.healthCardNumber}}</p>-->
+                  <!--<p><b>Occupation:  </b> {{patient.occupation}}</p>-->
+                  <p><b>Country:  </b> {{patient.country.name}} </p>
+                  <p><b>Province:  </b> {{patient.province.name}} </p>
+                  <p><b>City:  </b> {{patient.city.name}} </p>
+
+                </div>
+                <ng-template #edit let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Update {{patient.familyName}}, {{patient.givenName}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group row">
+                        <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" value="{{patient.givenName}}" #newFirstName>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" value="{{patient.familyName}}" #newLastName>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPatientID" class="col-sm-3 col-form-label">Patient ID</label>
+                        <div class="col-sm-9">
+                          <input type="text" readonly class="form-control" id="inputPatientID" placeholder="Patient ID" value="{{patient.ID}}" placement="left" ngbTooltip="The patient's ID cannot be modified">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{patient.email}}" #newEmail>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputDOB" class="col-sm-3 col-form-label">DOB</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputDOB" placeholder="yyyy/MM/dd" value="{{patient.DOB  | date: 'yyyy-MM-dd'}}" #newBirthDate>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group row">
+                  <label for="inputTargDate" class="col-sm-3 col-form-label"><b>DOB</b></label>
+                  <div class="col-sm-9">
+                      <div class="calFormat">
+                        <input class="form-control" value="{{patient.DOB | date: 'yyyy-MM-dd'}}" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" #newBirthDate>
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                              <fa name="calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></fa>
+                            </button>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+                      <div class="form-group row">
+                        <label for="inputGender" class="col-sm-3 col-form-label">Gender</label>
+                        <div class="col-sm-9">
+                          <select #newGender class="mydropdown">
+                                <option value="{{patient.gender._id}}">{{patient.gender.name}}</option>
+                                <option disabled="disabled">----</option>
+                                <option *ngFor="let g of genders" value="{{g._id}}">{{g.name}}</option>
+                              </select>
+
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal Code</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" value="{{patient.postalCode}}" #newPostalCode>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputPhoneNumber" class="col-sm-3 col-form-label">Phone Number</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" value="{{patient.phone}}" #newPhoneNumber>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputMaritalStatus" class="col-sm-3 col-form-label">Marital Status</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputMaritalStatus" placeholder="Marital Status" value="{{patient.maritalStatus}}" #newMaritalStatus>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputHealthCard" class="col-sm-3 col-form-label">Health Card Number</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputHealthCard" placeholder="Health Card Number" value="{{patient.healthCardNumber}}" #newHealthCardNumber>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputOccupation" class="col-sm-3 col-form-label">Occupation</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputOccupation" placeholder="Occupation" value="{{patient.occupation}}" #newOccupation>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputOthers" class="col-sm-3 col-form-label">Others</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <input type="text" class="form-control" id="inputOthers" placeholder="Others" value="{{patient.others}}" #newOthers>-->
+                          <!--                        </div>-->
+                          <!--                      </div>-->
+                          <!--                      <div class="form-group row">-->
+                          <!--                        <label for="inputOthers" class="col-sm-3 col-form-label">Country</label>-->
+                          <!--                        <div class="col-sm-9">-->
+                          <!--                          <select #newCountry class="mydropdown" (change)="SetProvinceBox(newProvince, newCity); GetProvinces(newCountry.value); DifferentGetProvince(newCountry.value)">-->
+                          <!--=======-->
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputAddress" class="col-sm-3 col-form-label">Address:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputAddress" placeholder="Address" #newAddress>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal Code</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" value="{{patient.postalCode}}" #newPostalCode>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPhoneNumber" class="col-sm-3 col-form-label">Phone Number</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" value="{{patient.phone}}" #newPhoneNumber>
+                        </div>
+                      </div>
+                   
+                      <div class="form-group row">
+                        <label for="inputOthers" class="col-sm-3 col-form-label">Others</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="inputOthers" placeholder="Others" value="{{patient.others}}" #newOthers>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputOthers" class="col-sm-3 col-form-label">Country</label>
+                        <div class="col-sm-9">
+                          <select #newCountry class="mydropdown" (change)="SetProvinceBox(newProvince, newCity); GetProvinces(newCountry.value); DifferentGetProvince(newCountry.value)">
+
+                                <option value="{{patient.country._id}}">{{patient.country.name}}</option>
+                                <option disabled="disabled">----</option>
+                                <option *ngFor="let country of countries" value="{{country._id}}">{{country.name}}</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputOthers" class="col-sm-3 col-form-label">Province</label>
+                        <div class="col-sm-9">
+                          <select #newProvince class="mydropdown" (change)="ClearAndGetCities(newProvince.value, newCity)">
+                                <option value="{{patient.province._id}}">{{patient.province.name}}</option>
+                                <option disabled="disabled">----</option>
+                                <option *ngFor="let province of provinces" value="{{province._id}}">{{province.name}}</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputOthers" class="col-sm-3 col-form-label">City</label>
+                        <div class="col-sm-9">
+                          <select #newCity class="mydropdown">
+                                <option value="{{patient.city._id}}">{{patient.city.name}}</option>
+                                <option disabled="disabled">----</option>
+                                <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+                              </select>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="updatePatient(patient._id, newFirstName.value, newLastName.value, patient.ID, newEmail.value, newBirthDate.value, newPostalCode.value, newPhoneNumber.value, newOthers.value, newCountry.value, newProvince.value, newCity.value, newGender.value, newAddress.value); c('Close click')">Confirm</button>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                  </div>
+                </ng-template>
+                <ng-template #delete let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Delete {{patient.familyName}}, {{patient.givenName}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure you wish to delete client <b>{{patient.familyName}}, {{patient.givenName}}</b>. This action is cannot be undone. </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-med" (click)="deletePatient(patient._id); c('Close click')">Delete</button>
+                    <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Do Not Delete</button>
+                  </div>
+                </ng-template>
+
+              </div>
+              <hr class="hr1">
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>
+            <div>Add new Client To Therapist</div>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <div class="container-fluid inputGroup">
+              <form class="inputForm needs-validation" novalidate>
+                <br><br>
+                <p class="smallText">*Required Fields</p>
+                <mat-vertical-stepper [linear]="true" #stepper="matVerticalStepper">
+                  <mat-step label="Username and Password">
+                    <div class="form-group row">
+                      <label for="inputUsername" class="col-sm-2 col-form-label">*Username: </label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" #username required>
+                        <div class="invalInput" *ngIf="invalidUsername">
+                          Please enter a valid username
+                        </div>
+                        <div class="hintText" *ngIf="!invalidUsername">
+                          Username cannot contain special characters
+                        </div>
+                      </div>
+                      <!--<<<<<<< HEAD-->
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-2 col-form-label">*Password: </label>
+                      <div class="col-sm-7">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" #password required>
+                        <div class="hintText" *ngIf="!invalidPassword">
+                          Passwords must match.
+                        </div>
+                      </div>
+                    </div>
+                    <!--=======-->
+                    <!--                      <div class="modal-footer">-->
+                    <!--                        <button type="button" class="btn btn-primary btn-sm" (click)="updatePatient(patient._id, newFirstName.value, newLastName.value, patient.ID, newEmail.value, newBirthDate.value, newPostalCode.value, newPhoneNumber.value, newMaritalStatus.value, newHealthCardNumber.value, newOccupation.value, newOthers.value, newCountry.value, newProvince.value, newCity.value, newGender.value, newAddress.value); c('Close click')">Confirm</button>-->
+                    <!--                        <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>-->
+                    <!-->>>>>>> ddaf1aaf1161775c08cc9-->
+                    <!--                      </div>-->
+                    <!--</div>-->
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputRepeatPassword" class="col-sm-2 col-form-label">*Repeat Password: </label>
+                      <div class="col-sm-7">
+                        <input type="password" class="form-control" id="inputRepeatPassword" placeholder="Repeat Password" #repeatPassword required>
+                        <div class="invalInput" *ngIf="invalidPassword">
+                          Please fix the password fields so that they match
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+                  </mat-step>
+                  <mat-step label="Personal Information">
+                    <div class="form-group row">
+                      <label for="inputPostalCode" class="col-sm-2 col-form-label">*Address</label>
+                      <div class="col-sm-8">
+                        <div class="form-inline">
+                          <input class="form-control col-6" type="text" placeholder="Address" id="inputAddress" #address>
+                          <input type="text" class="form-control ml-sm-2 col-3" id="inputPostalCode" placeholder="Postal Code" #postalCode>
+                        </div>
+                        <div class="invalInput" *ngIf="invalidPostalCode">
+                          Please enter a valid Address and Postal Code
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputFirstName" class="col-sm-2 col-form-label">*First Name: </label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" #firstName>
+                        <div class="invalInput" *ngIf="invalidFirstname">
+                          Please enter a valid Last Name
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputLastName" class="col-sm-2 col-form-label">*Last Name</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" #lastName>
+                        <div class="invalInput" *ngIf="invalidFirstname">
+                          Please enter a valid First Name
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputEmail" class="col-sm-2 col-form-label">*Email</label>
+                      <div class="col-sm-7">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" #email>
+                        <div class="invalInput" *ngIf="invalidEmail">
+                          Please enter a valid Email
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputDOB" class="col-sm-2 col-form-label">Date Of Birth</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputDOB" placeholder="Date Of Birth" #DOB>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputGender" class="col-sm-2 col-form-label">*Gender</label>
+                      <div class="col-sm-7">
+                        <select #newPatientGender class="mydropdown" id="inputGender">
+                          <option value="badvalue">Please select a gender</option>
+                          <option disabled="disabled">----</option>
+                          <option *ngFor="let g of genders" value="{{g?._id}}">{{g?.name}}</option>
+                        </select>
+                        <div class="invalInput" *ngIf="invalidGender">
+                          Please enter a valid gender
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm instepbtn" matStepperPrevious>Previous</button>
+                    <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+                  </mat-step>
+                  <mat-step label="Contact Information">
+                    <div class="form-group row">
+                      <label for="inputPostalCode" class="col-sm-2 col-form-label">*Postal Code</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" #postalCode>
+                        <div class="invalInput" *ngIf="invalidPostalCode">
+                          Please enter a valid Postal Code
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputPhoneNumber" class="col-sm-2 col-form-label">*Phone Number</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" #phoneNumber>
+                        <div class="invalInput" *ngIf="invalidPhoneNumber">
+                          Please enter a valid Phone Number
+                        </div>
+                        <div class="hintText" *ngIf="!invalidPhoneNumber">
+                          Please enter a valid 9 digit phone number
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputOthers" class="col-sm-2 col-form-label">*Country</label>
+                      <div class="col-sm-7">
+                        <select #newPatientCountry id="inputCountry" class="mydropdown" (change)="SetProvinceBox(newPatientProvince, newPatientCity); GetProvinces(newPatientCountry.value); DifferentGetProvince(newPatientCountry.value)">
+                          <option value="badvalue">Please select a country</option>
+                          <option disabled="disabled">----</option>    
+                          <option *ngFor="let country of countries" value="{{country?._id}}">{{country?.name}}</option>
+                        </select>
+                        <div class="invalInput" *ngIf="invalidCountry">
+                          Please select a Country, Province and City
+                        </div>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputOthers" class="col-sm-2 col-form-label">*Province</label>
+                      <div class="col-sm-7">
+                        <select #newPatientProvince id="inputProvince" class="mydropdown" (change)="ClearAndGetCities(newPatientProvince.value, newPatientCity)">
+                          <option *ngFor="let province of provinces" value="{{province?._id}}">{{province?.name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputOthers" class="col-sm-2 col-form-label">*City</label>
+                      <div class="col-sm-7">
+                        <select #newPatientCity id="inputCity" class="mydropdown">
+                    <option *ngFor="let city of cities" value="{{city?._id}}">{{city?.name}}</option>
+                  </select>
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm instepbtn" matStepperPrevious>Previous</button>
+                    <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+                  </mat-step>
+                  <mat-step label="Additional Information">
+                    <div class="form-group row">
+                      <label for="inputMaritalStatus" class="col-sm-2 col-form-label">Marital Status</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputMaritalStatus" placeholder="Marital Status" #maritalStatus>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputHealthCardNumber" class="col-sm-2 col-form-label">Health Card Number</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputHealthCardNumber" placeholder="Health Card Number" #healthCardNumber>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputOccupation" class="col-sm-2 col-form-label">Occupation</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputOccupation" placeholder="Occupation" #occupation>
+                      </div>
+                    </div>
+                    <hr class='dvder'>
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="inputOthers" class="col-sm-2 col-form-label">Other Notable Info</label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputOthers" placeholder="Other" #others>
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm instepbtn" matStepperPrevious>Previous</button>
+                    <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+                  </mat-step>
+                  <mat-step label="Done">
+                    <ng-template #makeChanges let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Error in Required Fields</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>There are errors in some of the required fields. Please go through and fix them. </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click')">OK</button>
+                      </div>
+                    </ng-template>
+                    <button class="btn btn-secondary btn-sm stepperbtn" (click)="stepper.reset()">Reset</button>
+                    <button type="submit" class="btn btn-primary btn-sm stepperbtn" (click)="stepper.reset(); createClient(makeChanges)">Confirm</button>
+                  </mat-step>
+                </mat-vertical-stepper>
+              </form>
+            </div>
+
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Add Client from Existing Client">
+          <ng-template ngbTabContent>
+            <h2>Add These Clients to Physio:</h2>
+            <div *ngFor="let x of possibleClients">
+
+            </div>
+            <hr class="hr3">
+            <br><br><br>
+            <h2>Choose which clients to add to this Physio</h2>
+            <div *ngFor="let client of allClients">
+              <label style="float: left;">{{client.givenName}}</label>
+              <button style="border: none; float: right; background-color: white;"><i class="fa fa-plus-square-o" style="font-size:24px; color:green;"></i></button>
+
+              <br>
+              <hr class="dvder">
+              <br><br>
+            </div>
+          </ng-template>
+        </ngb-tab>
+
+      </ngb-tabset>
+    </div>
+
+  </mat-sidenav-content>
+
+
+
+</mat-sidenav-container>

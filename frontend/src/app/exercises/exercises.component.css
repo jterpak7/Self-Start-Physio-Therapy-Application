@@ -1,0 +1,166 @@
+
+
+.exercisebtn {
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.calFormat{
+    display: flex;
+    flex-direction: row;
+}
+
+ .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: rgb(16, 114, 226);
+    cursor: inherit;
+    display: block;
+}
+
+.carousel-inner > .item > img{
+    margin:auto;
+    width: 100%;
+    background: cover;
+}
+
+.createbtn {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.accordion {
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    margin-left: 15%;
+    transition: 0.4s;
+    width: 75%;
+ }
+
+ .modal-button {
+     float: right;
+     margin-left: 75%;
+ }
+
+ .carousel {
+    margin: auto;
+    width: 100%;
+    background: cover;
+ }
+
+ #custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}
+
+.searchdropdown {
+    height: 40px;
+    padding: 3px;
+    padding-left: 0px;
+    border: none;
+    border-bottom: solid 1px rgb(189, 189, 189);
+    border-radius: 3px;
+    background-color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-image: none;
+    background-clip: padding-box;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    margin-left: 1em;
+    margin-top: -4px;
+}
+
+.searchbar{
+    margin-left: 1em;
+    margin-right: 2.5em;
+    width: 50%;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.quote {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.appoints {
+    clear: both;
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.greyCard {
+    background-color: #f5f5f5;
+}

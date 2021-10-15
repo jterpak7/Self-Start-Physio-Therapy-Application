@@ -1,0 +1,119 @@
+<br>
+<br>
+<div class="page">
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-card>
+        <mat-card-title style="color: #0275d8;">
+          <b>Roles</b>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-list>
+          <mat-list-item class="listItems" *ngFor="let role of roles">
+              <button class="btn-block button" (click)="setRolePermissions(role)">
+                  <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-user" style="color: #0275d8"></i> &nbsp;
+                    </div>
+                    <div>
+                        <h5><b>Role: </b> &nbsp; {{ role?.name }} </h5>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <mat-divider></mat-divider>
+                  </div>
+                </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class="col-lg-6">
+      <mat-card>
+          <mat-card-title>
+            <div>
+              <div style="color: #0275d8">
+                <b> Permissions</b>
+              </div>
+              <div>
+              </div>
+            </div>
+          </mat-card-title>
+          <div >
+            <mat-divider></mat-divider>
+          </div>
+          <br>
+          <mat-card-content>
+            <div class="row">
+                <div class="col-sm-2">
+                  <b> Name </b>
+                </div>
+                <div class="col-sm-9 descrip">
+                  {{ currentRole?.name }}
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <b> Code: </b>
+              </div>
+              <div class="col-sm-9 descrip">
+                {{ currentRole?.code }}
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+          <br>
+          <h6 style="color: #0275d8">
+            <b>Currently Assigned Permissions: </b>
+          </h6>
+          <mat-list class="currList">
+              <mat-list-item class="listItems" *ngFor="let permission of currentRole?.permission">
+                  <button class="btn-block clientList">
+                      <div class="row">
+                        <div class="col-sm-1">
+                            <i class="fa fa-info-circle"></i> &nbsp;
+                        </div>
+                        <div class="col-sm-6">
+                            <h5><b>Permission: </b> &nbsp; {{permission.permissionCode}} </h5>
+                            <h6><b>Area: </b> &nbsp; {{permission.permissionArea}}</h6>
+                        </div>
+                        <div class="pull-right delete">
+                          <i class="fa fa-times-circle" (click)="RemovePermission(permission)"></i>
+                        </div>
+                      </div>
+                        <mat-divider></mat-divider>
+                  </button>
+              </mat-list-item>
+            </mat-list>
+            <br>
+            <div>
+                <mat-table [dataSource]="dataSource" class="searchList" matSort>
+                    <ng-container matColumnDef="code">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Permission Code </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row?.code}} </mat-cell>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="area">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Permission Area </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{ row?.area }} </mat-cell>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="actions">
+                          <mat-header-cell *matHeaderCellDef> Assign Permission </mat-header-cell>
+                          <mat-cell *matCellDef="let row"> 
+                            <button class="btn block" color="primary" mat-raised-button (click)="AssignPermission(row)">
+                              Assign
+                            </button>
+                          </mat-cell>
+                        </ng-container>
+                  
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </mat-row>
+                  </mat-table>
+            </div>
+            <br>
+      </mat-card>
+    </div>
+  </div>
+</div>

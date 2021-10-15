@@ -1,0 +1,111 @@
+<div class="center">
+  <h1 class="title">Self Start Login</h1>
+  
+</div>
+
+<div class="backtoblack">
+    <h4>A Painless Day is Only 1 Click Away</h4>
+</div>
+<br>
+<br>
+<mat-card class="assessTest" style="background-color: rgb(244, 254, 255);">
+  <div class="container justify-content-center">
+    <div class="row">
+    <!-- <div class="form-group row usandpass">
+      <div class="col">
+          <input type="text" class="form-control" id="inputUsername" placeholder="Username" #username>
+          
+      </div> 
+    </div> -->
+    <div class="col-6">
+      <br>
+      <br>
+      <div class="md-form usandpass">
+          <i class="fa fa-user prefix"></i>
+          <input mdbActive type="text" id="username" class="form-control" #username>
+          <label for="form2">Username</label>
+      </div>
+      <div class="md-form usandpass">
+          <i class="fa fa-lock prefix"></i>
+          <input mdbActive type="password" id="inputPassword" (keyup.enter)="Login(username.value, password.value)" class="form-control" #password>
+          <label for="form2">Password</label>
+      </div>
+      <div *ngIf="showFailure" class="dangeralrt">
+          <p class="failureMessage">The username or password you entered is incorrect</p>
+      </div>
+      <div *ngIf="userIsDisabled" class="dangeralrt">
+          <p class="failureMessage">Your account has been disabled. Please contact the system adminstrator to re-enable your account</p>      
+      </div>
+      <div *ngIf="needToVerify" class="dangeralrt">
+          <p class="failureMessage">You need to verify your account to continue, please go to your email and click the link. </p>              
+      </div>
+      <p style="margin-left: 5.5rem; color: #0275d8;" class="cont forgotpass"><a [routerLink]="['forgotten']" style="color: #0275d8;" >Forgot Password</a></p>                  
+      <br>
+      <br>
+      <div class="form-group row usandpass">
+          <div class="col">
+            <button class="btn btn-block btn-default" style="margin-left: 5%;"(click)="Login(username.value, password.value)">Login</button> 
+          </div> 
+      </div>
+      <br>      
+  </div>
+  <div class="col-1">
+      <div style="border-left:1px solid #0275d8;;height:95%;"></div>
+  </div>
+  <div class="col-5">
+    <br>
+    <h4>
+      Don't have an Account? Sign up here!
+    </h4>
+    <p>It's as easy as clicking the button below and inserting simple information! Self Start is commited to 
+      providing the best therapy to aid you in your recover process. What are you waiting for? Sign up now!
+    </p>
+    <button class="btn btn-block btn-default col-7" style="margin-top: 25px;" [routerLink]="['../signup']">Sign Up</button>
+    <br>
+    <br>
+    <h4>
+      Need Help?
+    </h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+            <ul>
+                <li><a [routerLink]="['../faq']">FAQ</a></li>
+                <li><a [routerLink]="['../contactus']">Contact Us</a></li>
+              </ul>
+        </div>
+        <div class="col-5">
+          <ul>
+            <li><a [routerLink]="['../services']">Our Services</a></li>
+            <li><a [routerLink]="['../howitworks']">How It Works</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+      
+  </div>
+
+  <ng-template #successfulModal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Alert! Enable Cookies</h4>
+      </div>
+      <div class="modal-body">
+        <p>To use this site, you must have cookies enabled in your browser! Please enable cookies and refresh the page </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click'); GoHome()">OK</button>        
+      </div>
+  </ng-template>
+  <button style="display: none" id="showEnableCookies" (click)="Open(successfulModal)"></button>
+    <!-- <div class="form-group row usandpass">
+      <div class="col">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" (keyup.enter)="Login(username.value, password.value)" #password>
+      </div>
+    </div> -->
+    
+  </div>
+</div>
+</mat-card>
+
+

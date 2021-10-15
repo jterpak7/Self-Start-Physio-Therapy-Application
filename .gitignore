@@ -1,0 +1,4 @@
+backend/data
+node_modules
+frontend/proxy.conf.json
+backend/rundb

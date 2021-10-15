@@ -1,0 +1,55 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.button{
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button:focus{
+    outline: none;
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.divider2{
+    margin-top: -10px;
+}
+
+.descrip{
+    text-align: left;
+}
+
+.print{
+    margin-right: auto;
+    cursor: pointer;
+}

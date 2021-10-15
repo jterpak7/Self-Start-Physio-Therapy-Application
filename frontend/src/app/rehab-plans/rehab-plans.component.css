@@ -1,0 +1,172 @@
+h2 {
+    margin: 1em;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.appointments {
+    background: #f5f5f5;
+    padding: 1%;
+    border-radius: 5%;
+}
+
+.appoints {
+    clear: both;
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.info{
+    margin-left: 40px;
+}
+
+.rehabbtn {
+    margin-left: 1em;
+    margin-right: 20px;
+    margin-bottom: 1em;
+    float: right;
+}
+
+.level3{
+    margin-left: 80px;
+}
+
+/*    margin-left: 2em;*/
+/*    margin-right: 2em;*/
+/*}*/
+
+/*.searchbar{
+    margin-left: 2em;
+    width: 30%;
+}
+
+.searchbtn{
+     margin-left: 0.5em;
+}*/
+
+.create{
+    margin-left: 2em;
+}
+
+.searchbar{
+    margin-left: 2em;
+    margin-right: 2em;
+    width: 50%;
+}
+
+#custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}
+
+.calFormat{
+    display: flex;
+    flex-direction: row;
+}
+
+.button{
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.clientList{
+    text-align: left;
+    border: none;
+    background-color: transparent;
+}
+
+.button:focus{
+    outline: none;
+}
+
+.clientList:focus{
+    outline: none;
+}
+
+.delete{
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: rgb(196, 62, 62);
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.divider2{
+    margin-top: -10px;
+}
+
+.descrip{
+    text-align: left;
+}
+
+.date, delete{
+    text-align: right;
+}
+

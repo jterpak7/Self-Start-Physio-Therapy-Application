@@ -1,0 +1,252 @@
+h2 {
+    margin: 1em;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.quotes {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.tab{
+    width: 90%;
+    margin-left: 60px;
+}
+
+.hddn{
+    display: none;
+}
+
+
+.accordion {
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    margin-left: 70px;
+    transition: 0.4s;
+    width: 65%;
+}
+.info {
+    margin: 1em;
+}
+.active, .accordion:hover {
+    width:90%;
+    background-color: #F0F8FF; 
+    
+   
+}
+
+.searchbar{
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+    width: 50%;
+}
+
+ul{ 
+    list-style-type: none; 
+    color: white;
+    
+}
+.active:after {
+    content: "\2212";
+    left: -20px;
+}
+.failedSearch {
+    margin-left: 3.5em;
+    color: red;
+    font-size: 12px;
+}
+
+.failedSearch {
+    margin-left: 3.5em;
+    color: red;
+    font-size: 12px;
+}
+.blockContainer {
+    text-align: center;
+}
+.left {
+    float: left;
+    text-align: right;
+    display: inline;
+}
+  
+.right {
+    float: left;
+    text-align: left;
+    margin: 2px 10px;
+    display: inline;
+    width: 200px;
+}
+/* .greyCard {
+    width: 95%;
+}
+    background-color: lightgrey;
+} */
+.myPaginator {
+    margin-left: 3.7em;
+    margin-right: 3.7em;
+    margin-bottom: 0.5em;
+}
+
+.searchdropdown {
+    height: 40px;
+    padding: 3px;
+    padding-left: 0px;
+    border: none;
+    border-bottom: solid 1px rgb(189, 189, 189);
+    border-radius: 3px;
+    background-color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-image: none;
+    background-clip: padding-box;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    margin-left: 1em;
+    margin-top: -4px;
+}
+.patients {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+.dummyclr{
+    clear:both
+ }
+
+ .rfrshicon {
+     height: 28px;
+     padding-top: 0px;
+     margin-bottom: 10px;
+     cursor: pointer;
+ }
+
+ .dummy {
+     display: none;
+ }
+
+ .ascvsdesc {
+    height: 44px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-image: none;
+    background-clip: padding-box;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    margin-top: 2px;
+    margin-left: 1rem;
+ }
+ 
+ .orderTag{
+     margin-left: 2.5rem;
+     margin-bottom: -1.5rem;
+ }
+
+ .arrows {
+     cursor: pointer;
+     display: inline-block;
+     margin-left: 12rem;
+     color: #0275d8;
+ }
+ .mypanel {
+    vertical-align: middle;
+    line-height: 30px;
+    text-align: middle;
+}
+.myta{
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+    margin-right: 1.25rem;
+    
+}
+
+.tobody {
+    margin-left: 1rem;
+}
+.pageinfo {
+    float: right;
+    margin-right: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.alrt {
+    height: 44px;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    margin-left: 2.5rem;
+    margin-right: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    border-radius: 2.5px;
+    vertical-align: middle;
+}
+
+#custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 600px;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}
+
+.modal-body {
+    max-height: 500px;
+    overflow-y: auto;
+}

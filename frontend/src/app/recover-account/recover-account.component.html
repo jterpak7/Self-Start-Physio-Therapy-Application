@@ -1,0 +1,41 @@
+<div class="center">
+  <h1>Account Recovery</h1>
+  <h4>Hello! Please enter your next password</h4>
+</div>
+<br>
+<mat-card class="assessTest" style="background-color: rgb(244, 254, 255);">
+  <div *ngIf="!successfullyChangePassword">
+    <mat-card-subtitle>
+      <p>In the temporary password field, please enter the temporary password that was sent to your email. The provided passwords must match.</p>
+    </mat-card-subtitle>
+    <hr>
+      <div class="md-form form-sm col-9">
+        <i class="fa fa-lock prefix moveright"></i>
+        <input mdbActive type="password" class="form-control" id="inputTempPassword"  #tempPassword>
+        <label for="inputTempPassword" class="smallmove">&nbsp; &nbsp; &nbsp; Temporary Password: </label>      
+      </div> 
+        <div class="md-form form-sm col-9">
+          <i class="fa fa-lock prefix moveright"></i>
+          <input mdbActive type="password" class="form-control" id="inputPassword"  #password>
+          <label for="inputPassword" class="smallmove">&nbsp; &nbsp; &nbsp; Password: </label>          
+        </div> 
+        <div class="md-form form-sm col-9 moveright">
+            <i class="fa fa-lock prefix"></i>
+            <input mdbActive type="password" class="form-control" id="inputRepeatPassword"  #repeatPassword>
+            <label for="inputRepeatPassword" class="smallmove">&nbsp; &nbsp; &nbsp; Repeat Password: </label>          
+        </div> 
+    <br>
+    <hr>
+    <mat-card-actions align="end">
+    <button class="btn btn-sm btn-primary" (click)="ResetPassword(password.value, repeatPassword.value, tempPassword.value)">Reset</button>
+    <button class="btn btn-sm btn-secondary mover" [routerLink]="['../../']">Cancel</button>
+    </mat-card-actions>  
+  </div>
+
+  <div *ngIf="successfullyChangePassword">
+    <h4>You have successfully updated your password</h4>
+    <p>You can now log in</p>
+    <button class="btn btn-sm btn-primary">Return to Log In</button>
+  </div>
+
+</mat-card>

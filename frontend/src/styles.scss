@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.modal-open, .modal{
+    overflow-y: auto;
+}
+
+.modal-open, .modal-content{
+    overflow-y: auto;
+}
+
+$secondary-color: #78909c;
+$button-text-color: white;
+
+.btn.btn-secondary{
+   color: $button-text-color !important;
+   background: $secondary-color !important;
+}
+
+.btn.btn-secondary:hover{
+    color: $button-text-color !important;
+    background: $secondary-color !important;
+ }
+
+ .btn.btn-outline-secondary{
+    background: $button-text-color !important;
+    color: $secondary-color !important;
+    border: 2px solid $secondary-color !important;
+ }
+ 
+ .btn.btn-outline-secondary:hover{
+    background: $button-text-color !important;
+    color: $secondary-color !important;
+    border: 2px solid $secondary-color !important;
+  }
+  
+ 
+

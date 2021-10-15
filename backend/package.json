@@ -1,0 +1,27 @@
+{
+  "name": "loopsolutions-backend",
+  "version": "1.0.0",
+  "description": "our back end for the self start project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam Mallabone, Jak Terpak, Andy Black, Stephanie Pereira, Matt Northmore, Craig Cook",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "fullcalendar": "^3.9.0",
+    "moment": "^2.22.0",
+    "mongodb-autoincrement": "^1.0.1",
+    "mongoose": "^5.0.13",
+    "mongoose-paginate": "^5.0.3",
+    "mongoose-ttl": "0.0.3",
+    "multer": "^1.3.0",
+    "ng2-date-picker": "^2.8.1",
+    "nodemailer": "^4.6.0",
+    "nodemon": "^1.14.11"
+  }
+}

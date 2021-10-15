@@ -1,0 +1,232 @@
+
+<mat-sidenav-container style="min-height: 100vh;">
+            <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+                <mat-nav-list style="top: -10px;">
+                    <mat-list-item [routerLinkActive]="['active']">
+                        <div class="row form-inline">
+                            <div class="col-1">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-th-large"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: left; color:white;">
+                                  &nbsp;Dashboard
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../useraccounts']">
+                        <div class="row form-inline">
+                            <div class="col-1">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-users"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="margin-left: 3px; color:white;">
+                                    Manage User Accounts
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../manageforms']">
+                        <div class="row form-inline">
+                            <div class="col-1">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-calendar"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style=" color:white;">
+                                    Manage Dynamic Forms
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                </mat-nav-list>
+            </mat-sidenav>
+
+          <mat-sidenav-content style="min-height:100vh;">
+              <div>
+                  <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+                      <br>
+                      <div style="margin-top: -10px;">
+                          <h3 class="title" style="color: #0275d8">
+                              <b style="color: #0275d8;">Welcome, Administrator.</b>
+                           </h3>
+                           <h5 class="quotes">What would you like to do today?</h5>
+                      </div>
+                    </div>
+                  <mat-card class="col-11 page" style="margin-left: auto; margin-right: auto;">
+                        <mat-card-content>
+                          <div class="row">
+                              <mat-card class="col-6">
+                                  <div>
+                                      <div class="resetPass">
+                                          <h4><b>Password Reset Requests</b></h4>
+                                          <hr>
+                                          <div class="names">
+                                              <ul>
+                                                <li *ngFor="let user of resetUsers">
+                                                   <span class="lefts">{{user?.userAccountName}}</span> 
+                                                   <fa class="rights check" name="check" matTooltip="Confirm Reset for {{ user?.userAccountName }}" (click)="ResetPassword(user.userAccountName, resetModal)"></fa>
+                                                   <ng-template #resetModal let-c="close" let-d="dismiss">
+                                                      <div class="modal-header">
+                                                        Reset Password Email Sent
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        An email has been successfully sent to {{user?.userAccountName}} so that they are able to recover their account.
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click')">OK</button>          
+                                                      </div>
+                                                  </ng-template>
+                                                  <ng-template #allResetModal let-c="close" let-d="dismiss">
+                                                      <div class="modal-header">
+                                                        Reset Password Email Sent
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        An email has been successfully sent to all users requiring a reset, so that they are able to recover their account.
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click')">OK</button>          
+                                                      </div>
+                                                  </ng-template>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+                                          <button class="btn btn-info" (click)="ResetAllRequests(allResetModal)" [disabled]="resetUsers?.length == 0">
+                                            <b *ngIf="resetUsers?.length > 0"> Reset All Requests </b>
+                                            <b *ngIf="resetUsers?.length == 0"> No Requests Currently</b>
+                                          </button>
+                                        </div>
+                                  </div>
+                                  <br>
+                                  <mat-divider></mat-divider>
+                                  <br>
+                                  <div>
+                                    <mat-card-title style="color: #0275d8;">
+                                      <b>System Statistics:</b>
+                                    </mat-card-title>
+                                    <mat-list>
+                                      <mat-list-item>
+                                          <div class="btn-block">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6><b> Number of Registered Physios: </b></h6>
+                                                  </div>
+                                                  <div *ngIf="currPhysios" class="col">
+                                                    <h4><b> {{ currPhysios }} </b></h4>
+                                                  </div>
+                                                  <div *ngIf="!currPhysios" class="col">
+                                                      <h4><b> 0 </b></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="divider">
+                                                  <mat-divider></mat-divider>
+                                                </div>
+                                            </div>
+                                      </mat-list-item>
+                                      <mat-list-item>
+                                          <div class="btn-block">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6><b> Number of Registered Clients: </b></h6>
+                                                  </div>
+                                                  <div *ngIf="currPatients" class="col">
+                                                    <h4><b> {{ currPatients }} </b></h4>
+                                                  </div>
+                                                  <div *ngIf="!currPatients" class="col">
+                                                      <h4><b> 0 </b></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="divider">
+                                                  <mat-divider></mat-divider>
+                                                </div>
+                                            </div>
+                                      </mat-list-item>
+                                      <mat-list-item>
+                                          <div class="btn-block">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6><b> Number of Unique Exercises: </b></h6>
+                                                  </div>
+                                                  <div *ngIf="currExercises" class="col">
+                                                      <h4> <b> {{ currExercises }} </b></h4>
+                                                  </div>
+                                                  <div *ngIf="!currExercises" class="col">
+                                                      <h4><b> 0 </b></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="divider">
+                                                  <mat-divider></mat-divider>
+                                                </div>
+                                            </div>
+                                      </mat-list-item>
+                                      <mat-list-item>
+                                          <div class="btn-block">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h6><b> Number of Exercise Menus: </b></h6>
+                                                  </div>
+                                                  <div *ngIf="currPlans" class="col">
+                                                    <h4> <b> {{ currPlans }} </b></h4>
+                                                  </div>
+                                                  <div *ngIf="!currPlans" class="col">
+                                                    <h4><b> 0 </b></h4>
+                                                  </div>
+                                                </div>
+                                                <div class="divider">
+                                                  <mat-divider></mat-divider>
+                                                </div>
+                                            </div>
+                                      </mat-list-item>
+                                    </mat-list>
+                                  </div>
+                              </mat-card>
+                              <mat-card class="col-6">
+                                <div>
+                                  <mat-card-title style="color: #0275d8;">
+                                    <b>Physio's Currently in the System</b>
+                                  </mat-card-title>
+                                  <div style="overflow-y: auto;">
+                                      <mat-list>
+                                          <mat-list-item class="listItems" *ngFor="let physio of physioList" style="overflow-y: hidden;">
+                                              <div class="btn-block">
+                                                  <div class="row">
+                                                    <div class="col-1">
+                                                        <i class="fa fa-user-md" style="color: #0275d8"></i>
+                                                    </div>
+                                                    <div class="col-3">
+                                                      <h5><b> {{ physio?.givenName }} {{ physio?.familyName}} </b></h5>
+                                                    </div>
+                                                    <div class="col">
+                                                      <b>Date Hired: </b> {{ physio?.dateHired | date:'mediumDate' }}
+                                                    </div>
+                                                  </div>
+                                                  <div class="divider">
+                                                    <mat-divider></mat-divider>
+                                                  </div>
+                                              </div>
+                                          </mat-list-item>
+                                      </mat-list>
+                                  </div>
+                                </div>
+                              </mat-card>
+                          </div>
+                        </mat-card-content>
+                  </mat-card>
+                  <br>
+                </div>    
+        </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,57 @@
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.button{
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.clientList{
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+}
+
+.button:focus{
+    outline: none;
+}
+
+.clientList:focus{
+    outline: none;
+}
+
+.delete{
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: rgb(196, 62, 62);
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.divider2{
+    margin-top: -10px;
+}
+
+.descrip{
+    text-align: left;
+    font-size: 14px;
+}
+
+.date, .delete{
+    text-align: right;
+}

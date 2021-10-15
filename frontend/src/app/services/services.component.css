@@ -1,0 +1,48 @@
+.title {
+    color: #0275d8;
+    margin: 0.5em;
+}
+
+.col-3 {
+    padding: 1em;
+    margin: auto 5px;
+    background-color: rgba(2, 117, 216, 0.3);
+    min-height: 46vh;
+}
+
+.display-12 {
+    padding-bottom: 1em;
+    border-bottom: solid rgba(0, 0, 0, 0.1) 1px;
+    text-align: center;
+}
+
+.sign-up {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-weight: bold;
+    text-align: center;
+    border-top: solid rgba(0, 0, 0, 0.1) 1px;
+}
+
+.below {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+span {
+    font-weight: bold;
+}
+
+.service-title {
+    color: #01579b;
+    font-size: large;
+}
+
+.price {
+    font-weight: 500;
+}
+
+#follow-up {
+    margin: 0;
+    padding: 0;
+}

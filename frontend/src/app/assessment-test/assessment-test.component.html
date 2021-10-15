@@ -1,0 +1,648 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+
+                <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-th-large"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                  Dashboard
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../calendar']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-calendar"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    Calendar
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../clients']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-address-book"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    Client Profiles
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../exercises']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-id-card"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    Exercises
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../rehabplans']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-archive"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style=" color:white;">
+                                  Rehabilitation Plans
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-paste"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style=" color:white;">
+                                  Assessment Tests
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-cog"></i>                        
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="margin-left: 10px; color:white;">
+                                 Settings
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                      <br>
+                      <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+            <br>
+            <div style="margin-top: -10px;">
+                <h3 *ngIf="physio" class="title" style="color: #0275d8">
+                    Good {{ timeOfDay }}<a *ngIf="physio">, {{ physio?.givenName }}.</a>
+                </h3>
+                <p class="quote">
+                    Choose to update an assessment test, or create a brand new one.
+                </p>
+                <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-2">
+                        <hr>
+                        <b>{{ today | date:'shortTime'}}</b>
+                      </div>
+            </div>
+        </div>
+        <div style="min-height: 100vh;" class="page col-11">
+            <mat-card style="min-height: 75vh;">
+                <br>
+                <div style="margin-left: auto; margin-right: auto; text-align: center;" class="row col-8">
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" (click)="enable();">Create a New Assessment Test</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" (click)="showTable();">Manage Assessment Tests</button>
+                    </div>
+                </div>
+                <br><br>
+                <mat-card *ngIf="manageTests && showCreat" class="col">
+                    <mat-tab-group style="min-height: 75vh;">
+                        <mat-tab label="All Assessment Tests">
+                            <br><br>
+                            <div class="example-header">
+                                <mat-form-field style="width:35%;">
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search all Tests" #searchString>
+                                </mat-form-field>
+                            </div>
+                            <mat-table [dataSource]="tests" matSort>
+                                <ng-container matColumnDef="Patient">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rehab Plan Name </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.belongsTo?.name}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="Plan Assigned">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Test Assigned </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="Date">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Created</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.dateCreated | date: 'yyyy-MM-dd'}} </mat-cell>
+                                </ng-container>
+                                <!--<ng-container matColumnDef="Date Completed">-->
+                                <!--    <mat-header-cell *matHeaderCellDef mat-sort-header> Date completed</mat-header-cell>-->
+                                <!--    <mat-cell *matCellDef="let row"> {{row.dateCompleted | date: 'yyyy-MM-dd'}} </mat-cell>-->
+                                <!--</ng-container>-->
+
+                                <!--<ng-container matColumnDef="Status">-->
+                                <!--    <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>-->
+                                <!--    <mat-cell *matCellDef="let row">-->
+                                <!--        <p *ngIf="row.completed" style="color: green">completed</p>-->
+                                <!--        <p *ngIf="!row.completed" style="color: red">incomplete</p>-->
+                                <!--    </mat-cell>-->
+                                <!--</ng-container>-->
+                                <ng-container matColumnDef="View Test Results">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center"> Details on Test </mat-header-cell>
+                                    <mat-cell *matCellDef="let row" style="text-align:center">
+                                        <button type="button" class="btn btn-primary btn-sm" (click)="view(row)">view</button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                            <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="SwitchPageEvent($event, searchString.value);"></mat-paginator>
+                        </mat-tab>
+                        <mat-tab label="Pending and Completed Tests">
+                            <br><br>
+                            <div class="example-header">
+                                <mat-form-field style="width:35%;">
+                                    <input matInput (keyup)="applyFilter1($event.target.value)" placeholder="Search pending and completed tests" #searchString1>
+                                </mat-form-field>
+                            </div>
+                            <mat-table [dataSource]="completedTests" matSort>
+                                <ng-container matColumnDef="Patient">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> client userName </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.userID?.userAccountName}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="Test Assigned">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Test Assigned </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                                </ng-container>
+                                <!--<ng-container matColumnDef="Date">-->
+                                <!--    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Created</mat-header-cell>-->
+                                <!--    <mat-cell *matCellDef="let row"> {{row.dateCreated | date: 'yyyy-MM-dd'}} </mat-cell>-->
+                                <!--</ng-container>-->
+                                <ng-container matColumnDef="Date Completed">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date completed</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.dateCompleted | date: 'yyyy-MM-dd'}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Status">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-headers style="text-align: center;"> Status </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <p *ngIf="row.completed" style="color: green">completed</p>
+                                        <p *ngIf="!row.completed" style="color: blue">pending</p>
+                                    </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="View Test Results">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;"> Test Results </mat-header-cell>
+                                    <mat-cell *matCellDef="let row" style="text-align:center">
+                                        <button type="button" class="btn btn-primary btn-sm" (click)="viewcomp(row)">view</button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+                            </mat-table>
+                            <mat-paginator #paginator [length]="length1" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="SwitchPageEvent1($event, searchString1.value);"></mat-paginator>
+
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
+
+                <div style="margin-left: 2em;">
+
+                    <mat-card *ngIf="!showCreat" class="col-11">
+
+                        <div *ngIf="!showCreat" style="width:50%">
+
+                            <h6><b style="color: #0275d8;">Enter the name of the test: </b></h6>
+                            <br>
+
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name...." style="margin-left: 2em; width: 50%; height: 100%" #newSAQuestion>
+                            <br>
+                            <!--<button type="button" class="btn btn-primary createbtn" (click)="enableAddQuestion();" style = "margin-left: 2em; float: right;">Save Question</button>-->
+
+                            <hr>
+                        </div>
+                        <div *ngIf="!showCreat" style="width:50%">
+                            <h6><b style="color: #0275d8;">Enter the description of the test: </b></h6>
+                            <br>
+
+                            <input type="text" class="form-control" id="description" placeholder="Enter description...." style="margin-left: 2em; width: 50%; height: 100%" #newSAQuestion>
+                            <br>
+                            <!--<button type="button" class="btn btn-primary createbtn" (click)="enableAddQuestion();" style = "margin-left: 2em; float: right;">Save Question</button>-->
+
+                            <hr>
+                        </div>
+                        <h6><b style="color: #0275d8;">Questions:</b></h6>
+                        <br>
+                        <ol *ngIf="!showPatients">
+                            <li *ngFor="let question of questions" style="margin-left: 2em; width:50%;">
+
+                                <label><b>{{question.questionText}}</b></label>
+                                <!--<button class="btn btn-outline-primary" style="float: right;" (click)="deleteQuestion(question)">Remove Question</button>-->
+
+                                <i *ngIf="question!=questions[0]" class="fa fa-chevron-up" style="float: right; margin-right: 0.5em; margin-left: 0.5em; color: blue;" (click)="moveUp(question)"></i>
+                                <i *ngIf="question!=questions[0]" class="fa fa-chevron-down" style="float: right; margin-right: 0.5em; margin-left: 0.5em;color: blue;" (click)="moveDown(question)"></i>
+                                <i *ngIf="question!=questions[0]" class="fa fa-minus-circle" style="float: right; margin-right: 0.5em; margin-left: 0.5em; color: red;" (click)="deleteQuestion(question)"></i>
+                                <i *ngIf="question!=questions[0]" class="fa fa-edit" style="float: right; margin-right: 0.5em; margin-left: 0.5em; color: edit;" data-toggle="modal" data-target="#editQ"(click)="setQedit(question);editQ.show();"></i>
+
+
+                                <br><br><br>
+                                <ol>
+                                    <li type="a" *ngFor="let options of question.questionContent" style="margin-left: 2em;">
+                                        {{options}}
+                                    </li>
+                                </ol>
+                                <hr>
+                                <br>
+                                <!--<ng-template #editQ let-c="close" let-d="dismiss">-->
+                                <!--<div mdbModal #editQ="mdb-modal" class="modal fade mymodal" tabindex="-1" role="dialog" aria-hidden="true">-->
+                                <!--    <div class="modal-dialog modal-lg mymodal" role="document">-->
+                                <!--        <div class="modal-content mymodal" style="overflow-y: visible;">-->
+                                <!--            <div class="modal-header">-->
+                                <!--                <h4 class="modal-title">Edit Question</h4>-->
+                                <!--            </div>-->
+                                <!--            <div class="modal-body" style="overflow-x: hidden; min-height: 78vh;">-->
+                                <!--                <form>-->
+                                <!--                    <div class="form-group row">-->
+                                <!--                        <label for="inputQuestionText" class="col-sm-3 col-form-label">Question</label>-->
+                                <!--                        <div class="col-sm-9">-->
+                                <!--                            <input type="text" class="form-control" id="inputQuestionText" value="{{question.questionText}}" placeholder="Question" #newPatientFirstName>-->
+                                <!--                        </div>-->
+                                <!--                    </div>-->
+                                <!--                    <div class="form-group row">-->
+                                <!--                        <ol>-->
+                                <!--                            <li type="a" *ngFor="let options of question.questionContent" style="margin-left: 2em">-->
+                                <!--                                <label for="inputQuestionOption" class="col-sm-3 col-form-label"></label>-->
+                                <!--                                <div class="col-sm-9">-->
+                                <!--                                    <i class="fa fa-minus-circle" style="float: right; margin-right: 0.5em; margin-left: 0.5em;" (click)="deleteOption(options,question)"></i>-->
+                                <!--                                    <input type="text" class="form-control" id="{{question.questionContent.indexOf(options)}}" value="{{options}}" placeholder="option" #editOption>-->
+
+                                <!--                                </div>-->
+                                <!--                            </li>-->
+                                <!--                        </ol>-->
+                                <!--                        <button type="button" class="btn btn-primary createbtn" (click)="addOptionInEdit(question);" style="margin-left: 2em; float: left;" *ngIf="question.questionCode == 'MC'">Add Option</button>-->
+                                <!--                    </div>-->
+
+                                <!--                </form>-->
+
+                                <!--            </div>-->
+                                <!--            <div class="modal-footer">-->
+                                <!--                <button type="button" class="btn btn-primary btn-sm" (click)="updateQuestion(question); editQ.hide();">Confirm</button>-->
+                                <!--                <button type="button" class="btn btn-secondary btn-sm" (click)="editQ.hide();">Cancel</button>-->
+
+                                <!--            </div>-->
+
+                                <!--</ng-template>-->
+                                <!--        </div>-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                            </li>
+
+                        </ol>
+                        <div></div>
+                        <br>
+                        <div>
+
+                            <!--<div class="container">-->
+                            <div class="row">
+
+                                <div *ngIf="showDrop" ngbDropdown class="col-5">
+                                    <br><br>
+                                    <!--<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle style="margin-left: 2em; float: left">{{type}}</button>-->
+                                    <!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+                                    <h6>Choose Type of Question</h6>
+                                    <button class="dropdown-item" (click)="changeSA();">Short Answer</button>
+                                    <button class="dropdown-item" (click)="changeMC();">Multiple Choice</button>
+                                    <button class="dropdown-item" (click)="changeRA();">Rating</button>
+
+
+                                </div>
+
+                                <div class="col-7">
+
+                                    <div *ngIf="shortAnswer" style="margin-left:2em; width:90%;">
+                                        <mat-card>
+                                            <br><br>
+                                            <h6><b>Enter Your Short Answer Question</b></h6>
+
+                                            <input type="text" class="form-control" id="inputShortAnswerQuestion" placeholder="Enter The Short Answer Question...." style="margin-left: 2em; width: 90%; height: 100%" #newSAQuestion>
+                                            <br>
+                                            <button type="button" class="btn btn-primary btn-sm" (click)="saveSAQuestion();" style="margin-left: 2em; float: right;">Save Question</button>
+                                            <br><br>
+                                            <hr>
+                                        </mat-card>
+                                    </div>
+
+                                    <div *ngIf="multipleChoice" style="width: 90%; margin-left: 2em;">
+                                        <mat-card>
+                                            <br><br>
+                                            <h6><b>Enter Your Multiple Choice Question</b></h6>
+                                            <input type="text" class="form-control" id="inputMCQuestion" placeholder="Enter The Question...." style="margin-left: 2em; width: 90%; height: 100%" #newMAQuestion>
+
+                                            <br><br>
+                                            <div style="margin-left:2em">
+                                                <div class="form-group row">
+                                                    <label for="inputOption" class="col-sm-3 col-form-label">a)</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" id="inputOption" placeholder="Enter The Option...." style=" width: 90%; height: 100%; " #newOption>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputOption2" class="col-sm-3 col-form-label">b)</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" id="inputOption2" placeholder="Enter The Option...." style=" width: 90%; height: 100%;" #newOption1>
+                                                    </div>
+                                                </div>
+                                                <div *ngFor="let option of options" class="form-group row">
+                                                    <label for="inputOption2" class="col-sm-3 col-form-label">{{option}})</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" id="{{option}}" placeholder="Enter The Option...." style="width: 90%; height: 100%;" #newOption2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <button type="button" class="btn btn-primary btn-sm" (click)="saveMCQuestion();" style="margin-left: 2em; float: right;">Save Question</button>
+
+                                            <button type="button" class="btn btn-primary btn-sm" (click)="addOption();" style="margin-left: 2em;">Add Option</button>
+                                            <br><br>
+                                            <hr>
+                                        </mat-card>
+                                    </div>
+
+                                    <div *ngIf="rating" style="margin-left:2em; width: 90%;">
+                                        <mat-card>
+                                            <br><br>
+                                            <h6><b>Enter Your Rating Question(rating is out of 5)</b></h6>
+
+                                            <input type="text" class="form-control" id="inputRatingQuestion" placeholder="Enter The  Question...." style="margin-left: 2em; width: 90%; height: 100%" #newRAQuestion>
+                                            <br><br>
+                                            <button type="button" class="btn btn-primary btn-sm" (click)="saveRatingQuestion();" style="margin-left: 2em; float: right;">Save Question</button>
+                                            <br><br>
+                                            <hr>
+                                        </mat-card>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <!--</div>-->
+
+                            <br>
+
+                            <div *ngIf="!showCreat" style="margin-left:2em; margin-top:2em; width:50%;">
+                                <button type="button" class="btn btn-primary createbtn" (click)="enableAddQuestion();" style="margin-left: 2em; float: left">Add New Question</button>
+                            </div>
+                            <div *ngIf="!showCreat" style="margin-left:2em; margin-top:2em; width:50%;">
+                                <button type="button" class="btn btn-primary createbtn" (click)="open(askIfAssign);" style="margin-left: 2em; background-color: green;">Save Plan</button>
+                            </div>
+                        </div>
+
+                        <ng-template #askIfAssign let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title">You will now save the test to a specific rehab plan</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Assigning a test to a rehab plan allows that patient who is assigned to that plan to answer the questions on this test. Is that something you would like to do?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="openListOfPlans();  c('Close click')">Ok</button>
+                                <!--<button type="button" class="btn btn-primary btn-sm" (click)="c('Close click'); createTest(); showTable(); ">No</button>-->
+                                <button type="button" style="float: left;" class="btn btn-secondary btn-sm" (click)="c('Close click');">Cancel</button>
+                            </div>
+                        </ng-template>
+                    </mat-card>
+                    <div *ngIf="showPatients">
+                        <mat-card class="assessTest">
+                            <!--<div class='blockContainer'>-->
+
+                            <!--    <div class="right">-->
+                            <!--        <div class="input-group mb-3 searchbar" id="custom-search-input">-->
+                            <!--            <input type="text" class="form-control" (keyup.enter)="searchPatients(searchValue.value, 'givenName')" placeholder="Search term" aria-label="Search for patient here..." aria-describedby="basic-addon2" #searchValue>-->
+                            <!--            <span class="input-group-btn">-->
+                            <!--                    <button class="btn btn-info btn-lg" type="button" (click)="searchPatients(searchValue.value, 'givenName')"  location="top" ngbTooltip="Search">-->
+                            <!--                      <fa name="search"></fa>-->
+                            <!--                    </button>-->
+                            <!--                </span>-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            <br>
+                            <!--<button class='btn btn-primary btn-sm nextpagebtn' (click)="NextPage(searchValue.value, 'givenName');">Next Page</button>-->
+                            <!--<button class='btn btn-primary btn-sm prevpagebtn' (click)="PreviousPage(searchValue.value, 'givenName');">Previous Page</button>-->
+                            <!--<button class="btn btn-alt btn-sm prevpagebtn rfrshicon" ngbTooltip="Refresh list" (click)="StandardPatientList()">-->
+                            <!--    <i class="material-icons">refresh</i>-->
+                            <!--</button>-->
+
+                            <h2>Assign Test To:</h2>
+                            <div class="example-header">
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter2($event.target.value)" placeholder="Filter" #searchString2>
+                                </mat-form-field>
+                            </div>
+                            <mat-selection-list #clientsList>
+                                <mat-list-option *ngFor="let client of clients" value="{{client._id}}">
+                                    {{client.name}}
+                                </mat-list-option>
+                            </mat-selection-list>
+                            <br>
+                            <mat-paginator #paginator [length]="length2" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="SwitchPageEvent2($event, searchString2.value);"></mat-paginator>
+                            <br><br>
+                            <button type="button" class="btn btn-primary createbtn" (click)="assignTest(clientsList.selectedOptions.selected); showTable();" style="margin-left: 2em; float: right;">Assign Test</button>
+                            <br><br><br><br>
+                        </mat-card>
+                        <br><br><br><br>
+
+
+                    </div>
+
+                </div>
+                <div *ngIf="viewDetails">
+                    <mat-card class="assessTest">
+                        <div class="center">
+                            <h2 style="color: #0275d8;"><b style="color: black;">Test Name:</b> {{selectedPlan.name}}</h2>
+                            <br>
+                            <h4 style="color: #0275d8;"><b style="color: black;">Description: </b>{{selectedPlan.description}}</h4>
+                            <br>
+                            <h5 style="color: #0275d8;"><b style="color: black;">rehab plan assigned: </b>{{selectedPlan.belongsTo?.name}}</h5>
+                        </div>
+                        <br><br><br>
+                        <ol>
+                            <li *ngFor="let question of selectedPlan.questions">
+                                <div>
+                                    <h6><b>Question: </b>{{question.questionText}}</h6>
+                                </div>
+                                <!--<div>-->
+                                <!--    <h6><b>Answer: </b>{{question.answer}}</h6>-->
+                                <!--</div>-->
+                                <br><br>
+                            </li>
+
+                        </ol>
+
+                        <br><br>
+
+                        <!--<button class="btn btn-primary createbtn" (click)="showTable();">Assign Followup</button>-->
+                        <!--<button class="btn btn-primary createbtn" (click)="showTable();">Close Treatment</button>-->
+
+                    </mat-card>
+
+                </div>
+                <div *ngIf="viewDetailsCompleted">
+                    <mat-card class="assessTest">
+                        <div class="center">
+                            <h2 style="color: #0275d8;">{{selectedPlan.name}}</h2>
+                            <br>
+                            <h4 style="color: #0275d8;">{{selectedPlan.description}}</h4>
+                            <br>
+                            <h5 style="color: #0275d8;">{{selectedPlan.userID?.userAccountName}}</h5>
+                        </div>
+                        <br><br>
+                        <div *ngIf="!selectedPlan.completed">
+                            <h5>Enter some comments on the test results</h5>
+                            <br>
+                            <input type="text" #physioComments1><br><br>
+                            <h5>Based on these results, how do you feel the Client is progressing out of 10 </h5>
+                            <ngb-rating [(rate)]="currentRate" id="question{{i}}" class="ratingstars">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="star" [class.filled]="fill === 100" (click)="SendBack(index)">&#9733;</span>
+                                </ng-template>
+                            </ngb-rating>
+                            <br><br>
+                            <button *ngIf="!selectedPlan.completed" class="btn btn-primary createbtn" (click)="setphysioComments(physioComments1.value); open(followUp)">Assign Followup</button>
+                            <button *ngIf="!selectedPlan.completed" class="btn btn-primary createbtn" (click)="open(closeTreatment); setphysioComments(physioComments1.value);">Close Treatment</button>
+                        </div>
+                        <div *ngIf="selectedPlan.completed">
+                            <h5>Your have already taken action on these test results.</h5>
+                        </div>
+                        <br><br><br>
+                        <ol>
+                            <li *ngFor="let question of selectedPlan.questions">
+                                <div>
+                                    <h6><b>Question: </b>{{question.questionText}}</h6>
+                                </div>
+                                <div>
+                                    <h6><b>Answer: </b>{{question.answer}}</h6>
+                                </div>
+                            </li>
+
+                        </ol>
+
+                        <br><br>
+
+
+                        <!--<button *ngIf="!selectedPlan.completed" class="btn btn-primary createbtn" (click)="showTable(); assignFollowUp(physioComments1.value);">Assign Followup</button>-->
+                        <!--<button *ngIf="!selectedPlan.completed" class="btn btn-primary createbtn" (click)="open(closeTreatment); setphysioComments(physioComments1.value);">Close Treatment</button>-->
+
+                        <ng-template #closeTreatment let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Close Treatment</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label for="inputQuestionText" class="col-sm-3 col-form-label">Final Thoughts</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputQuestionText" placeholder="Question" #finalThoughts>
+                                    </div>
+                                </div>
+                                <p>Are you sure you want to close this treatment? this action cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="closeInjury(finalThoughts.value); c('Close click'); showTable();">Confirm</button>
+                                <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+
+                            </div>
+                        </ng-template>
+                        <ng-template #followUp let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Assign Follow up treatments</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <p>Are you sure you want to assign follow up to this treatment? you will be redirected to the rehab plans page.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="assignFollowUp(); c('Close click');" [routerLink]="['../rehabplans']">Confirm</button>
+                                <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+
+                            </div>
+                        </ng-template>
+
+                    </mat-card>
+                </div>
+            </mat-card>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+<div mdbModal #editQ="mdb-modal" class="modal fade mymodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg mymodal" role="document">
+        <div class="modal-content mymodal">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Question</h4>
+            </div>
+            <div class="modal-body mymodal">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputQuestionText" class="col-sm-3 col-form-label">Question</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputQuestionText" value="{{qEdit?.questionText}}" placeholder="Question" #newPatientFirstName>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <ol>
+                            <li type="a" *ngFor="let options of qEdit?.questionContent" style="margin-left: 2em">
+                                <label for="inputQuestionOption" class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <i class="fa fa-minus-circle" style="float: right; margin-right: 0.5em; margin-left: 0.5em;" (click)="deleteOption(options, qEdit)"></i>
+                                    <input type="text" class="form-control" id="{{qEdit?.questionContent.indexOf(options)}}" value="{{options}}" placeholder="option" #editOption>
+
+                                </div>
+                            </li>
+                        </ol>
+                        <button type="button" class="btn btn-primary createbtn" (click)="addOptionInEdit(qEdit);" style="margin-left: 2em; float: left;" *ngIf="qEdit?.questionCode == 'MC'">Add Option</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer mymodal">
+                <button type="button" class="btn btn-primary btn-sm" (click)="updateQuestion(qEdit); editQ.hide();">Confirm</button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="editQ.hide();">Cancel</button>
+
+            </div>
+
+            <!--</ng-template>-->
+        </div>
+    </div>
+</div>

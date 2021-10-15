@@ -1,0 +1,382 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-th-large"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                      Dashboard
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../calendar']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-calendar"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        Calendar
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../clients']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-address-book"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        Client Profiles
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-id-card"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        Exercises
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../rehabplans']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-archive"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style=" color:white;">
+                      Rehabilitation Plans
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../assessmenttests']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-paste"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style=" color:white;">
+                      Assessment Tests
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>          
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+          <div class="row form-inline">
+              <div class="col-2">
+                  <h5 class="btn-block" style="text-align: center; color:white;">
+                      <i class="fa fa-cog"></i>                        
+                  </h5>      
+              </div>
+              <div class="col">
+                  <h5 class="btn-block" style="margin-left: 10px; color:white;">
+                   Settings
+                  </h5>
+              </div>
+          </div>
+      </mat-list-item>
+        <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+  <mat-sidenav-content>
+      <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 *ngIf="physio" class="title" style="color: #0275d8">
+                  Good {{ timeOfDay }}<a >, {{ physio?.givenName }}.</a>
+               </h3>
+               <p class="quote">
+                 Manage your appointments, book time off, or get a glimpse of your weekly schedule.
+               </p>
+               <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-2">
+                  <hr>
+                  <b>{{ today | date:'shortTime'}}</b>
+                </div>
+          </div>
+        </div>
+        <div style="min-height: 100vh;" class="page col-11">
+        <mat-card style="min-height: 75vh;">
+        <mat-tab-group (selectedIndex)="myTabIndex" #par>
+          <mat-tab label="Schedule">
+            <div>
+                <div id="cal">
+                  <br>
+                <mwl-demo-utils-calendar-header
+                  [(view)]="view"
+                  [(viewDate)]="viewDate"
+                  (viewDateChange)="fetchEvents()"
+                  (viewChange)="fetchEvents()">
+                </mwl-demo-utils-calendar-header>
+                
+                <ng-template #loading>
+                  <div class="text-center">
+                    <i class="fa fa-spin fa-spinner fa-5x"></i>
+                    <br>
+                    Loading appointments...
+                  </div>
+                </ng-template>
+                
+                <div *ngIf="events$ | async; else loading; let events">
+                  <div [ngSwitch]="view">
+                    <mwl-calendar-month-view
+                      *ngSwitchCase="'month'"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      [activeDayIsOpen]="activeDayIsOpen"
+                      (dayClicked)="dayClicked($event.day)"
+                      (eventClicked)="eventClicked($event.event)">
+                    </mwl-calendar-month-view>
+                    <mwl-calendar-week-view
+                      *ngSwitchCase="'week'"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      (eventClicked)="eventClicked($event.event)">
+                    </mwl-calendar-week-view>
+                    <mwl-calendar-day-view
+                      *ngSwitchCase="'day'"
+                      [viewDate]="viewDate"
+                      [events]="events"
+                      (eventClicked)="eventClicked($event.event)">
+                    </mwl-calendar-day-view>
+                  </div>
+                </div>
+                </div>
+                <br>
+            </div>
+          </mat-tab>
+          <mat-tab label="Book Time Off">
+          <mat-card>
+          <mat-card-content class="d-flex">
+            <div class="col-md-6 col-sm-12 float-md-left mt-2">
+              <mat-card>
+                <mat-card-title>
+                  Start
+                  <hr>
+                </mat-card-title>
+                <mat-card-content style="height: auto;">
+                  <br>
+                  <div class="form-group row">
+                    <!-- <label for="inputTargDate" class="col-sm-3 col-form-label"><b>From</b></label> -->
+                    <!-- <div class="col-sm-9">
+                        <div class="calFormat">
+                          <input class="form-control" value="" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                <fa name="calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></fa>
+                              </button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <form class="form-inline" style="margin:1em;">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input class="form-control" style="padding: 0; padding-bottom: 0.6rem; padding-top: 0.5rem; font-size: 1rem; line-height: 1;" placeholder="yyyy-mm-dd"
+                                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" #fromDate>
+                            <div class="input-group-append ml-0">
+                              <button class="btn btn-outline-primary" (click)="d.toggle()" type="button">
+                                Choose Date
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+                  <div class="form-group row">
+                    <!-- <label for="inputTargDate" class="col-sm-3 col-form-label"><b>From</b></label> -->
+                    <div class="col-sm-9">
+                      <ngb-timepicker [(ngModel)]="time" [seconds]="false"
+                      [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep" [meridian]="meridian"></ngb-timepicker>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+          </div>
+          <div class="col-md-6 col-sm-12 float-md-right d-inline mt-2">
+            <mat-card>
+              <mat-card-title>
+                Finish
+                <hr>
+              </mat-card-title>
+              <br>
+              <mat-card-content style="height: auto;">
+              <div class="form-group row">
+                <!-- <label for="inputTargDate" class="col-sm-3 col-form-label"><b>To</b></label> -->
+                <!-- <div class="col-sm-9">
+                    <div class="calFormat">
+                      <input class="form-control" value="" name="dpTwo" [(ngModel)]="modelTwo" ngbDatepicker #m="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" (click)="m.toggle()" type="button">
+                            <fa name="calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></fa>
+                          </button>
+                        </div>
+                    </div>
+                </div> -->
+                <form class="form-inline" style="margin:1em;">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input class="form-control" style="padding: 0; padding-bottom: 0.6rem; padding-top: 0.5rem; font-size: 1rem; line-height: 1;" placeholder="yyyy-mm-dd"
+                               name="dp" [(ngModel)]="modelTwo" ngbDatepicker #m="ngbDatepicker" #toDate>
+                        <div class="input-group-append ml-0">
+                          <button class="btn btn-outline-primary" (click)="m.toggle()" type="button">
+                            Choose Date
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+              <div class="form-group row">
+                <!-- <label for="inputTargDate" class="col-sm-3 col-form-label"><b>From</b></label> -->
+                <div class="col-sm-9">
+                  <ngb-timepicker [(ngModel)]="timeTwo" [seconds]="false"
+                  [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep" [meridian]="meridianTwo"></ngb-timepicker>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+            </div>
+            <!--<div class="col-md-6 col-sm-12 d-block mt-2">
+                <mat-card>
+                    <div class="row">
+                      <div class="col-12 d-block">
+                          <button class="btn btn-primary" (click)="saveTimeOff(fromDate.value, toDate.value);">
+                              Save Time Off
+                          </button>
+                      </div>
+                    </div>
+                  </mat-card>
+            </div>-->
+          </mat-card-content>
+          <div style="position:relative; right:-10px;">
+          <button class="btn btn-primary" (click)="saveTimeOff(fromDate.value, toDate.value); open(bookModal);">
+            Save Time Off
+          </button>
+          </div>
+          </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+        </mat-card>
+        </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ng-template #modalContent let-c="close" let-d="dismiss">  <div class="modal-header">
+    <h4 class="modal-title">Appointment Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="c('Close click'); ">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <p><b>Name: </b>{{apptName}}</p>
+    </div>
+    <div>
+      <p><b>Date: </b>{{apptDate | date:'fullDate'}} at {{apptDate | date:'shortTime'}}</p>
+    </div>
+    <div>
+      <p><b>Appointment Type: </b>{{apptType}}</p>
+    </div>
+    <div>
+      <p><b>Description: </b>{{apptReason}}</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" (click)="c('Close click');">Close</button>
+  </div>
+</ng-template>
+
+<!--<ng-template #editModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Appointment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="c('Close click'); ">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Client Name</b></label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="name" placeholder="Name" #name>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Date</b></label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="date" placeholder="Date" #date>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Type</b></label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="type" placeholder="Type" #type>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><b>Description</b></label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="reason" placeholder="Description" #reason>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" (click)="c('Close click');">Confirm</button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click');">Cancel</button>
+  </div>
+</ng-template>-->
+
+<ng-template #deleteModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Are you sure you want to delete this appointment?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="c('Close click'); ">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" (click)="deleteAppt(); c('Close click');" onClick="window.location.reload()">Confirm</button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click');">Cancel</button>
+  </div>
+</ng-template>
+
+<ng-template #bookModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Time off successfully booked!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="c('Close click'); ">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" (click)="c('Close click');" onClick="window.location.reload()">Close</button>
+  </div>
+</ng-template>

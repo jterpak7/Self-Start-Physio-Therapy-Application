@@ -1,0 +1,288 @@
+<div style="margin-left: auto; margin-right: auto; text-align: center;">
+  <h1>Register</h1>
+  <h5>Welcome to Self Start! Please input your information so we can properly register your account</h5>
+</div>
+<hr style="width: 80%;">
+<br>
+<div class="container-fluid inputGroup">
+  <form class="inputForm needs-validation" novalidate>
+      
+      <mat-vertical-stepper [linear]="true" #stepper="matVerticalStepper" class="col-10" style="margin-left: auto; margin-right: auto;">
+          <p class="smallText">*Required Fields</p>
+        <mat-step label="Username and Password">
+          
+          <br>
+            <div class="md-form form-sm col-6 slightright">
+              <input mdbActive type="text" class="form-control movebar" id="inputUsername"  #username required>
+              <label for="inputUsername" class="smallmove">*Username </label>              
+              <div class="invalInput" *ngIf="invalidUsername">
+                Please enter a valid username
+              </div>
+              <div class="hintText" *ngIf="!invalidUsername">
+                Username cannot contain special characters
+              </div>
+            </div>
+          <hr class='dvder'>
+        <div class='invalInput' *ngIf=""></div>
+          <br>
+          <br>
+            <div class="md-form form-sm col-6 slightright">
+                  <input mdbActive type="password" class="form-control movebar" id="inputPassword"  #password required>
+                  <label for="inputPassword" class="smallmove">*Password </label>
+                  <div class="hintText" *ngIf="!invalidPassword">
+                    Passwords must match.
+                  </div>
+            </div>
+        <hr class='dvder'>
+        <br>
+        <br>
+              <div class="md-form form-sm col-6 slightright">
+                <input mdbActive type="password" class="form-control movebar" id="inputRepeatPassword" #repeatPassword required>
+                <label for="inputRepeatPassword" class="smallmove">*Repeat Password </label>
+                <div class="invalInput" *ngIf="invalidPassword">
+                  Please fix the password fields so that they match
+                </div>
+              </div>
+        <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+        </mat-step>
+        <mat-step  label="Personal Information">
+          <br>
+            <div class="md-form form-sm col-6 slightright">
+              <input mdbActive type="text" class="form-control movebar" id="inputFirstName"  #firstName>
+              <label for="inputFirstName" class="smallmove">*First Name </label>            
+              <div class="invalInput" *ngIf="invalidFirstname">
+                Please enter a valid Last Name
+              </div>
+            </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+            <div class="md-form form-sm col-6 slightright">
+              <input mdbActive type="text" class="form-control movebar" id="inputLastName" #lastName>
+              <label for="inputLastName" class="smallmove">*Last Name</label>            
+              <div class="invalInput" *ngIf="invalidLastname">
+                Please enter a valid First Name
+              </div>
+            </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+            <div class="md-form form-sm col-6 slightright ">
+              <input mdbActive type="email" class="form-control movebar" id="inputEmail"  #email>
+              <label for="inputEmail" class="smallmove">*Email</label>            
+              <div class="invalInput" *ngIf="invalidEmail">
+                Please enter a valid Email
+              </div>
+            </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+          <div class="container moveleft">
+              <div class="row">
+                <div class="col-1">
+                  <label type="text" class="movetop">Date of Birth</label>
+                </div>
+                <div class="col-3">
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" class="form-control" id="inputyearDOB" #yearDOB>
+                        <label for="inputDOB" class="smallmove">yyyy</label>
+                    </div>
+                </div>
+                
+                <div class="col-2">
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" class="form-control" id="inputmonthDOB"  #monthDOB>
+                        <label for="inputDOB" class="smallmove">mm</label>                        
+                    </div>
+                </div>
+                
+                <div class="col-2">
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" class="form-control" id="inputdayDOB"  #dayDOB>
+                        <label for="inputDOB" class="smallmove">dd</label>
+                    </div>
+                </div>
+                
+              </div>
+            </div>
+            
+            
+            
+            <!-- <input matInput [matDatepicker]="picker" class="dontshow" #datepick>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker class="dateinput" #picker></mat-datepicker> -->
+          <hr class='dvder'>
+          <br>
+          <br>
+          <div class="container moveleft">
+            <div class="row">
+            <div class="col-1">
+              <label for="inputGender" class="">*Gender</label>
+            </div>
+            <div class="col-7">
+              <select #newPatientGender class="mydropdown" id="inputGender">
+                  <option value="badvalue">Please select a gender</option>
+                  <option disabled="disabled">----</option>
+                  <option *ngFor="let g of genders" value="{{g?._id}}">{{g?.name}}</option>
+              </select>
+              <div class="invalInput" *ngIf="invalidGender">
+                  Please enter a valid gender
+              </div>
+            </div>
+          </div>
+          </div>
+          <br>
+          <button class="btn btn-secondary btn-sm instepbtn slightright" matStepperPrevious>Previous</button>
+          <button class="btn btn-primary btn-sm instepbtn slightright" matStepperNext>Next</button>
+        </mat-step>
+        <mat-step  label="Contact Information">
+          <br>
+          <!-- <div class="form-group row">
+            <label for="inputPostalCode" class="col-sm-2 col-form-label">*Address</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" placeholder="Address" id="inputAddress" #address>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" #postalCode>                
+            </div>
+            <div class="invalInput" *ngIf="invalidPostalCode">
+                Please enter a valid Address and Postal Code
+            </div>
+          </div> -->
+          <div class="container moveleft">
+              <div class="row">
+                <div class="col-1">
+                  <label type="text" class="movetop">*Address</label>
+                </div>
+
+                <div class="col-4">
+                    <div class="md-form form-sm">
+                        <input mdbActive class="form-control" type="text" id="inputAddress" #address>  
+                        <label type="text" for="inputAddress">*Address</label>                        
+                    </div>
+                </div>
+                
+                <div class="col-3">
+                    <div class="md-form form-sm">
+                        <input mdbActive type="text" class="form-control" id="inputPostalCode" #postalCode>                
+                        <label type="text" for="inputPostalCode">*Postal Code</label>
+                    </div>
+                </div>
+                
+              </div>
+            </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+            <div class="md-form form-sm col-6 slightright">
+              <input mdbActive type="text" class="form-control movebar" id="inputPhoneNumber"  #phoneNumber>
+              <label for="inputPhoneNumber" class="smallmove">*Phone Number</label>            
+              <div class="invalInput" *ngIf="invalidPhoneNumber">
+                  Please enter a valid Phone Number
+              </div>
+              <div class="hintText" *ngIf="!invalidPhoneNumber">
+                Please enter a valid 9 digit phone number
+              </div>
+            </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+          <div class="container moveleft">
+            <div class="row">
+              <div class="col-1">
+                <label for="inputOthers" class="">*Country</label>            
+              </div>
+              <div class="col-7">
+                <select #newPatientCountry id="inputCountry" class="mydropdown" (change)="SetProvinceBox(newPatientProvince, newPatientCity); GetProvinces(newPatientCountry.value); DifferentGetProvince(newPatientCountry.value)">
+                  <option value="badvalue">Please select a country</option>
+                  <option disabled="disabled">----</option>    
+                  <option *ngFor="let country of countries" value="{{country?._id}}">{{country?.name}}</option>
+                </select>
+              <div class="invalInput" *ngIf="invalidCountry">
+                  Please select a Country, Province and City
+              </div>
+            </div>
+          </div>
+          </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+          <div class="container moveleft">
+            <div class="row">
+              <div class="col-1">
+              <label for="inputOthers" class="">*Province</label>            
+              </div>
+            <div class="col-7">
+              <select #newPatientProvince id="inputProvince" class="mydropdown" (change)="ClearAndGetCities(newPatientProvince.value, newPatientCity)">
+                    <option disabled="disabled">Select country first....</option>
+                    <option *ngFor="let province of provinces" value="{{province?._id}}">{{province?.name}}</option>
+              </select>
+            </div>
+          </div>
+          </div>
+          <hr class='dvder'>
+          <br>
+          <br>
+          <div class="container moveleft">
+            <div class="row">
+            <div class="col-1">
+              <label for="inputOthers" class="">*City</label>            
+            </div>
+            <div class="col-7">
+              <select #newPatientCity id="inputCity" class="mydropdown">
+                    <option disabled="disabled">Select country first....</option>                  
+                    <option *ngFor="let city of cities" value="{{city?._id}}">{{city?.name}}</option>
+              </select>
+            </div>
+          </div>
+          </div>
+          <br>
+          <button class="btn btn-secondary btn-sm instepbtn" matStepperPrevious>Previous</button>
+          <button class="btn btn-primary btn-sm instepbtn" matStepperNext>Next</button>
+        </mat-step>
+        <mat-step label="Additional Information">
+          <br>
+              <div class="md-form form-sm col-6">
+                <input mdbActive type="text" class="form-control movebar" id="inputOthers"  #others>
+                <label for="inputOthers" class="smallmove">Other Notable Info</label>              
+              </div>
+          <button class="btn btn-secondary btn-sm instepbtn slightright" matStepperPrevious>Previous</button>
+          <button class="btn btn-primary btn-sm instepbtn slightright" matStepperNext>Next</button>
+        </mat-step>
+        <mat-step label="Done">
+            <ng-template #makeChanges let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title">Error in Required Fields</h4>
+                </div>
+                <div class="modal-body">
+                  <p>There are errors in some of the required fields. Please go through and fix them. </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary btn-med" (click)="c('Close click')">OK</button>        
+                </div>
+            </ng-template>
+            <ng-template #successfulModal let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title">Welcome!</h4>
+                </div>
+                <div class="modal-body">
+                  <p>You have successfully created an account! Please click on the link that was sent to your email to verify your account and start using the website </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary btn-med" (click)="c('Close click'); GoHome()">OK</button>        
+                </div>
+            </ng-template>
+            <button class="btn btn-secondary btn-sm stepperbtn" (click)="stepper.reset()">Reset</button> 
+            <button type="submit" class="btn btn-primary btn-sm stepperbtn" (click)="createClient(makeChanges, successfulModal, stepper)">Confirm</button>          
+        </mat-step>
+      </mat-vertical-stepper>  
+  </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+

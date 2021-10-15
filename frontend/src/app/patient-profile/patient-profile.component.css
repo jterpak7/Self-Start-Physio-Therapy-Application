@@ -1,0 +1,413 @@
+.patients {
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+}
+
+body {
+    overflow-y:hidden;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.emailer {
+    cursor: pointer;
+}
+
+.searchbar{
+    margin-left: 1em;
+    margin-right: 2.5em;
+    width: 50%;
+}
+
+.successMessage {
+    margin-left: 2.5em;
+    color: green;
+    font-size: 16px;
+    vertical-align: middle;
+    line-height: 44px;
+}
+
+.failureMessage {
+    margin-left: 2.5em;
+    color: red;
+    font-size: 16px;
+    vertical-align: middle;
+    line-height: 44px;
+}
+
+.failedSearch {
+    margin-left: 3.5em;
+    color: red;
+    font-size: 12px;
+}
+
+.calFormat{
+    display: flex;
+    flex-direction: row;
+}
+
+h2 {
+    margin: 1em;
+}
+
+
+.info {
+    margin: 1em;
+}
+
+#custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 600px;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}
+
+.mydropdown {
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding: .5rem, .75rem;
+    padding-left: .5rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #ffffff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 5px;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+
+}
+
+.toemail {
+    margin: .5rem, .75rem;
+    margin-left: 1rem;
+}
+
+.myta{
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+    margin-right: 1.25rem;
+    
+}
+
+.tobody {
+    margin-left: 1rem;
+}
+
+.searchdropdown {
+    height: 44px;
+    padding: 0px;
+    padding-left: 0px;
+    border: none;
+    border-bottom: solid 1px #E4E4E4;
+    background-color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-image: none;
+    background-clip: padding-box;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    margin-left: 2.5rem;
+    margin-top: 0px;
+}
+
+.left {
+    float: left;
+    text-align: right;
+    display: inline;
+}
+  
+.right {
+    float: left;
+    text-align: left;
+    margin: 2px 10px;
+    display: inline;
+    width: 200px;
+}
+
+.blockContainer {
+    text-align: center;
+}
+
+.nextpagebtn {
+    float: right;
+    margin-right: 2.5rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.prevpagebtn {
+    float: right;
+    margin-right: 1rem; 
+    margin-bottom: 0.75rem; 
+    cursor: pointer;
+}
+
+.dummyclr{
+    clear:both
+ }
+
+ .rfrshicon {
+     height: 28px;
+     padding-top: 0px;
+     margin-bottom: 10px;
+     cursor: pointer;
+ }
+
+ .dummy {
+     display: none;
+ }
+
+ .ascvsdesc {
+    height: 44px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-image: none;
+    background-clip: padding-box;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    margin-top: 2px;
+    margin-left: 1rem;
+ }
+
+ .arrows {
+     cursor: pointer;
+     display: inline-block;
+     margin-left: 12rem;
+     color: #0275d8;
+ }
+
+ .invalInput {
+    color: red;
+    font-size: 12px;
+}
+
+.hddn {
+    display: none;
+    
+}
+
+.alrt {
+    height: 44px;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    margin-left: 2.5rem;
+    margin-right: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    border-radius: 2.5px;
+    vertical-align: middle;
+}
+
+.dangeralrt {
+    height: 44px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    margin-left: 2.5rem;
+    margin-right: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+    border-radius: 2.5px;
+    vertical-align: middle;
+}
+
+.fixchanges {
+    height: 44px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    border-radius: 2.5px;
+    vertical-align: middle;
+    width: 60%;
+}
+
+.copyicon {
+    cursor: pointer;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-bottom: 2px;
+}
+
+
+.dateinput {
+    display: inline;
+}
+
+.dontshow {
+    visibility: hidden;
+    width: 1px;
+}
+
+.changez {
+    z-index: 10000 !important
+}
+
+.mypanel {
+    vertical-align: middle;
+    line-height: 30px;
+    text-align: middle;
+}
+
+.plusbtn {
+    font-size: 1rem;
+}
+
+
+.greyCard {
+    width: 95%;
+}
+
+.pageinfo {
+    float: right;
+    margin-right: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.myPaginator {
+    margin-left: 3.4em;
+    margin-right: 3.4em;
+    margin-bottom: 0.5em;
+}
+
+.pnter {
+    cursor: pointer;
+}
+
+#wrapper {
+    font-size: 16px;
+}
+
+#leftcolumn {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 1%;
+}
+
+#rightcolumn {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15%;
+}
+
+.patientbtn {
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.breaker {
+    width: 100%;
+    margin-top: -0.5%;
+    padding-top: -1%;
+    border-color: #0275d8;
+}
+
+.personicon {
+    color: #0275d8;
+}
+
+.infob {
+    color:#0275d8;
+}
+
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+    color: #0275d8;
+}
+
+.orderTag{
+    margin-left: 2.5rem;
+    margin-bottom: -1.5rem;
+    color: black;
+}
+
+.mymodal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.centerp { 
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.appointments {
+    padding: 1%;
+    border-radius: 5%;
+}
+
+.appoints {
+    clear: both;
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.addpaddingbot {
+    padding-bottom: 5px;
+}

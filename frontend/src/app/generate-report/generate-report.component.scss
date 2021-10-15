@@ -1,0 +1,62 @@
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    text-align: center;
+    color: #0275d8;
+    font-size: 32px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+
+.quote {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+h4 {
+    color: #0275d8;    
+    font-size: 26px;
+}
+
+h6 {
+    font-size: 1.5em;
+    font-weight: black;
+}
+
+.centerme {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+textarea {
+    height: 125px;
+    border-radius: 0.5em;
+    border: 1px solid #0d47a1; /* everything up to and including this line
+                                   are aesthetics, adjust to taste */
+    outline: none; /* removes the default outline */
+    resize: none; /* prevents the user-resizing, adjust to taste */
+    padding: 10px;
+}
+    
+textarea:focus {
+    box-shadow: inset 0 0 2px 1px #2962ff; 
+}

@@ -1,0 +1,364 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+                <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+                    <div class="row form-inline">
+                        <div class="col-2">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-th-large"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                              Dashboard
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../exercises']">
+                    <div class="row form-inline">
+                        <div class="col-2">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-id-card"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style="margin-left: 3px; color:white;">
+                                Exercise Menu
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../bookappointment']">
+                    <div class="row form-inline">
+                        <div class="col-2">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-calendar"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style=" color:white;">
+                                Book Appointment
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../completetest']">
+                    <div class="row form-inline">
+                        <div class="col-1">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-wpforms"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                Complete Assessment
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']">
+                    <div class="row form-inline">
+                        <div class="col-2">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-shopping-cart"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                              Transactions
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+                    <div class="row form-inline">
+                        <div class="col-2">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                                <i class="fa fa-wrench"></i>
+                            </h5>      
+                        </div>
+                        <div class="col">
+                            <h5 class="btn-block" style="text-align: center; color:white;">
+                              Settings
+                            </h5>
+                        </div>
+                    </div>
+                </mat-list-item>
+                <br>
+                <mat-divider class="dividers"></mat-divider>
+                <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../resources']">
+                  <div class="row form-inline">
+                      <div class="col-2">
+                          <h5 class="btn-block" style="text-align: center; color:white;">
+                              <i class="fa fa-bars"></i>
+                          </h5>      
+                      </div>
+                      <div class="col">
+                          <h5 class="btn-block" style="text-align: center; color:white;">
+                            Resources
+                          </h5>
+                      </div>
+                  </div>
+              </mat-list-item>
+              <br>
+              <mat-divider class="dividers"></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+  <mat-sidenav-content>
+      <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 *ngIf="client" class="title" style="color: #0275d8">
+                  Good {{ timeOfDay }}<a *ngIf="client">, {{ client?.givenName }}.</a>
+               </h3>
+               <p class="quote">
+                 Choose from available payment packages, or view your past transactions.
+               </p>
+          </div>
+      </div>
+      <mat-card style="min-height: 100vh;" class="page col-11">
+        <mat-tab-group style="min-height: 75vh;">
+            <mat-tab label="Payment Packages">
+                <br>
+                <div style="margin-left: auto; margin-right: auto; text-align:center;" class="row col-11 justify-content-center">
+                  <mat-card class="col" style="background-color: #e1f5fe; color: #0275d8;">
+                    <mat-card-title>
+                        <b>Assessment Package</b>
+                    </mat-card-title>
+                    <mat-divider></mat-divider>
+                    <div class="col">
+                          <mat-card-subtitle>
+                            <mat-list>
+                              <mat-list-item class="row form-inline">
+                                  <div class="col-1">
+                                      <i class="fa fa-arrow-circle-right"></i>
+                                  </div>
+                                  <div class="col">
+                                      Initial consult via email & video conference
+                                  </div>
+                              </mat-list-item>
+                              <br>
+                              <mat-list-item class="row form-inline">
+                                  <div class="col-1">
+                                      <i class="fa fa-arrow-circle-right"></i>
+                                  </div>
+                                  <div class="col">
+                                      Personal online account Therapy Plan - accessed on your account
+                                  </div>
+                              </mat-list-item>
+                              <br>
+                              <mat-list-item class="row form-inline">
+                                  <div class="col-1">
+                                      <i class="fa fa-arrow-circle-right"></i>
+                                  </div>
+                                  <div class="col">
+                                      Education, Advice
+                                  </div>
+                              </mat-list-item>
+                            </mat-list>
+                          </mat-card-subtitle>
+                    </div>
+                    <mat-card-actions class="row justify-content-center align-self-end">
+                        <button (click)="open(payment, '150')" style="margin-top: 69px; margin-left: auto; margin-right: auto; text-align: center;" class="col btn btn-block btn-primary">
+                          <h5>$150</h5>
+                        </button>
+                    </mat-card-actions>
+                  </mat-card>
+                  <mat-card class="col" style="background-color: #e0f7fa; color: #0275d8;">
+                      <mat-card-title>
+                          <b>Assessment + 3 Sessions</b>
+                      </mat-card-title>
+                      <mat-divider></mat-divider>
+                      <div class="col">
+                            <mat-card-subtitle>
+                              <mat-list>
+                                <mat-list-item class="row form-inline">
+                                  <div class="col-1">
+                                      <i class="fa fa-arrow-circle-right"></i>
+                                  </div>
+                                  <div class="col">
+                                      Initial consult via email & video conference
+                                  </div>
+                                </mat-list-item>
+                                <br>
+                                <mat-list-item class="row form-inline">
+                                    <div class="col-1">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                    <div class="col">
+                                        3 further online sessions via email & or video conference
+                                    </div>
+                                </mat-list-item>
+                                <br>
+                                <mat-list-item class="row form-inline">
+                                    <div class="col-1">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                    <div class="col">
+                                        Personal online account Therapy Plan - accessed on your account
+                                    </div>
+                                </mat-list-item>
+                                <br>
+                                <mat-list-item class="row form-inline">
+                                    <div class="col-1">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                    <div class="col">
+                                        Education, Advice
+                                    </div>
+                                </mat-list-item>
+                              </mat-list>
+                            </mat-card-subtitle>
+                      </div>
+                      <mat-card-actions class="row justify-content-center">
+                          <button (click)="open(payment, '350')" style="margin-left: auto; margin-right: auto; text-align: center;" class="col btn btn-block btn-primary">
+                              <h5>$350</h5>
+                          </button>
+                      </mat-card-actions>
+                  </mat-card>
+                  <mat-card class="col" style="background-color:#e0f2f1; color: #0275d8;">
+                      <mat-card-title>
+                          <b>Assessment + 6 Sessions</b>
+                      </mat-card-title>
+                      <mat-divider></mat-divider>
+                      <div>
+                            <mat-card-subtitle>
+                                <mat-list>
+                                    <mat-list-item class="row form-inline">
+                                      <div class="col-1">
+                                          <i class="fa fa-arrow-circle-right"></i>
+                                      </div>
+                                      <div class="col">
+                                          Initial consult via email & video conference
+                                      </div>
+                                    </mat-list-item>
+                                    <br>
+                                    <mat-list-item  class="row form-inline">
+                                        <div class="col-1">
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </div>
+                                        <div class="col">
+                                            3 further online sessions via email & or video conference
+                                        </div>
+                                    </mat-list-item>
+                                    <br>
+                                    <mat-list-item class="row form-inline">
+                                        <div class="col-1">
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </div>
+                                        <div class="col">
+                                            Personal online account Therapy Plan - accessed on your account
+                                        </div>
+                                    </mat-list-item>
+                                    <br>
+                                    <mat-list-item class="row form-inline">
+                                        <div class="col-1">
+                                            <i class="fa fa-arrow-circle-right"></i>
+                                        </div>
+                                        <div class="col">
+                                            Education, Advice
+                                        </div>
+                                    </mat-list-item>
+                                  </mat-list>
+                            </mat-card-subtitle>
+                      </div>
+                      <mat-card-actions class="row justify-content-center">
+                          <button (click)="open(payment, '550')" style="margin-left: auto; margin-right: auto; text-align: center;" class="col btn btn-block btn-primary">
+                              <h5>$550</h5>
+                          </button>
+                      </mat-card-actions>
+                  </mat-card>
+                </div>
+                <br>
+                <div style="margin-left: auto; margin-right: auto; text-align:center;" class="row col-11 justify-content-center">
+                  <mat-card class="col" style="background-color: #eeeeee; color: #0275d8;" >
+                        <div class="row form-inline">
+                          <div class="col">
+                              <mat-card-title class="col">
+                                  <b>Single Follow-up Session </b>
+                                </mat-card-title>
+                                <mat-card-subtitle class="col">
+                                  <b>(Within 3 months of Initial Consultation)</b>
+                                </mat-card-subtitle>
+                          </div>
+                          <mat-card-actions class="col-4">
+                              <button (click)="open(payment, '75')" style="top: 10px;" class="col btn btn-block btn-primary">
+                                  <h5>$75</h5>
+                              </button>
+                          </mat-card-actions>
+                        </div>
+                  </mat-card>
+                </div>
+                <br>
+            </mat-tab>
+            <mat-tab label="Payment History">
+              <br>
+               <mat-card style="min-height: 100vh;" class="page col-11">
+                 <br>
+                  <div>
+                    <mat-list *ngIf="payments" style="overflow-y: auto;">
+                      <mat-list-item *ngFor="let payment of payments">
+                        <div class="col row">
+                          <div class="col">
+                            <div>
+                              <i style="color: #0275d8;" class="fa fa-paypal"></i>
+                              <b>Date: </b> &nbsp; {{ payment?.dayTimeStamp | date:'mediumDate'}}
+                            </div>
+                          </div>
+                          <div class="col row">
+                            <div class="col">
+                              <b>Amount: </b> &nbsp; $ {{ payment?.amount }}
+                            </div>
+                          </div>
+                          <div class="col row">
+                            <div class="col">
+                              {{ payment?.note }}
+                            </div>
+                          </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                      </mat-list-item>
+                    </mat-list>
+                    <div *ngIf="!payments">
+                      <mat-card-subtitle>
+                        <h3>No Payment History to Display.</h3>
+                      </mat-card-subtitle>
+                    </div>
+                  </div>
+               </mat-card>
+                <br>
+            </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Payment Modal -->
+<div mdbModal class="modal fade" #payment="mdb-modal" id="payment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="color: #0275d8;" class="modal-title">Confirm Payment</h5>
+            </div>
+            <div class="modal-body">
+                To confirm your package purchase, please click the paypal button..
+              </div>
+            <div class="modal-footer">
+                <br>
+                <div id="paypal-button-container"></div>
+                <button type="button" id="closeModal" class="btn-danger btn-sm" (click)="payment.hide()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

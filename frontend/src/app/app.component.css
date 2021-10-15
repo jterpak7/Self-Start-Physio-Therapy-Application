@@ -1,0 +1,25 @@
+/*.navbar-nav{*/
+/*    color: black;*/
+/*}*/
+#right-items{
+    float: right;
+}
+.navcolor {
+    background-color: #4169E1;
+    /* position:fixed;
+    width:100%; For when we want to lock the taskbar */
+}
+
+#navbutton {
+    margin-top: 10px;
+}
+
+.navbar-nav > li >a{
+    color:white;
+    font-size: 18px;
+}
+
+.moveright {
+    margin-right: 2rem;
+}
+

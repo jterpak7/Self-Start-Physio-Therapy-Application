@@ -1,0 +1,145 @@
+<nav style="color: #00a39b;" class=" navbar fixed-top navbar-expand-lg navbar-dark primary-color-dark">
+    <a class="navbar-brand" href="welcome"><img style="filter: brightness(0) invert(1); position: relative; top: -3px" src='../assets/images/logo.png' width='100' height='50'></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['welcome']"><i class="fa fa-home"></i>Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['about']">About</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['howitworks']">How it Works</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['services']">Services</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['faq']">FAQ</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['contact']">Contact</a>
+            </li>
+          </ul>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end">
+      <div>
+          <ul class="navbar-nav">
+                <li *ngIf="showLogin" class="nav-item" id='right-items' [routerLinkActive]="['active']">
+                  <a class="nav-link" [routerLink]="['login']">Login</a>
+                </li>
+                <li *ngIf="isClient" class="nav-item" id="right-items" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['client/home']"><i class="fa fa-th-large"></i>Dashboard</a>
+                </li>
+                <li *ngIf="isPhysio" class="nav-item" id="right-items" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['physio/home']"><i class="fa fa-th-large"></i>Dashboard</a>
+                </li>
+                <li *ngIf="isAdmin" class="nav-item" id="right-items" [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['admin/home']"><i class="fa fa-th-large"></i>Dashboard</a>
+                </li>
+                <li class="nav-item dropdown" dropdown *ngIf="!showLogin">
+                    <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
+                    <i class="fa fa-user"></i> Account<span class="caret"></span></a>
+                    <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                        <a *ngIf="isClient" class="dropdown-item waves-light" mdbRippleRadius [routerLink]="['client/settings']"><i class="fa fa-cog"></i> &nbsp; Account Settings</a>
+                        <a *ngIf="isPhysio" class="dropdown-item waves-light" mdbRippleRadius [routerLink]="['physio/settings']"><i class="fa fa-cog"></i> &nbsp; Account Settings</a>
+                        <a *ngIf="isAdmin" class="dropdown-item waves-light" mdbRippleRadius [routerLink]="['admin/settings']"><i class="fa fa-cog"></i> &nbsp; Account Settings</a>                        
+                        <a class="dropdown-item waves-light" mdbRippleRadius (click)="logout();"><i class="fa fa-sign-out"></i>&nbsp; Log Out</a>
+                    </div>
+                </li>
+                <li *ngIf="showLogin" class="nav-item" id='right-items' [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['signup']">Book Appointment</a>
+                </li>
+                <li *ngIf="!showLogin && isClient" class="nav-item" id='right-items' [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['client/bookappointment']"><i class="fa fa-calendar"></i> Book Appointment</a>
+                </li>    
+                <li *ngIf="!showLogin && isPhysio" class="nav-item moveright" id="right-items" [routerLinkActive]="['active']">
+                </li>
+                <li *ngIf="!showLogin && isAdmin" class="nav-item  moveright" id='right-items' [routerLinkActive]="['active']">
+
+                </li>
+          </ul>
+      </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+
+
+<div style="min-height: 100vh;">
+    <router-outlet></router-outlet>
+</div>
+<!--Footer-->
+<footer class="footer" style=" background-color: #3f51b5; -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);-moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);">
+
+    <!--Footer Links-->
+    <div class="container">
+        <br>
+        <!--Grid row-->
+        <div class="row pt-4 mb-3 text-center d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" [routerLink]="['about']" style="color: white;">About</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" [routerLink]="['howitworks']" style="color: white;">How it Works</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" [routerLink]="['services']" style="color: white;">Services</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" [routerLink]="['faq']" style="color: white;">FAQ</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" [routerLink]="['contact']" style="color: white;">Contact</a>
+                </h6>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        <hr class="rgba-white-light" style="margin: 0 15%;">
+        <!--Grid row-->
+        <div class="row pb-2">
+            <!--Grid column-->
+            <div class="col-md-12">
+
+                <div class="mb-5 flex-center">
+                    <img style="filter: brightness(0) invert(1); position: relative;" src='../assets/images/logo.png' width='100' height='50'>
+                </div>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!--/Footer Links-->
+    <!--Copyright-->
+    <div class="footer-copyright text-center" style="margin-top: 10px; background-color: #3949ab">
+        <b style="color: white; ">© 2018 Copyright:</b>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="color: white; "> Loop Solutions Inc.</a>
+    </div>
+    <!--/Copyright-->
+</footer>
+<!--/Footer-->
+

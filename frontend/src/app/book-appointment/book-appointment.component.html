@@ -1,0 +1,473 @@
+<mat-sidenav-container>
+        <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+            <mat-nav-list style="top: -10px;">
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-th-large"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                  Dashboard
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../exercises']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-id-card"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="margin-left: 3px; color:white;">
+                                    Exercise Menu
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-calendar"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style=" color:white;">
+                                    Book Appointment
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../completetest']">
+                        <div class="row form-inline">
+                            <div class="col-1">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-wpforms"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    Complete Assessment
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../transactions']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                  Transactions
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+                        <div class="row form-inline">
+                            <div class="col-2">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                    <i class="fa fa-wrench"></i>
+                                </h5>      
+                            </div>
+                            <div class="col">
+                                <h5 class="btn-block" style="text-align: center; color:white;">
+                                  Settings
+                                </h5>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                    <br>
+                    <mat-divider class="dividers"></mat-divider>
+                    <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../resources']">
+                      <div class="row form-inline">
+                          <div class="col-2">
+                              <h5 class="btn-block" style="text-align: center; color:white;">
+                                  <i class="fa fa-bars"></i>
+                              </h5>      
+                          </div>
+                          <div class="col">
+                              <h5 class="btn-block" style="text-align: center; color:white;">
+                                Resources
+                              </h5>
+                          </div>
+                      </div>
+                  </mat-list-item>
+                  <br>
+                  <mat-divider class="dividers"></mat-divider>
+            </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+                    <br>
+                    <div style="margin-top: -10px;">
+                        <h3 *ngIf="client" class="title" style="color: #0275d8">
+                            Good {{ timeOfDay }}<a *ngIf="client">, {{ client?.givenName }}.</a>
+                        </h3>
+                        <p class="quote" *ngIf="!upcomingAppoint">
+                            Please select from the options below...
+                        </p>
+                        <p class="quote" *ngIf="upcomingAppoint">
+                            <b>Your next appointment is: </b>{{ upcomingAppoint?.date | date:"MMM d, y, h:mm a"}}
+                        </p>
+                    </div>
+                </div>
+
+                <div style="min-height: 100vh;">
+                    <mat-card class="col-11 page">
+                        <div>
+                            <br>
+                            <div class="card-body justify-content-center">
+                                <div style="top: -10px; margin-left: auto; margin-right: auto; text-align: center;" class="col-8 " id="image">
+                                    <img src="../assets/images/marcotte-schedule.jpg">
+                                </div>
+                                <br>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <div class="row justify-content-center">
+                                    <div class="buttons">
+                                        <div type="button" class="btn btn-primary" *ngIf="appointmentsLeft > 0" (click)="setType('normal'); open(bookModal, '0.01')">
+                                            Appointment
+                                        </div>
+                                        <div type="button" class="btn btn-primary" *ngIf="appointmentsLeft === 0" [routerLink]="['../transactions']">
+                                            Top up your Plan before Booking an Appointment
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <div type="button" class="btn btn-primary" *ngIf="initialsLeft > 0" (click)="setType('initial'); open(initialModal, '0.02')">
+                                            Initial Consultation 
+                                        </div>
+                                        <div type="button" class="btn btn-primary" *ngIf="initialsLeft === 0" [routerLink]="['../transactions']">
+                                            No Initial Consults Available in your Plan
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div mdbModal #bookModal="mdb-modal" class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="overflow-y: visible;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookModalLabel"><b>Book Your Appointment</b></h5>
+                    <button type="button" class="close" (click)="bookModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow-x: hidden;">
+                    <!--Dont need this because its on the dashboard-->
+                    <!--<div class="row">-->
+                    <!--    <label class="form-inline col-2"><strong>Client Name</strong></label>-->
+                    <!--    <div class="col">-->
+                    <!--        <input class="form-control" type="text" id="inputName" placeholder="Client Name" #name required>-->
+                    <!--        <div *ngIf="invalidName">-->
+                    <!--            Please Enter a Valid Name-->
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--</div>-->
+                    <div class="row" >
+                        <!--<label class="col-2 col-form-label"><strong>Choose a Date</strong></label>-->
+                        <!--<div class="col-10"></div>-->
+                            <!--<div style="overflow: auto; overflow-x:scroll;"></div>-->
+                        <div class="col-sm-12" style="transform: scale(0.85);"><app-appointments></app-appointments></div>
+                    </div>
+                    <div class="row">
+                        <label class="form-inline col-2"><strong>Description</strong></label>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Enter a short description outlining your injury/hindrance or whether this is a follow up" #descript>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <label class="form-inline col-2"><strong>Upload Images</strong></label>
+                        <div class="col">
+                            <label class="btn btn-block btn-blue-grey" id="inputMedia">
+                                Click Here to Select File(s) for Upload&hellip;
+                                <input class="form-control" ng2FileSelect type="file" [uploader]="uploader" style="display: none;" accept=".jpg, .png"  multiple>
+                            </label>
+                        </div>
+                    </div>
+                            <td nowrap>
+                                <div style="margin-left:8em">
+                                        <button type="button" class="btn btn-success btn-sm"
+                                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                            <!--<span class="glyphicon glyphicon-upload"></span> Upload all-->
+                                            <!--<fa name="upload"></fa>-->
+                                            Upload
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                            <!--<span class="glyphicon glyphicon-trash"></span> Remove all-->
+                                            <!--<fa name="trash"></fa>-->
+                                            Delete
+                                        </button>
+                                </div>
+                            </td>
+                            <tr *ngFor="let item of uploader.queue">
+                                <td><strong>{{ item?.file?.name }}</strong></td>
+                            </tr>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm" (click)="saveAppointment(descript.value, 'Other Field'); bookModal.hide();">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="bookModal.hide()">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div mdbModal #initialModal="mdb-modal" class="modal fade mymodal" id="book" tabindex="-1" role="dialog" aria-labelledby="initialModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg mymodal" role="document">
+            <div class="modal-content mymodal" style="overflow-y: visible;">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="bookModalLabel"><b>Book Your Initial Consultation...</b></h3>
+                    <button type="button" class="close" (click)="initialModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow-x: hidden; max-height:460px;">
+                    <br>
+                    <label>Where is the problem or symptom?</label>
+                    <br>
+                    <select #injuryarea class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="neck">Neck</option>
+                            <option value="back">Back</option>
+                            <option value="shoulder">Shoulder</option>
+                            <option value="elbow">Elbow</option>
+                            <option value="wrist/hand">Wrist and/or hand</option>
+                            <option value="hip">Hip</option>
+                            <option value="knee">Knee</option>
+                            <option value="ankle">Ankle</option>
+                            <option value="foot">Foot</option>
+                            <option value="other">Other</option>
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">
+                    <label class="mylabel">How would you describe your pain or symptom?</label>
+                    <br>
+                    <select #painScale class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="aching">Aching</option>
+                            <option value="throbbing">Throbbing</option>
+                            <option value="burning">Burning</option>
+                            <option value="weak">Weak</option>
+                            <option value="tight">Tight</option>
+                            <option value="tense">Tense</option>                            
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                    
+                    <label class="mylabel">How did the pain or symptom begin?</label>
+                    <br>
+                    <select #started class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="sudden onset related to a trauma">sudden onset related to a trauma</option>
+                            <option value="gradual onset">gradual onset</option>
+                            <option value="it just started one day">it just started one day</option>
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                    
+                    <label class="form-inline mylabel"><strong>What was the date of your injury?</strong></label>
+                    <div class="col">
+                        <input class="form-control" type="text" id="dateStarted" placeholder="Date" #dateStarted required>
+                    </div>
+                    <label class="form-inline"><strong>Please describe your injury?</strong></label>
+                    <div class="col form-sm md-form">
+                        <input mdbActive class="form-control" type="text" id="description" #describe required>
+                        <label for="description">Description</label>
+                    </div>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">    
+                    <br>                
+                    <label class="form-inline mylabel"><strong>How would you rate your pain right now out of 10?</strong></label>
+                    <ngb-rating [(rate)]="currentRate" id="ratePain" class="ratingstars">
+                            <ng-template let-fill="fill" let-index="index">
+                              <span class="star" [class.filled]="fill === 100" (click)="StorePainRating(index)">&#x025CB;</span>
+                            </ng-template>
+                    </ngb-rating> 
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">    
+                    <br>                    
+                    <label class="form-inline mylabel"><strong>Please rate your pains over the last 7 days (0-10)?</strong></label>
+                    <ngb-rating [(rate)]="currentRate" id="last7days" class="ratingstars">
+                            <ng-template let-fill="fill" let-index="index">
+                              <span class="star" [class.filled]="fill === 100" (click)="StoreWeeklyPain(index)"><div class="circle"></div></span>
+                            </ng-template>
+                    </ngb-rating>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">What aggravates your pain?</label>
+                    <br>
+                    <select #aggravates class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="walking">Walking</option>
+                            <option value="sitting">Sitting</option>
+                            <option value="standing">Standing</option>
+                            <option value="lying down">Lying down</option>                            
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">What can you do that helps ease  your pain or make you feel better- even if only temporarily?</label>
+                    <br>
+                    <select #easePain class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="walking">Walking</option>
+                            <option value="sitting">Sitting</option>
+                            <option value="standing">Standing</option>
+                            <option value="lying down">Lying down</option>                            
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">How is your pain in the morning?</label>
+                    <br>
+                    <select #morningPain class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="worse">Worse</option>
+                            <option value="better">Better</option>
+                            <option value="no change">No change</option>
+                            <option value="stiff">Stiff</option>
+                            <option value="the morning is my best time">The morning is my best time</option>                            
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">How is your pain in the evening?</label>
+                    <br>
+                    <select #eveningPain class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="worse">Worse</option>
+                            <option value="better">Better</option>
+                            <option value="stiff">Stiff</option>
+                            <option value="nochange">No change</option>
+                            <option value="the evening is my best time">The evening is my best time</option>                            
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">Have you sought treatment for this condition with other professionals?</label>
+                    <br>
+                    <select #treatment class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="physiotherapist">Physiotherapist</option>
+                            <option value="massage">Massage</option>
+                            <option value="chiropractor">Chiropractor</option>
+                            <option value="osteopath">Osteopath</option>
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">Do you have more than one symptom or any other pains in your body?</label>
+                    <mat-radio-group>
+                            <div class="form-group row-inline" >
+                                <mat-radio-button class="mcchoices" value='yes' (click)="moreThanOneSymptom(true)">yes</mat-radio-button>
+                                <mat-radio-button class="mcchoices" value='no' (click)="moreThanOneSymptom(false)">no</mat-radio-button>                                
+                            </div>
+                    </mat-radio-group>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">     
+                    <br>                   
+                    <label>Do you have any other medical conditions</label>
+                    <mat-radio-group>
+                            <div class="form-group row-inline" >
+                                <mat-radio-button class="mcchoices" value='yes' (click)="otherMedicalCondition(true);">yes</mat-radio-button>
+                                <mat-radio-button class="mcchoices" value='no' (click)="otherMedicalCondition(false);">no</mat-radio-button>                                
+                            </div>
+                    </mat-radio-group>
+                    <div *ngIf="needExplanation" class="container">
+                        <div class="row">
+                            <div class="col-2">
+                                    <label class="mylabel">
+                                            Please explain:
+                                    </label>
+                            </div>
+                            <div class="col-9 form-sm md-form">
+                                    <input mdbActive class="form-control" type="text" id="explain" #explainOther required>  
+                                    <label for="explain">explanation...</label>                                  
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">Are you experiencing any of following symptoms?</label>
+                    <br>
+                    <select #symptoms class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="none">I am not experiencing any of the symptoms</option>
+                            <option value="massage">Massage</option>
+                            <option value="chiropractor">Stiff</option>
+                            <option value="osteopath">No change</option>
+                    </select>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                        
+                    <label class="mylabel">Do you have  any other pertinent medical traumas or surgical history</label>
+                    <br>
+                    <mat-radio-group>
+                            <div class="form-group row-inline" >
+                                <!-- <label for="{{option}}" class="col-form-label mctext">{{NumToChar(j)}})</label> -->
+                                <mat-radio-button class="mcchoices" value='yes' (click)="otherMedicalTraumas(true);">yes</mat-radio-button>
+                                <mat-radio-button class="mcchoices" value='no' (click)="otherMedicalTraumas(false);">no</mat-radio-button>                                
+                            </div>
+                    </mat-radio-group>
+                    <div *ngIf="needDescription" class="container">
+                        <div class="row">
+                            <div class="col-2">
+                                    <label class="mylabel">Please describe:</label>                                    
+                            </div>
+                            <div class="col-9 form-sm md-form">
+                                    <input mdbActive class="form-control" type="text" id="descripeInjury" #explainTraumas required>
+                                    <label for="describeInjury">description...</label>                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                    </div>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                                            
+                    <label class="mylabel">What is your occupation? (Just to be able to know more about your life style)</label>
+                    <div class="col form-sm md-form">
+                            <input mdbActive class="form-control" type="text" id="occupation" #occupation required>
+                            <label for="occupation">Date Started</label>
+                    </div>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                                            
+                    <label class="mylabel">What are your favorite recreational activities or hobbies?</label>
+                    <div class="col">
+                            <input class="form-control" type="text" id="hobbies" placeholder="Activities" #hobbies required>
+                    </div>
+                    <br>
+                    <hr style="border-color: #0275d8; margin-left: 1em; margin-right: 1em;">                                            
+                    <label class="mylabel">What are your goals for this treatment?</label>
+                    <br>
+                    <select #goals class="mydropdown">
+                            <option value="" disabled>Please select...</option>
+                            <option value="pain relief">Pain relief</option>
+                            <option value="increased joint range of motion">Increased joint range of motion</option>
+                            <option value="improved strength">Improved strength</option>
+                            <option value="sleep better">Sleep better</option>
+                            <option value="return to a specific activity">Return to a specific activity</option>                            
+                    </select>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-primary btn-sm" (click)="SubmitInitialInjuryForm(injuryarea.value, painScale.value, started.value, dateStarted.value, describe.value, aggravates.value, easePain.value, morningPain.value, eveningPain.value, treatment.value, explainOther.value, symptoms.value, explainTraumas.value, occupation.value, hobbies.value, goals.value)">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="initialModal.hide()">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>

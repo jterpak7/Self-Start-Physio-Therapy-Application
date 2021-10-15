@@ -1,0 +1,453 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-th-large"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                        Dashboard
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../calendar']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-calendar"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Calendar
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-address-book"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Client Profiles
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../exercises']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-id-card"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Exercises
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../rehabplans']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-archive"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Rehabilitation Plans
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../assessmenttests']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-paste"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Assessment Tests
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-cog"></i>                        
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style=" color:white;">
+                     Settings
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          </mat-nav-list>
+    </mat-sidenav>
+  <mat-sidenav-content>
+      <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 *ngIf="physio" class="title" style="color: #0275d8">
+                  Good {{ timeOfDay }}<a *ngIf="physio">, {{ physio?.givenName }}.</a>
+               </h3>
+               <p class="quote centerp">
+                Manage the Current Users in the System, and Generate Reports for each individual.
+               </p>
+               <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-2">
+                  <hr>
+                  <b>{{ today | date:'shortTime'}}</b>
+                </div>
+          </div>
+        </div>
+    <div style="min-height: 100vh;" class="page col-11">
+      <mat-card style="min-height: 75vh;">
+        <mat-card-title>
+            <h2 style="color: #0275d8">Clients</h2>
+        </mat-card-title>
+          <div *ngIf="invalidSearchArea" class="failedSearch">
+              Please enter a search area
+          </div>
+          <!-- <div class='blockContainer'>
+          <div class='left'>
+            <select #searchArea class="searchdropdown" id="searchDropdown" (change)="RemoveError(); searchPatients(searchValue.value, searchArea.value)">
+                
+                <option value="ID">Patient ID</option>    
+            </select>
+          </div>
+          <div class="right">
+          <div class="input-group mb-3 searchbar" id="custom-search-input">
+            <input type="text" class="form-control" (keyup.enter)="searchPatients(searchValue.value, searchArea.value)" placeholder="Search term" aria-label="Search for patient here..." aria-describedby="basic-addon2" #searchValue>
+            <span class="input-group-btn">
+              <button class="btn btn-info btn-lg" type="button" (click)="searchPatients(searchValue.value, searchArea.value)"  location="top" ngbTooltip="Search">
+                <fa name="search"></fa>
+              </button>
+          </span>
+          </div>
+          </div>
+          </div> -->
+          <div class="container">
+          <div class="row justify-content-start row col-8">
+              <div class='form-inline col-5'>
+                  <div>
+                      <select #searchArea class="searchdropdown" id="searchDropdown">
+                          <option value='familyName'>Search by...</option>
+                          <option disabled='disabled'>----</option>
+                          <option value="givenName">First Name</option>
+                          <option value="familyName">Last Name</option>
+                          <option value="email">Email</option>
+                        </select>
+                  </div>
+                </div>
+                <div class="form-inline col-6">
+                  <div class="input-group row form-inline">
+                      <input class="col-8 addpaddingbot" type="text" placeholder="Search" (keyup.enter)="searchPatients(searchValue.value, searchArea.value)" aria-label="Search for patient here..." #searchValue>
+                      <span class="col-2" style="margin-top: 5px;">
+                        <i style="color: #0275d8;" class="fa fa-search" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                </div>
+          </div>
+        </div>
+          <br> <br><br> <br> <br>
+          <mat-card class="greyCard mx-auto">
+          <p class='orderTag'><b>Additional Options:</b> </p>
+            <i *ngIf="!ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPatients(searchValue.value, searchArea.value)" ngbTooltip="Change to ascending order">arrow_downward</i>
+            <i *ngIf="ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPatients(searchValue.value, searchArea.value)" ngbTooltip="Change to descending order">arrow_upward</i>
+            <i class="material-icons rfrshicon" ngbTooltip="Refresh list" (click)="StandardPatientList()">refresh</i>
+          
+          <mat-paginator  class="myPaginator"
+                          [length]="length"
+                          [pageSize]="pageSize"
+                          [pageSizeOptions]="pageSizeOptions"
+                          (page)="SwitchPageEvent($event, searchValue.value, searchArea.value);">
+          </mat-paginator>
+          
+          <!-- -->
+          <div class='alrt' *ngIf="showSuccess">
+          <p class="successMessage">Client was successfully updated</p>
+          </div>
+          <div *ngIf="showDeleteSuccess" class="alrt">
+            <p class="successMessage">Client was successfully deleted</p>
+          </div>
+          <div *ngIf="emailSuccess" class='alrt'>
+            <p  class="successMessage">Email was successfully sent</p>
+          </div>
+          <!-- <div *ngIf="showDeleteSuccess" class="alert alert-success" role="alert">
+              Client was successfully deleted
+          </div> -->
+          <div *ngIf="showFailure" class="dangeralrt">
+            <p class="failureMessage">Request was unsuccessful, please try again later</p>
+          </div>
+          <div class="dummyclr"></div> <!--To fix a problem that the float right buttons screws up the accordion -->
+          <div class="patients">
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let patient of patients;">
+              <mat-expansion-panel-header (click)="HideMessage(); GetProvinces(patient?.country?._id); GetCities(patient?.province?._id)">
+                    <i class="fa fa-user fa-sm personicon"></i>
+                    <label class="col-sm-2 pnter">{{patient.familyName}}, {{patient.givenName}}</label>
+                    <label class="col-sm-3 pnter">{{patient.email}}</label>
+                    <label class="col-sm-2 pnter">{{calculateAge(patient?.DOB)}} years old</label>
+                    <label class="col-sm-3 pnter">{{FormatPhone(patient?.phone)}}</label>
+              </mat-expansion-panel-header>
+              <hr class="breaker">
+               
+                <div class="container" id="wrapper">
+                  <div class="row" >
+                    <div class="col-5">
+                      <p><b class="infob">Username: </b> {{patient?.account?.userAccountName}}</p>
+                      <p><b class="infob">Name:  </b> {{patient?.familyName}}, {{patient?.givenName}}</p>
+                      <p><b class="infob">Patient ID:  </b> {{patient?.ID}}</p>
+                      <p><b class="infob">Email:  </b> {{patient?.email}} <fa name="envelope" class="emailer" ngbTooltip="send email" data-toggle="modal" data-target="#emailModal" (click)="SetPatient2(patient); emailModal.show()" mdbRippleRadius></fa></p>
+                      <p><b class="infob">Date of Birth:  </b> {{patient?.DOB | date: 'yyyy-MM-dd'}}</p>
+                      <p><b class="infob">Age: </b> {{calculateAge(patient?.DOB)}} years old</p>
+                      <p><b class="infob">Gender:  </b> {{patient?.gender?.name}}</p>
+                    </div>
+                    
+                    <div class="col-5">
+                      <p><b class="infob">Address: </b> {{patient?.address}}</p>
+                      <p><b class="infob">Postal Code:  </b> {{patient?.postalCode}}</p> 
+                      <p><b class="infob">Phone Number:  </b> {{patient?.phone}}   <i class="material-icons copyicon" ngbTooltip="copy phone number" (click)="CopyToClipboard(patient.phone)">description</i></p>
+                      <p><b class="infob">Country:  </b> {{patient?.country?.name}} </p>
+                      <p><b class="infob">Province:  </b> {{patient?.province?.name}} </p>
+                      <p><b class="infob">City:  </b> {{patient?.city?.name}} </p>
+                      <input type='text' class='dummy' id="dummyInput" value='{{patient.phone}}' #getPhoneNumber/>
+                    </div>
+                  </div> 
+                </div> 
+                  <mat-action-row>
+                      <button class="btn btn-primary btn-sm patientbtn" data-toggle="modal" data-target="#updateModal" (click)="updateModal.show();SetPatient2(patient); " mdbRippleRadius>Edit</button>
+                      <button class="btn btn-danger btn-sm patientbtn" data-toggle="modal" data-target="#deleteModal" (click)="SetPatient2(patient); deleteModal.show()" mdbRippleRadius>Delete</button>   
+                      <button class="btn btn-default btn-sm patientbtn" [routerLink]="['../reports/' + patient._id]">View Generated Report</button>
+                  </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+          </div>
+          </mat-card>
+          <br>
+          <br>
+          <br>     
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+ <!-- The First Modal which will be brought up when the physiotherapist wants to delete the patient-->
+ <div mdbModal #deleteModal="mdb-modal" class="modal fade mymodal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg mymodal" role="document">
+    <div class="modal-content mymodal">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete {{patient2?.familyName}}, {{patient2?.givenName}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you wish to delete client <b>{{patient2?.familyName}}, {{patient2?.givenName}}</b>. This action is cannot
+          be undone. </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-med" (click)="deletePatient(patient._id); deleteModal.hide();" data-dismiss="modal" mdbRippleRadius>Delete</button>
+        <button type="button" class="btn btn-secondary btn-med" (click)="deleteModal.hide();" data-dismiss="modal" mdbRippleRadius>Cancel</button>          
+      </div>
+    </div>
+    </div>
+    </div>
+    <!-- End of First Modal -->
+
+    <!-- The Second modal which will be brought up when the physiotherapist wants to update the patient-->
+    <div mdbModal #updateModal="mdb-modal" class="modal fade mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="updateModal">
+      <div class="modal-dialog modal-lg mymodal" role="document">
+      <div class="modal-content mymodal">
+      <div class="modal-header">
+        <h4 class="modal-title">Update {{patient2.familyName}}, {{patient2.givenName}}</h4>
+      </div>
+      <div class="modal-body mymodal">
+        <form>
+          <div class="form-group row">
+            <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" value="{{patient2.givenName}}" #newFirstName>
+              <div *ngIf='invalidFirstname' class='invalInput'>
+                  Please enter a valid first name
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" value="{{patient2.familyName}}" #newLastName>
+              <div *ngIf='invalidLastname' class='invalInput'>
+                  Please enter a valid last name
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPatientID" class="col-sm-3 col-form-label">Patient ID</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control" id="inputPatientID" placeholder="Patient ID" value="{{patient2.ID}}" placement="left"
+                ngbTooltip="The patient's ID cannot be modified">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{patient2.email}}" #newEmail>
+              <div *ngIf='invalidEmail' class='invalInput'>
+                  Please enter a valid email
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputDOB" class="col-sm-3 col-form-label">DOB</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputDOB" placeholder="yyyy/MM/dd" value="{{patient2.DOB  | date: 'yyyy-MM-dd'}}" #newBirthDate>
+              <div *ngIf='invalidFirstName' class='invalInput'>
+                  Please enter a valid Date of Birth
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputGender" class="col-sm-3 col-form-label">Gender</label>
+            <div class="col-sm-9">
+              <select #newGender class="mydropdown">
+                    <option value="{{patient2?.gender?._id}}">{{patient2?.gender?.name}}</option>
+                    <option disabled="disabled">----</option>
+                    <option *ngFor="let g of genders" value="{{g?._id}}">{{g?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label for="inputAddress" class="col-sm-3 col-form-label">Address</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputAddress" placeholder="Address" value="{{patient2?.address}}" #newAddress>
+                <div *ngIf='invalidAddress' class='invalInput'>
+                    Please enter a valid Address
+                </div>
+              </div>
+            </div>
+          <div class="form-group row">
+            <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal Code</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" value="{{patient2.postalCode}}" #newPostalCode>
+              <div *ngIf='invalidPostalCode' class='invalInput'>
+                  Please enter a valid Postal Code
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPhoneNumber" class="col-sm-3 col-form-label">Phone Number</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" value="{{patient2.phone}}" (keyup)="closeWarning()" #newPhoneNumber>
+              <div *ngIf='invalidPhoneNumber' class='invalInput'>
+                  Please enter a valid phone number
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputOthers" class="col-sm-3 col-form-label">Others</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputOthers" placeholder="Others" value="{{patient2?.others}}" #newOthers>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputOthers" class="col-sm-3 col-form-label">Country</label>
+            <div class="col-sm-9">
+              <select #newCountry class="mydropdown" (change)="SetProvinceBox(newProvince, newCity); GetProvinces(newCountry.value); DifferentGetProvince(newCountry.value); cannotContinue=false;">
+                        <option value="{{patient2?.country?._id}}">{{patient2?.country?.name}}</option>
+                        <option disabled="disabled">----</option>
+                        <option *ngFor="let country of countries" value="{{country?._id}}">{{country?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputOthers" class="col-sm-3 col-form-label">Province</label>
+            <div class="col-sm-9">
+              <select #newProvince class="mydropdown" (change)="ClearAndGetCities(newProvince.value, newCity)">
+                        <option value="{{patient2?.province?._id}}">{{patient2?.province?.name}}</option>
+                        <option disabled="disabled">----</option>
+                        <option *ngFor="let province of provinces" value="{{province?._id}}">{{province?.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputOthers" class="col-sm-3 col-form-label">City</label>
+            <div class="col-sm-9">
+              <select #newCity class="mydropdown">
+                        <option value="{{patient2?.city?._id}}">{{patient2?.city?.name}}</option>
+                        <option disabled="disabled">----</option>
+                        <option *ngFor="let city of cities" value="{{city?._id}}">{{city?.name}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer mymodal">
+        <div *ngIf="cannotContinue" class="fixchanges"><p class="failureMessage">Error! Please fix the errors in the form before continuing</p></div>
+        <button type="button" class="btn btn-primary btn-sm" (click)="updatePatient(patient._id, newFirstName.value, newLastName.value, patient.ID, newEmail.value, newBirthDate.value, newPostalCode.value, newPhoneNumber.value, newOthers.value, newCountry.value, newProvince.value, newCity.value, newGender.value, newAddress.value); ">Confirm</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="ResetErrorMessages(); updateModal.hide();" mdbRippleRadius>Cancel</button>
+        <button class="hddn" data-dismiss="modal" (click)="updateModal.hide()" mdbRippleRadius id='closeBtn'></button>  
+      </div>
+    </div>
+    </div>
+    </div>
+    <!-- End of Second Modal -->
+
+    <!-- The Third Modal which will be brought up when the physiotherapist wants to email the patient-->
+    <div mdbModal #emailModal="mdb-modal" class="modal fade mymodal" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg mymodal" role="document">
+      <div class="modal-content mymodal">
+      <div class="modal-header">
+        <h4 class="modal-title">Email {{patient2?.familyName}}, {{patient2?.givenName}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">To: </label>
+          <p class="toemail">{{patient2?.email}}</p>
+        </div>
+        <div class="form-group row">
+          <label for="inputSubject" class="col-sm-3 col-form-label">Subject: </label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputSubject" placeholder="Subject" #emailSubject>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="Emailbody" class="col-form-label tobody">Body: </label>
+          <textarea class="form-control myta" rows="5" id="emailBody" #emailBody> </textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-med" (click)="SendEmail(patient.email, emailSubject.value, emailBody.value); emailModal.hide()" data-dismiss="modal" mdbRippleRadius>Send</button>  
+        <button type="button" class="btn btn-secondary btn-med" (click)="emailModal.hide()" data-dismiss="modal" mdbRippleRadius>Do Not Send</button>        
+      </div>
+    </div>
+    </div>
+    </div>
+    <!-- End of Third Modal -->

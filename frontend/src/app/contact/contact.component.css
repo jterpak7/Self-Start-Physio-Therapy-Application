@@ -1,0 +1,81 @@
+.title {
+    color: #0275d8;
+    margin: 0.5em;
+}
+
+.img {
+    height: 15em;
+    width: 15em;
+}
+
+.card-body {
+    padding-bottom: 1em;
+}
+
+.card-header {
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+#ask {
+    text-align: center;
+}
+
+#map {
+    align-content: center;
+    
+}
+
+#info {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.icons {
+    color: #0275d8;
+    font-size: 300%;
+    padding-right: 0;
+}
+
+.indent {
+    padding-top: 5em;
+    padding-left: 5em;
+}
+
+#second {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.icon-word {
+    font-weight: 400;
+    align-content: center;
+    padding-bottom: 0;
+    font-size: x-large;
+    margin-left: 2em;
+}
+
+.tab {
+    margin-right: 2em;
+}
+
+
+
+textarea {
+    height: 125px;
+    border-radius: 0.5em;
+    border: 1px solid #0d47a1; /* everything up to and including this line
+                                   are aesthetics, adjust to taste */
+    outline: none; /* removes the default outline */
+    resize: none; /* prevents the user-resizing, adjust to taste */
+    padding: 10px;
+}

@@ -1,0 +1,484 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-th-large"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                        Dashboard
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']"  [routerLink]="['../calendar']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-calendar"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Calendar
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../clients']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-address-book"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Client Profiles
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-id-card"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          Exercises
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../rehabplans']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-archive"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Rehabilitation Plans
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../assessmenttests']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-paste"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style=" color:white;">
+                        Assessment Tests
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>          
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+            <div class="row form-inline">
+                <div class="col-2">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-cog"></i>                        
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="margin-left: 10px; color:white;">
+                     Settings
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+            <br>
+            <div style="margin-top: -10px;">
+                <h3 *ngIf="physio" class="title" style="color: #0275d8">
+                    Good {{ timeOfDay }}<a>, {{ physio?.givenName }}.</a>
+                 </h3>
+                 <p class="quote">
+                   Welcome to your dashboard, what would you like to do today?
+                 </p>
+                 <div style="margin-left: auto; margin-right: auto; text-align: center;" class="col-2">
+                   <hr>
+                   <b>{{ today | date:'shortTime'}}</b>
+                 </div>
+            </div>
+          </div>
+          <br>
+        <div style="min-height: 100vh;" class="page col-11">
+            <mat-card style="min-height: 75vh;">
+            <div class="col-11" style="margin-left: auto; margin-right: auto;">
+              <mat-card-title style="color: #0275d8">
+                Exercises
+              </mat-card-title>
+                  <div class='form-inline row'>
+                    <div class="row justify-content-start row col-8">
+                        <div class='form-inline col-4'>
+                            <div>
+                                <select #searchArea class="searchdropdown" id="searchDropdown">
+                                    <option value='name'>Search By...</option>
+                                    <option disabled='disabled'>----</option>
+                                    <option value="name">Exercise Name</option>
+                                    <option value="location">Target Area</option>
+                                  </select>
+                            </div>
+                          </div>
+                          <div class="form-inline col-6">
+                            <div class="input-group row form-inline">
+
+                                <input class="col-8" type="text" placeholder="Search" (keyup)="SearchExercises(searchValue.value, searchArea.value)" aria-label="Search for exercise here..." #searchValue>
+                                <span class="col">
+                                  <i style="color: #0275d8" class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-4 ml-auto ">
+                        <div class="pull-right" style="margin-left: auto;">
+                            <button type="button"class="btn btn-primary createbtn" (click)="open(newmodal)">Add New Exercise</button>              
+                        </div>
+                    </div>
+                  </div>
+          
+                <ng-template #newmodal let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title"><b>Create a New Exercise</b></h4>
+                    </div>
+                    <div class="modal-body col-11" style="margin-left: auto; margin-right: auto; text-align: center;">
+                      <div class="form-group row">
+                        <div class="col">
+                          <input type="text" class="form-control" id="inputName" placeholder="Exercise Name" #name>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col">
+                            <input type="text" class="form-control" id="inputDescrip" placeholder="Description" #description>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col">
+                            <input type="text" class="form-control" id="inputObjs" placeholder="Objectives" #objectives>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col">
+                              <input type="text" class="form-control" id="inputActSteps" placeholder="Action Steps (1. Do this 2. Do that)" #actionSteps>
+                            </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col">
+                              <input type="text" class="form-control" id="inputLoc" placeholder="Target Area (back, arm etc.)" #location>
+                            </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col">
+                              <input type="text" class="form-control" id="inputFreq" placeholder="Sets" #frequency>
+                            </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col">
+                              <input type="text" class="form-control" id="inputDur" placeholder="Repetitions" #duration>
+                            </div>
+                      </div>
+                      <br>
+                      <div class="form-group" style="margin-left:auto; margin-right: auto;text-align: center;">
+                        <div class="col">
+                          <label class="btn btn-block btn-primary" id="inputMedia">
+                            Click Here to Select File(s) for Upload&hellip;
+                            <input class="form-control" ng2FileSelect type="file" [uploader]="uploader" style="display: none;" accept=".jpg, .png"  multiple>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group" style="margin-left:auto; margin-right: auto;text-align: center;">
+                        <div class="col-10">
+                          <td nowrap class="row form-inline justify-content-center">
+                            <button type="button" class="btn btn-success col"
+                            (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                              <span class="glyphicon glyphicon-upload"></span> Upload all
+                            </button>
+                            <button type="button" class="btn btn-danger col"
+                            (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                              <span class="glyphicon glyphicon-trash"></span> Remove all
+                            </button>
+                          </td>
+                        </div>
+                      </div>
+                      <br>
+                      <ul class="form-group col" *ngFor="let item of uploader.queue">
+                        <ol><strong>{{ item?.file?.name }}</strong></ol>
+                      </ul>
+                      <!-- above is the form for creating a new exercise, below the button to save it -->
+                      <mat-divider></mat-divider>
+                      <div style="overflow-x: hidden;" class="modal-footer">
+                          <button type="button" class="btn btn-primary btn-sm" [disabled]="uploader.isUploading" (click)="addExercise(name.value, description.value, objectives.value, actionSteps.value, location.value, frequency.value, duration.value); c('Close click') ">Add</button>
+                          <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>                
+                      </div>  
+                    </div>
+                  </ng-template>
+              <br><br>
+          <mat-card class="greyCard">
+              <div>
+                  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event" (page)="SetOffset(searchValue.value, searchArea.value, $event)">
+                  </mat-paginator>
+              </div>
+              <mat-accordion>
+              <mat-expansion-panel *ngFor='let exercise of exercises' (click)="uploader.clearQueue()" (click)="show(exercise)">
+                <mat-expansion-panel-header class="row" (click)="getExerciseImages(exercise._id)">
+                    <mat-panel-title class="col-6" style="top: 8px;"> 
+                      <h5 class="row">
+                          <div class="col-2">
+                              <mat-icon style="color: #0275d8" svgIcon="dumbbell"></mat-icon> &nbsp;
+                          </div>
+                          <strong class="col">{{ exercise.name }} </strong> 
+                      </h5>
+                    </mat-panel-title>
+                    <mat-panel-description style="top: 15px;" class="col-5">
+                      <b>Target Area: </b> &nbsp; {{ exercise.location }}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+          
+                <div>
+                  <mat-list class="col-8" style="margin-left: auto; margin-right: auto;">
+                    <div>
+                      <mat-list-item class="form-group-row">
+                        <div class="col-md-2">
+                            <b style="color: #0275d8"> Name: </b> 
+                        </div>
+                        <div class="col-md">
+                            {{ exercise.name }}
+                        </div>
+                      </mat-list-item>
+                      <mat-list-item class="form-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Description: </b> 
+                          </div>
+                          <div class="col-md">
+                              {{ exercise.description }} 
+                          </div>
+                      </mat-list-item>
+                      <mat-list-item class="form-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Objectives: </b> 
+                          </div>
+                          <div class="col-md">
+                              {{ exercise.objectives }}
+                          </div>
+                      </mat-list-item>
+                      <mat-list-item class="from-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Author: </b> 
+                          </div>
+                          <div class="col-md">
+                              {{ exercise.authorName }}
+                          </div>
+                      </mat-list-item>
+                      <mat-list-item class="form-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Action Steps: </b> 
+                          </div>
+                          <div class="col-md">
+                              {{ exercise.actionSteps }} 
+                          </div>
+                      </mat-list-item>
+                      <mat-list-item class="form-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Sets: </b> 
+                          </div>
+                          <div class="col-md-4">
+                              {{ exercise.frequency }} 
+                          </div>
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Repititions: </b>  
+                          </div>
+                          <div class="col-md-4">
+                              {{ exercise.duration }}  
+                          </div>
+                      </mat-list-item>
+                      <mat-list-item class="form-group-row">
+                          <div class="col-md-2">
+                              <b style="color: #0275d8"> Location: </b> 
+                          </div>
+                          <div class="col-md">
+                              {{ exercise.location }}
+                          </div>
+                      </mat-list-item>
+                    </div>
+                    <br>
+                    <br>
+                    <mat-card *ngIf="images?.length >= 1" style="margin-left: auto; margin-right: auto;">
+                      <ngb-carousel (pause)="!noPause" class="carousel" #carousel>
+                        <ng-template ngbSlide *ngFor="let image of images">
+                          <img on-mouseover="noPause = !noPause" style="max-height: 600px;" mat-card-image src="data:image/png;base64,{{image.data}}">
+                        </ng-template>
+                      </ngb-carousel>
+                    </mat-card>
+                  </mat-list>
+                  <mat-action-row class="row form-inline">
+                      <div class="col-4">
+                        <div class="row justify-content-end">
+                            <button (click)="open(update)" class="btn btn-info btn-sm col">
+                                Edit
+                              </button>
+                              <button (click)="open(delete)" class="btn btn-danger btn-sm col">
+                                  Delete
+                              </button>
+                        </div>
+                      </div>
+                    </mat-action-row>
+                </div>
+          
+                  <!-- when physio wants to update an exercise -->
+                  <ng-template style="overflow-x: hidden;" #update let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Update {{exercise.name}}</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="c('Close click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body col-11" style="margin-left: auto; margin-right: auto; text-align: center;">
+                          <form>
+                            <div class="form-group row">
+                              <div class="col">
+                                <input type="text" class="form-control" id="inputName" placeholder="Exercise Name" value="{{ exercise.name }}" #newName>
+                              </div>
+                            </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputDescrip" placeholder="Description" value="{{ exercise.description }}" #newDescrip>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputObj" placeholder="Objectives" value="{{ exercise.objectives }}" #newObj>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputActSteps" placeholder="Action Steps" value="{{ exercise.actionSteps }}" #newActSteps>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputLoc" placeholder="Target Area" value="{{ exercise.location }}" #newLoc>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputFreq" placeholder="Sets" value="{{ exercise.frequency }}" #newFreq>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="inputDur" placeholder="Repetitions" value="{{ exercise.duration }}" #newDur>
+                                </div>
+                              </div>
+                          </form>
+                          <form>
+                              <div class="form-group row">
+                                <div class="col">
+                                  <label class="btn btn-block btn-primary" id="inputMedia">
+                                    Click Here to Select File(s) for Upload&hellip;
+                                    <input class="form-control" ng2FileSelect type="file" [uploader]="uploader" style="display: none;" multiple>
+                                    <!-- <input class="form-control" ng2FileSelect type="file" style="display: none;" multiple (change)="uploadFiles(uploadFile)" ng-model="uploadFiles" #uploadFile> -->
+                                  </label>
+                                  <td nowrap class="row form-inline justify-content-center">
+                                    <button type="button" class="btn btn-success btn-s"
+                                    (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-s "
+                                    (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                      <span class="glyphicon glyphicon-trash"></span> Remove Queued Files
+                                    </button>
+                                    <br><br>
+                                  </td>
+                                </div>
+                              </div>
+                          </form>
+                          <tr class="form-inline" id="removeParent" *ngFor="let image of images">
+                              <div id="removeMe" class="row justify-content-center">
+                                <td style="top: 10px;" class="col"><strong>{{ image.name }}</strong></td>
+                                <button type="button" mat-mini-fab color='warn' (click)="deleteImage(image._id)">X</button>
+                              </div>
+                              <br>
+                            </tr>
+                            <br>
+                          <ul class="form-group col" *ngFor="let item of uploader.queue">
+                              <ol><strong>{{ item?.file?.name }}</strong></ol>
+                          </ul>
+                      </div>
+
+                      <div class="modal-footer">
+
+                        <button id="modalButtons" type="button" class="btn btn-primary btn-sm modal-button" [disabled]="uploader.isUploading" (click)="updateExercise( exercise._id, newName.value , newDescrip.value, newObj.value, newActSteps.value, newLoc.value, newFreq.value); c('Close click')">Confirm</button>
+                        <button id="modalButtons" type="button" class="btn btn-secondary btn-sm modal-button" (click)="c('Close click')">Cancel</button>                
+                      </div>
+                    </ng-template> 
+          
+                    <!-- <button class="btn btn-primary btn-sm exercisebtn" (click)="open(update)">Update</button> -->
+                    <!-- End of First Modal -->
+          
+                    <!-- The Second Modal which will be brought up when the physiotherapist wants to delete the patient-->
+                    <ng-template #delete let-c="close" let-d="dismiss" style="overflow-x: hidden;">
+                      <div class="modal-header" style="overflow-x: hidden;">
+                        <h4 class="modal-title">Delete {{ exercise.name}}</h4>
+                      </div>
+                      <div class="modal-body" style="overflow-x: hidden;">
+                        <p>Are you sure you wish to delete patient <b>{{exercise.name}}</b>. This action is cannot be undone. </p>
+                      </div>
+                      <div class="modal-footer" style="overflow-x: hidden;">
+                        <br>
+                        <button type="button" class="btn btn-primary btn-med" (click)="deleteExercise(exercise._id); c('Close click')">Delete</button>
+                        <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Do No Delete</button>                  
+                      </div>
+                    </ng-template>
+                    <!-- End of First Modal -->
+                  </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card>
+        </div>
+        <br>
+      </mat-card>
+            
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

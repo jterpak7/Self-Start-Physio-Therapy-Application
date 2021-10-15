@@ -1,0 +1,290 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-th-large"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                          Dashboard
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-id-card"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="margin-left: 3px; color:white;">
+                            Exercise Menu
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../bookappointment']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-calendar"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style=" color:white;">
+                            Book Appointment
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../completetest']">
+                <div class="row form-inline">
+                    <div class="col-1">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-wpforms"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            Complete Assessment
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../transactions']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-shopping-cart"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                          Transactions
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../settings']">
+                <div class="row form-inline">
+                    <div class="col-2">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                            <i class="fa fa-wrench"></i>
+                        </h5>      
+                    </div>
+                    <div class="col">
+                        <h5 class="btn-block" style="text-align: center; color:white;">
+                          Settings
+                        </h5>
+                    </div>
+                </div>
+            </mat-list-item>
+            <br>
+            <mat-divider class="dividers"></mat-divider>
+            <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../resources']">
+              <div class="row form-inline">
+                  <div class="col-2">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                          <i class="fa fa-bars"></i>
+                      </h5>      
+                  </div>
+                  <div class="col">
+                      <h5 class="btn-block" style="text-align: center; color:white;">
+                        Resources
+                      </h5>
+                  </div>
+              </div>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+            <br>
+            <div style="margin-top: -10px;">
+                <h3 *ngIf="client" class="title" style="color: #0275d8">
+                    Good {{ timeOfDay }}<a *ngIf="client">, {{ client?.givenName }}.</a>
+                 </h3>
+                 <p class="quote">
+                    Your current Exercise Menu is: {{ clientPlan?.name }}
+                 </p>
+            </div>
+          </div>
+           <div class="page col-11">
+             <mat-card style="min-height: 75vh;">
+                <div *ngIf="clientPlan" class="row">
+                    <div class="col">
+                      <mat-card>
+                        <mat-card-content>
+                          <mat-list>
+                            <mat-card-title style="color: #0275d8;">
+                              <b>Exercises in Menu:</b>
+                            </mat-card-title>
+                            <mat-divider></mat-divider>
+                            <br>
+                            <mat-list-item class="listItems" *ngFor="let exercise of exercises" (click)="getExerciseInfo(exercise)" (click)="getExerciseImages(exercise._id)">
+                              <button class="btn-block button">
+                                <div class="row">
+                                  <div class="col-1">
+                                      <mat-icon style="color: #0275d8" svgIcon="dumbbell"></mat-icon> &nbsp;
+                                  </div>
+                                  <div class="col-7">
+                                      <h5> <b>{{ exercise?.name }}</b> </h5>
+                                  </div>
+                                </div>
+                                <div class="divider">
+                                  <mat-divider></mat-divider>
+                                </div>
+                              </button>
+                            </mat-list-item>
+                          </mat-list>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+                    <div class="col">
+                      <div>
+                          <mat-card>
+                              <mat-card-title class="title2">
+                                <div class="row">
+                                  <div class="col-10" style="color: #0275d8">
+                                    <b> {{ currExercise?.name }} </b>
+                                  </div>
+                                  <div class="ml-5 print">
+                                    <i class="fa fa-print" (click)="openPrint(currExercise)"></i>
+                                  </div>
+                                </div>
+                              </mat-card-title>
+                              <mat-divider></mat-divider>
+                              <br>
+                              <mat-card-content>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <b>Description: </b>
+                                  </div>
+                                  <div class="col-10 descrip">
+                                    {{ currExercise?.description }}
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <b>Objectives: </b>
+                                  </div>
+                                  <div class="col-10 descrip">
+                                    {{ currExercise?.objectives }}
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <b>Repetitions: </b>
+                                  </div>
+                                  <div class="col-4">
+                                    {{ currExercise?.duration }}
+                                  </div>
+                                  <div class="col-2">
+                                    <b>Sets: </b>
+                                  </div>
+                                  <div class="col-4">
+                                    {{ currExercise?.frequency }}
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <b>Location: </b>
+                                  </div>
+                                  <div class="col-4">
+                                      {{ currExercise?.location }}
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <b>Action Steps:</b>
+                                  </div>
+                                  <div class ="col-10">
+                                    <ol *ngFor="let step of currSteps; index as i" class="col-sm">
+                                      <b>{{ i + 1 }}. </b> &nbsp; {{ currSteps[i] }}
+                                    </ol>
+                                  </div>
+                                </div>
+                                <div>
+                                  <br>
+                                  <mat-divider></mat-divider>
+                                  <br>
+                                </div>
+                                <div (pause)="!noPause" #carousel>
+                                    <ngb-carousel *ngIf="images?.length > 0">
+                                        <ng-template ngbSlide *ngFor="let image of images">
+                                          <img on-mouseover="nopause = !noPause" style="max-height: 600px;" mat-card-image src="data:image/png;base64,{{image.data}}">
+                                        </ng-template>
+                                      </ngb-carousel>
+                                </div>
+                              </mat-card-content>
+                            </mat-card>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!clientPlan" class="row">
+                    <mat-card-subtitle>
+                        No Plan Currently Assigned.
+                    </mat-card-subtitle>
+                  </div>
+                </mat-card>
+              </div>
+                    
+          <div style="display:none" #test>
+              <h1 style="color: #0275d8">Self Start: &nbsp; {{ currExercise?.name }} </h1>
+              <br>
+              <div>
+                <b>Description: </b> &nbsp; {{ currExercise?.description }}
+              </div>
+              <br>
+              <div>
+                <b>Objectives: </b> &nbsp; {{ currExercise?.objectives }}
+              </div>
+              <div>
+                <p>
+                  <b>Repetitions: </b> &nbsp; {{ currExercise?.duration }} &nbsp; &nbsp;
+                  <b>Sets: </b> &nbsp; {{ currExercise?.frequency }} &nbsp; &nbsp;
+                  <b>Location: </b> &nbsp; {{ currExercise?.location }} &nbsp; &nbsp;
+                </p>
+              </div>
+              <b>Action Steps: </b> &nbsp;
+              <div>
+                  <ol *ngFor="let step of currSteps; index as i">
+                    <li> {{ currSteps[i] }} </li>
+                  </ol>
+              </div>
+          </div>
+            
+          <div style="display:none;" #test2 *ngIf="images">
+              <b>Images:</b>
+              <div *ngFor="let image of images">
+                <img src="data:image/png;base64,{{image.data}}">
+                <br>
+              </div>
+          </div>
+          <br>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+

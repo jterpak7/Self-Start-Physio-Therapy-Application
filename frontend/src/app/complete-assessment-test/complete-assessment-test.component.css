@@ -1,0 +1,83 @@
+.dividers{
+    margin-top: -20px;
+}
+
+.myta {
+    margin-left: 2rem;
+}
+
+.star {
+    font-size: 2rem;
+    color: #b0c4de;
+}
+
+.filled {
+    color: #1e90ff;
+}
+
+.assessTest {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.mcchoices {
+    margin-left: 1rem; 
+    vertical-align: middle; 
+    margin-right:5px;
+}
+
+.mctext {
+    display: inline-block;
+    vertical-align: middle; 
+    margin-right:5px;
+}
+
+.ratingstars {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.myp {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+p {
+    font-size: 1em;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.mat-slider-horizontal {
+    width: 50%;
+}
+
+
+textarea {
+    height: 75px;
+    border-radius: 0.5em;
+    border: 1px solid #0d47a1; /* everything up to and including this line
+                                   are aesthetics, adjust to taste */
+    outline: none; /* removes the default outline */
+    resize: none; /* prevents the user-resizing, adjust to taste */
+    padding: 10px;
+}

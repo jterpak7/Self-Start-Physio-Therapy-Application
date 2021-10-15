@@ -1,0 +1,130 @@
+.example-container {
+  position: absolute;
+  top: 60px;
+ /*bottom: 60px;*/
+  left: 0;
+  right: 0;
+  height: 91%;
+}
+h3 {
+    margin: 1em;
+}
+.tab{
+    width: 80%;
+    margin-left: 60px;
+}
+
+
+.example-sidenav-content {
+    margin-top: 400px;
+    display: flex;
+    height: 100%;
+    
+}
+
+.example-sidenav {
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  width: 175px;
+  /*margin-top:10px;*/
+  background: #4169E1;
+}
+.searchbar{
+    margin-left: 2.5em;
+    margin-right: 2.5em;
+    width: 50%;
+}
+.accordion {
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    margin-left: 70px;
+    transition: 0.4s;
+    /*width: 65%;*/
+}
+.info {
+    margin-left: 100px;
+    
+    width:65%;
+}
+.active, .accordion:hover {
+    width:90%;
+    background-color: #F0F8FF; 
+}
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    position: absolute;
+    left: 75%;
+    
+    
+}
+.hr1 { 
+    display: block;
+    /*margin-top: 0.5em;*/
+    /*margin-bottom: 0.5em;*/
+    margin-left: 70px;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    /*border-top-color: #00FFFF;*/
+    border-color: #00FFFF;
+    /*color: blue;*/
+    
+    float: left;
+    width: 90%;
+    
+} 
+.hr3{
+    float:left;
+    border-width: 1px;
+    border-color: black;
+    width:75%; 
+    
+}
+.dvder {
+    float:left;
+    width:75%;    
+}
+#custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}

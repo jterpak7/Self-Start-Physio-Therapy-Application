@@ -1,0 +1,17 @@
+<h1>
+  Unintended Action...
+</h1>
+<div>
+  <h4>
+    The page you have tried to access should not be access by your account type. It is not intended to be accessed by your account.
+    Please return home to keep using the functionality of the site
+  </h4> 
+</div>
+
+<div *ngIf="isAdmin">
+  <a [routerLink]="['../../adminhome']">Go To Admin Home</a>
+</div>
+
+<div *ngIf="isPhysio">
+    <a [routerLink]="['../../physiohome']">Go To Physio Home</a>
+</div>

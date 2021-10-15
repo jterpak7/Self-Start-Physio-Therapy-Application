@@ -1,0 +1,146 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+.assessTest {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.center {
+  text-align: center;
+  padding-top: 2rem;
+}
+.left {
+    float: left;
+    text-align: right;
+    display: inline;
+}
+  
+.right {
+    float: left;
+    text-align: left;
+    margin: 2px 10px;
+    display: inline;
+    width: 200px;
+}
+
+.blockContainer {
+    text-align: center;
+}
+
+.nextpagebtn {
+    float: right;
+    margin-right: 2.5rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.prevpagebtn {
+    float: right;
+    margin-right: 1rem; 
+    margin-bottom: 0.75rem; 
+    cursor: pointer;
+}
+#custom-search-input{
+    padding: 3px;
+    padding-left: 0px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 600px;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+    cursor: pointer;
+}
+
+#custom-search-input fa{
+    font-size: 16px;
+}
+
+.example-container {
+  position: absolute;
+  top: 60px;
+ /*bottom: 60px;*/
+  left: 0;
+  right: 0;
+  height: 91%;
+}
+
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.jumbotron {
+    padding: 0.6em 0.6em;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.appointments {
+    background: #f5f5f5;
+    padding: 1%;
+    border-radius: 5%;
+}
+
+.appoints {
+    clear: both;
+}
+
+.listItems{
+    padding-bottom: 1em;
+}
+
+.divider{
+    margin-top: -25px;
+}
+.star {
+    font-size: 2rem;
+    color: #b0c4de;
+}
+
+.filled {
+    color: #1e90ff;
+}
+.ratingstars {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+

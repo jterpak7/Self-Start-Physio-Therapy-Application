@@ -1,0 +1,861 @@
+<mat-sidenav-container style="min-height: 100vh;">
+
+  <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+    <mat-nav-list style="top: -10px;">
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../home']">
+            <div class="row form-inline">
+                <div class="col-1">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-th-large"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="text-align: left; color:white;">
+                      &nbsp;Dashboard
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <br>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']">
+            <div class="row form-inline">
+                <div class="col-1">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-users"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style="margin-left: 3px; color:white;">
+                        Manage User Accounts
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <br>
+        <mat-divider class="dividers"></mat-divider>
+        <mat-list-item [routerLinkActive]="['active']" [routerLink]="['../manageforms']">
+            <div class="row form-inline">
+                <div class="col-1">
+                    <h5 class="btn-block" style="text-align: center; color:white;">
+                        <i class="fa fa-calendar"></i>
+                    </h5>      
+                </div>
+                <div class="col">
+                    <h5 class="btn-block" style=" color:white;">
+                        Manage Dynamic Forms
+                    </h5>
+                </div>
+            </div>
+        </mat-list-item>
+        <br>
+        <mat-divider class="dividers"></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+
+
+
+  <mat-sidenav-content>
+      <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 class="title" style="color: #0275d8">
+                  <b style="color: #0275d8;">Welcome, Administrator.</b>
+               </h3>
+               <h5 class="quotes">Here you can manage all user accounts on the site.</h5>
+          </div>
+        </div>
+      <mat-card class="page col-11">
+        <br>
+          <h1 style="color: #0275d8;">User Accounts</h1>
+          <br>
+    
+          <mat-tab-group>
+            <mat-tab label="Clients">
+                <mat-card class="col-11 page">
+                    <br><br>
+        
+                    <br>
+                    <br>
+                    <!-- Beginning of New Client Modal -->
+                    <ng-template #newmodal let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">New Client</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group row">
+                            <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" #newPatientFirstName>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" #newPatientLastName>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputUsername" class="col-sm-3 col-form-label">User Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputUsername" placeholder="User Name" #newPatientUserName>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="inputPassword" placeholder="Password" #newPatientPassword>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputRepeatPassword" class="col-sm-3 col-form-label">*Repeat Password: </label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="inputRepeatPassword" placeholder="Repeat Password" #repeatPassword required>
+                              <div class="invalInput" *ngIf="invalidPassword">
+                                Please fix the password fields so that they match
+                              </div>
+                            </div>
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputEmail" placeholder="Email" #newPatientEmail>
+                            </div>
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputDOB" class="col-sm-3 col-form-label">Date Of Birth</label>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputyearDOB" placeholder="yyyy" #yearDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputmonthDOB" placeholder="mm" #monthDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputdayDOB" placeholder="dd" #dayDOB>
+                            </div>
+        
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputGender" class="col-sm-3 col-form-label">Gender</label>
+                            <div class="col-sm-9">
+                              <select #newPatientGender class="mydropdown" id="inputGender">
+                                <option value="badvalue">Please select a gender</option>
+                                <option disabled="disabled">----</option>
+                                <option *ngFor="let g of genders" value="{{g._id}}">{{g.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputAddress" class="col-sm-3 col-form-label">Address:</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputAddress" placeholder="Address" #newPatientAddress>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPostalCode" class="col-sm-3 col-form-label">Postal Code</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code" #newPatientPostalCode>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPhoneNumber" class="col-sm-3 col-form-label">Phone Number</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone Number" #newPatientPhoneNumber>
+                            </div>
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputOthers" class="col-sm-3 col-form-label">Others</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputOthers" placeholder="Others" #newPatientOthers>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputOthers" class="col-sm-3 col-form-label">Country</label>
+                            <div class="col-sm-9">
+                              <select #newPatientCountry class="mydropdown" id="inputCountry" (change)="SetProvinceBox(newPatientProvince, newPatientCity); GetProvinces(newPatientCountry.value); DifferentGetProvince(newPatientCountry.value)">
+                                <option value="badvalue">Please select a country</option>
+                                <option disabled="disabled">----</option>    
+                                <option *ngFor="let country of countries" value="{{country._id}}">{{country.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputOthers" class="col-sm-3 col-form-label">Province</label>
+                            <div class="col-sm-9">
+                              <select #newPatientProvince class="mydropdown" id="inputProvince" (change)="ClearAndGetCities(newPatientProvince.value, newPatientCity)">
+                                <option *ngFor="let province of provinces" value="{{province._id}}">{{province.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputOthers" class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                              <select #newPatientCity class="mydropdown" id="inputCity">
+                        <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+                      </select>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm" (click)="NewPatient(makeChanges, successfulModal);">Confirm</button>
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                        <button class="hddn" (click)="c('Close click')" id='closeBtn0'></button>
+                      </div>
+                    </ng-template>
+                    <ng-template #makeChanges let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Error in Required Fields</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>There are errors in some of the required fields. Please go through and fix them. </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click');">OK</button>
+                      </div>
+                    </ng-template>
+                    <ng-template #successfulModal let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Welcome!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>You have successfully created an account! Please click on the link that was sent to your email to verify your account and start using the website </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click'); ">OK</button>
+                      </div>
+                    </ng-template>
+        
+                    <!-- <div *ngIf="invalidSearchArea" class="failedSearch">
+                      Please enter a search area
+                    </div>
+                    <div class='blockContainer'>
+                      <div class='left'>
+                        <select #searchArea class="searchdropdown" id="searchDropdown" (change)="RemoveError(); searchPatients(searchValue.value, searchArea.value)">
+                          <option value='familyName'>Search by...</option>
+                          <option disabled='disabled'>----</option>
+                          <option value="givenName">First Name</option>
+                          <option value="familyName">Last Name</option>
+                          <option value="email">Email</option>
+                          <option value="ID">Patient ID</option>    
+                        </select>
+                      </div>
+                      <div class="right">
+                        <div class="input-group mb-3 searchbar" id="custom-search-input">
+                          <input  #searchValue type="text" class="form-control" (keyup.enter)="searchPatients(searchValue.value, searchArea.value)">
+                          <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                              <fa name="search"></fa>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div> -->
+
+                    <!-- This is the layout for the patient search -->
+                    <div class='form-inline row'>
+                        <div class="row justify-content-start row col-8">
+                            <div class='form-inline col-4'>
+                                <div>
+                                    <select #searchArea class="searchdropdown" id="searchDropdown" (change)="searchPatients(searchValue.value, searchArea.value)">
+                                        <option value='familyName'>Search by...</option>
+                                        <option disabled='disabled'>----</option>
+                                        <option value="givenName">First Name</option>
+                                        <option value="familyName">Last Name</option>
+                                        <option value="email">Email</option>
+                                        <option value="ID">Patient ID</option>    
+                                      </select>
+                                </div>
+                              </div>
+                              <div class="form-inline col-6">
+                                <div class="input-group row form-inline">
+                                    <input class="col-8" matToolTip="Press Enter to Search"  type="text" placeholder="Search" (keyup.enter)="searchPatients(searchValue.value, searchArea.value)" placeholder="Search Term" aria-label="Search for patient here..." aria-describedby="basic-addon2" #searchValue>
+                                    <span class="col">
+                                      <i style="color: #0275d8" class="fa fa-search" aria-hidden="true"  (click)="searchPatients(searchValue.value, searchArea.value)"  location="top" ngbTooltip="Search"></i>
+                                    </span>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-4 ml-auto">
+                            <div class="pull-right" style="margin-left: auto;">
+                                <button type="button" class="btn btn-primary createbtn" (click)="open(newmodal)">Add New Client</button>         
+                            </div>
+                        </div>
+                      </div>
+
+                    <br> <br><br>
+                    <mat-card class="greyCard mx-auto">
+                      <p class='orderTag'><b>Additional Options:</b></p>
+                      <i *ngIf="!ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPatients(searchValue.value, searchArea.value)" ngbTooltip="Change to ascending order">arrow_downward</i>
+                      <i *ngIf="ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPatients(searchValue.value, searchArea.value)" ngbTooltip="Change to descending order">arrow_upward</i>
+                      <i class="material-icons rfrshicon" ngbTooltip="Refresh list" (click)="StandardPhysioList()">refresh</i>
+        
+                      <mat-paginator class="myPaginator" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="SwitchPageEvent($event, searchValue.value, searchArea.value);">
+                      </mat-paginator>
+                      <div class='alrt' *ngIf="showSuccess">
+                        <p class="successMessage">Client was successfully updated</p>
+                      </div>
+                      <div *ngIf="showDeleteSuccess" class="alrt">
+                        <p class="successMessage">Client was successfully deleted</p>
+                      </div>
+                      <div *ngIf="emailSuccess" class='alrt'>
+                        <p class="successMessage">Email was successfully sent</p>
+                      </div>
+                      <!-- <div *ngIf="showDeleteSuccess" class="alert alert-success" role="alert">
+            Client was successfully deleted
+        </div> -->
+                      <div *ngIf="showFailure" class="dangeralrt">
+                        <p class="failureMessage">Request was unsuccessful, please try again later</p>
+                      </div>
+                      <div class="dummyclr"></div>
+                      <div class="patients">
+                        <mat-accordion>
+                          <mat-expansion-panel *ngFor="let patient of clients;">
+                            <mat-expansion-panel-header (click)="HideMessage(); GetProvinces(patient?.country?._id); GetCities(patient?.province?._id)">
+                              <i class="fa fa-user fa-sm"></i>
+                              <label class="col-sm-2 pnter">{{patient.familyName}}, {{patient.givenName}}</label>
+                              <label class="col-sm-3 pnter">{{patient.email}}</label>
+                              <label class="col-sm-2 pnter">{{calculateAge(patient?.DOB)}} years old</label>
+                              <label class="col-sm-3 pnter">{{patient?.phone}}</label>
+                            </mat-expansion-panel-header>
+                            <ng-template #delete let-c="close" let-d="dismiss">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Delete {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are you sure you wish to delete client <b>{{patient.familyName}}, {{patient.givenName}}</b>. This action is cannot be undone. </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-med" (click)="deletePatient(patient._id); c('Close click')">Delete</button>
+                                <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Cancel</button>
+                              </div>
+                            </ng-template>
+                            <!-- End of First Modal -->
+                            <!-- The Second modal which will be brought up when the physiotherapist wants to update the patient-->
+                            <ng-template #update let-c="close" let-d="dismiss" id="updateModal">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Update {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="form-group row">
+                                    <label for="inputFirstName1" class="col-sm-3 col-form-label">First Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputFirstName1" placeholder="First Name" value="{{patient.givenName}}" #newFirstName1>
+                                      <div *ngIf='invalidFirstname' class='invalInput'>
+                                        Please enter a valid first name
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputLastName1" class="col-sm-3 col-form-label">Last Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputLastName1" placeholder="Last Name" value="{{patient.familyName}}" #newLastName1>
+                                      <div *ngIf='invalidLastname' class='invalInput'>
+                                        Please enter a valid last name
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputPatientID1" class="col-sm-3 col-form-label">Patient ID</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" readonly class="form-control" id="inputPatientID1" placeholder="Patient ID" value="{{patient.ID}}" placement="left" ngbTooltip="The patient's ID cannot be modified">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputEmail1" placeholder="Email" value="{{patient.email}}" #newEmail1>
+                                      <div *ngIf='invalidEmail' class='invalInput'>
+                                        Please enter a valid email
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputDOB1" class="col-sm-3 col-form-label">DOB</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputDOB1" placeholder="yyyy/MM/dd" value="{{patient.DOB  | date: 'yyyy-MM-dd'}}" #newBirthDate1>
+                                      <div *ngIf='invalidFirstName' class='invalInput'>
+                                        Please enter a valid Date of Birth
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputGender1" class="col-sm-3 col-form-label">Gender</label>
+                                    <div class="col-sm-9">
+                                      <select #newGender1 class="mydropdown">
+                              <option value="{{patient.gender._id}}">{{patient?.gender?.name}}</option>
+                              <option disabled="disabled">----</option>
+                              <option *ngFor="let g of genders" value="{{g._id}}">{{g.name}}</option>
+                        </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputAddress1" class="col-sm-3 col-form-label">Address</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputAddress1" placeholder="Address" value="{{patient.address}}" #newAddress1>
+                                      <div *ngIf='invalidAddress' class='invalInput'>
+                                        Please enter a valid Address
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputPostalCode1" class="col-sm-3 col-form-label">Postal Code</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputPostalCode1" placeholder="Postal Code" value="{{patient.postalCode}}" #newPostalCode1>
+                                      <div *ngIf='invalidPostalCode' class='invalInput'>
+                                        Please enter a valid Postal Code
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputPhoneNumber1" class="col-sm-3 col-form-label">Phone Number</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputPhoneNumber1" placeholder="Phone Number" value="{{patient.phone}}" (keyup)="closeWarning()" #newPhoneNumber1>
+                                      <div *ngIf='invalidPhoneNumber' class='invalInput'>
+                                        Please enter a valid phone number
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputOthers1" class="col-sm-3 col-form-label">Others</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputOthers1" placeholder="Others" value="{{patient.others}}" #newOthers1>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputOthers1" class="col-sm-3 col-form-label">Country</label>
+                                    <div class="col-sm-9">
+                                      <select #newCountry1 class="mydropdown" (change)="SetProvinceBox(newProvince, newCity); GetProvinces(newCountry.value); DifferentGetProvince(newCountry.value); cannotContinue=false;">
+                                  <option value="{{patient.country._id}}">{{patient.country.name}}</option>
+                                  <option disabled="disabled">----</option>
+                                  <option *ngFor="let country of countries" value="{{country._id}}">{{country.name}}</option>
+                        </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputOthers1" class="col-sm-3 col-form-label">Province</label>
+                                    <div class="col-sm-9">
+                                      <select #newProvince1 class="mydropdown" (change)="ClearAndGetCities(newProvince.value, newCity)">
+                                  <option value="{{patient.province._id}}">{{patient?.province?.name}}</option>
+                                  <option disabled="disabled">----</option>
+                                  <option *ngFor="let province of provinces" value="{{province._id}}">{{province.name}}</option>
+                        </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputOthers1" class="col-sm-3 col-form-label">City</label>
+                                    <div class="col-sm-9">
+                                      <select #newCity1 class="mydropdown">
+                                  <option value="{{patient.city._id}}">{{patient?.city?.name}}</option>
+                                  <option disabled="disabled">----</option>
+                                  <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+                        </select>
+                                    </div>
+                                  </div>
+                                </form>
+        
+                              </div>
+                              <div class="modal-footer">
+                                <div *ngIf="cannotContinue" class="fixchanges">
+                                  <p class="failureMessage">Error! Please fix the errors in the form before continuing</p>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm" (click)="updatePatient(patient._id, newFirstName1.value, newLastName1.value, patient.ID, newEmail1.value, newBirthDate1.value, newPostalCode1.value, newPhoneNumber1.value, newOthers1.value, newCountry1.value, newProvince1.value, newCity1.value, newGender1.value, newAddress1.value); ">Confirm</button>
+                                <button type="button" class="btn btn-secondary btn-sm" (click)="ResetErrorMessages(); c('Close click'); ">Cancel</button>
+                                <button class="hddn" (click)="c('Close click')" id='closeBtn'></button>
+                              </div>
+                            </ng-template>
+                            <!-- The Third Modal which will be brought up when the physiotherapist wants to email the patient-->
+                            <ng-template #emailModal let-c="close" let-d="dismiss">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Email {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">To: </label>
+                                  <p class="toemail">{{patient.email}}</p>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="inputSubject" class="col-sm-3 col-form-label">Subject: </label>
+                                  <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputSubject" placeholder="Subject" #emailSubject>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="Emailbody" class="col-form-label tobody">Body: </label>
+                                  <textarea class="form-control myta" rows="5" id="emailBody" #emailBody> </textarea>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Do Not Send</button>
+                                <button type="button" class="btn btn-primary btn-med" (click)="SendEmail(patient.email, emailSubject.value, emailBody.value); c('Close click')">Send</button>
+                              </div>
+                            </ng-template>
+                            <!-- End of Third Modal -->
+        
+                            <div class="info">
+                              <p><b>Username: </b> {{patient?.account?.userAccountName}}</p>
+                              <p><b>Name:  </b> {{patient?.familyName}}, {{patient?.givenName}}</p>
+                              <p><b>Patient ID:  </b> {{patient?.ID}}</p>
+                              <p><b>Email:  </b> {{patient?.email}}
+                                <fa name="envelope" class="emailer" ngbTooltip="send email" (click)="open(emailModal)"></fa>
+                              </p>
+                              <p><b>Date of Birth:  </b> {{patient?.DOB | date: 'yyyy-MM-dd'}}</p>
+                              <p><b>Age: </b> {{calculateAge(patient?.DOB)}} years old</p>
+                              <p><b>Gender:  </b> {{patient?.gender?.name}}</p>
+                              <p><b>Address: </b> {{patient?.address}}</p>
+                              <p><b>Postal Code:  </b> {{patient?.postalCode}}</p>
+                              <p><b>Phone Number:  </b> {{patient?.phone}} <i class="material-icons copyicon" ngbTooltip="copy phone number" (click)="CopyToClipboard(patient.phone)">description</i></p>
+                              <p><b>Country:  </b> {{patient?.country?.name}} </p>
+                              <p><b>Province:  </b> {{patient?.province?.name}} </p>
+                              <p><b>City:  </b> {{patient?.city?.name}} </p>
+                              <!--<input type='text' class='dummy' id="dummyInput" value='{{patient.phone}}' #getPhoneNumber/>-->
+                            </div>
+        
+                            <button class="btn btn-primary btn-sm patientbtn" (click)="open(update)">Edit</button>
+                            <button class="btn btn-primary btn-sm patientbtn" (click)="open(delete)">Delete</button>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                    </mat-card>
+                    <br><br><br>
+                  </mat-card>
+            </mat-tab>
+            <mat-tab label="Physiotherapists">
+                <mat-card class="col-11 page">
+                    <br>
+                    <br><br>
+        
+                    <ng-template #newPhysiomodal let-c="close" let-d="dismiss">
+        
+        
+                      <div class="modal-header">
+                        <h4 class="modal-title">New Physiotherapist</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group row">
+                            <label for="inputPhysioFirstName" class="col-sm-3 col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPhysioFirstName" placeholder="First Name" #newPhysioFirstName>
+                            </div>
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputPhysioLastName" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPhysioLastName" placeholder="Last Name" #newPhysioLastName>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPhysioUserame" class="col-sm-3 col-form-label">User Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPhysioUsername" placeholder="User Name" #newPhysioUserName>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPhysioPassword" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="inputPhysioPassword" placeholder="Password" #newPhysioPassword>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputPhysioRepeatPassword" class="col-sm-3 col-form-label">*Repeat Password: </label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="inputPhysioRepeatPassword" placeholder="Repeat Password" #repeatPassword required>
+                              <div class="invalInput" *ngIf="invalidPassword">
+                                Please fix the password fields so that they match
+                              </div>
+                            </div>
+                          </div>
+        
+                          <div class="form-group row">
+                            <label for="inputPhysioEmail" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="inputPhysioEmail" placeholder="Email" #newPhysioEmail>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputDOB" class="col-sm-3 col-form-label">Date Of Birth</label>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputPhysioyearDOB" placeholder="yyyy" #yearDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputPhysiomonthDOB" placeholder="mm" #monthDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputPhysiodayDOB" placeholder="dd" #dayDOB>
+                            </div>
+        
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputYearHired" class="col-sm-3 col-form-label">Date Hired</label>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputYearHired" placeholder="yyyy" #yearHired>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputMonthHired" placeholder="mm" #monthHired>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputDayHired" placeholder="dd" #dayHired>
+                            </div>
+        
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputYearFinished" class="col-sm-3 col-form-label">Date Finished</label>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputYearFinished" placeholder="yyyy" #yearDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputMonthFinished" placeholder="mm" #monthDOB>
+                            </div>
+                            <div class="col-sm-3">
+                              <input class="form-control dateinput" id="inputDayFinished" placeholder="dd" #dayDOB>
+                            </div>
+        
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputGender" class="col-sm-3 col-form-label">Gender</label>
+                            <div class="col-sm-9">
+                              <select #newPatientGender class="mydropdown" id="inputPhysioGender">
+                              <option value="badvalue">Please select a gender</option>
+                              <option disabled="disabled">----</option>
+                              <option *ngFor="let g of genders" value="{{g._id}}">{{g.name}}</option>
+                          </select>
+                            </div>
+                          </div>
+        
+                        </form>
+                      </div>
+        
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm" (click)="newPhysio(makeChanges1, successfulModal1);">Confirm</button>
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                        <button class="hddn" (click)="c('Close click')" id='closeBtn2'></button>
+                      </div>
+                    </ng-template>
+                    <ng-template #makeChanges1 let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Error in Required Fields</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>There are errors in some of the required fields. Please go through and fix them. </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click'); ">OK</button>
+                      </div>
+                    </ng-template>
+                    <ng-template #successfulModal1 let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Welcome!</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>You have successfully created an account! Please click on the link that was sent to your email to verify your account and start using the website </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-med" (click)="c('Close click'); ">OK</button>
+                      </div>
+                    </ng-template>
+                    <!-- <div *ngIf="invalidSearchArea" class="failedSearch">
+                      Please enter a search area
+                    </div>
+                    <div class='blockContainer'>
+                      <div class='left'>
+                        <select #searchArea1 class="searchdropdown" id="searchDropdown">
+                          <option value='familyName'>Search by...</option>
+                          <option disabled='disabled'>----</option>
+                          <option value="givenName">First Name</option>
+                          <option value="familyName">Last Name</option>
+                          <option value="email">Email</option>
+                          <option value="ID">Patient ID</option>   
+                        </select>
+                      </div>
+                      <div class="right">
+                        <div class="input-group mb-3 searchbar" id="custom-search-input">
+                          <input type="text" class="form-control" (keyup.enter)="searchPhysio(searchValue1.value, searchArea1.value)" placeholder="Search term" aria-label="Search for patient here..." aria-describedby="basic-addon2" #searchValue1>
+                          <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button" (click)="searchPhysio(searchValue1.value, searchArea1.value)"  location="top" ngbTooltip="Search">
+                              <fa name="search"></fa>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div> -->
+
+                      <!-- This is the layout for the physio search -->
+                    <div class='form-inline row'>
+                        <div class="row justify-content-start row col-8">
+                            <div class='form-inline col-4'>
+                                <div>
+                                    <select #searchArea1 class="searchdropdown" id="searchDropdown" (change)="searchPhysio(searchValue1.value, searchArea1.value)">
+                                        <option value='familyName'>Search by...</option>
+                                        <option disabled='disabled'>----</option>
+                                        <option value="givenName">First Name</option>
+                                        <option value="familyName">Last Name</option>
+                                        <option value="email">Email</option>
+                                      </select>
+                                </div>
+                              </div>
+                              <div class="form-inline col-6">
+                                <div class="input-group row form-inline">
+                                    <input class="col-8" matToolTip="Press Enter to Search"  type="text" placeholder="Search" (keyup.enter)="searchPhysio(searchValue1.value, searchArea1.value)" placeholder="Search Term" aria-label="Search for patient here..." aria-describedby="basic-addon2" #searchValue1>
+                                    <span class="col">
+                                      <i style="color: #0275d8" class="fa fa-search" aria-hidden="true"  (click)="searchPhysio(searchValue1.value, searchArea1.value)"  location="top" ngbTooltip="Search"></i>
+                                    </span>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-4 ml-auto">
+                            <div class="pull-right" style="margin-left: auto;">
+                              <button type="button" class="btn btn-primary createbtn" (click)="open(newPhysiomodal)">Add New Physiotherapist</button>         
+                            </div>
+                        </div>
+                      </div>
+        
+                    <br>
+                    <br><br><br>
+                    <mat-card class="greyCard mx-auto">
+                      <p class='orderTag'><b>Additional Options:</b></p>
+                      <i *ngIf="!ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPhysio(searchValue1.value, searchArea1.value)" ngbTooltip="Change to ascending order">arrow_downward</i>
+                      <i *ngIf="ascendingOrd" class="material-icons arrows" (click)="ChangeOrder(); searchPhysio(searchValue1.value, searchArea1.value)" ngbTooltip="Change to descending order">arrow_upward</i>
+                      <i class="material-icons rfrshicon" ngbTooltip="Refresh list" (click)="StandardPhysioList()">refresh</i>
+        
+                      <mat-paginator class="myPaginator" [length]="length1" [pageSize]="pageSize1" [pageSizeOptions]="pageSizeOptions1" (page)="SwitchPageEventPhysio($event, searchValue1.value, searchArea1.value);">
+                      </mat-paginator>
+                      <div class="patients">
+        
+                        <mat-accordion>
+                          <mat-expansion-panel *ngFor="let patient of therapists;">
+                            <mat-expansion-panel-header (click)="HideMessage(); GetProvinces(patient?.country?._id); GetCities(patient?.province?._id)">
+                              <i class="fa fa-user fa-sm"></i>
+                              <label class="col-sm-2 pnter">{{patient.familyName}}, {{patient.givenName}}</label>
+                              <label class="col-sm-3 pnter">{{patient.email}}</label>
+                              <!--<label class="col-sm-2 pnter">{{calculateAge(patient?.DOB)}} years old</label>-->
+                              <!--<label class="col-sm-3 pnter">{{patient?.phone}}</label>-->
+                            </mat-expansion-panel-header>
+                            <div class="info">
+                              <p><b>Username: </b> {{patient?.account?.userAccountName}}</p>
+                              <p><b>Name:  </b> {{patient?.familyName}}, {{patient?.givenName}}</p>
+                              <p><b>Patient ID:  </b> {{patient?.ID}}</p>
+                              <p><b>Email:  </b> {{patient?.email}}
+                                <fa name="envelope" class="emailer" ngbTooltip="send email" (click)="open(emailModal1)"></fa>
+                              </p>
+        
+                            </div>
+        
+                            <button class="btn btn-primary btn-sm patientbtn" (click)="open(editPhysio)">Edit</button>
+                            <button class="btn btn-primary btn-sm patientbtn" (click)="open(deletePhysio)">Delete</button>
+                            <ng-template #deletePhysio let-c="close" let-d="dismiss">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Delete {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are you sure you wish to delete therapist <b>{{patient.familyName}}, {{patient.givenName}}</b>. This action is cannot be undone. </p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-med" (click)="deletePhysio1(patient._id); c('Close click')">Delete</button>
+                                <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Do Not Delete</button>
+                              </div>
+                            </ng-template>
+                            <ng-template #editPhysio let-c="close" let-d="dismiss">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Update {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="form-group row">
+                                    <label for="inputFirstName2" class="col-sm-3 col-form-label">First Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputFirstName2" placeholder="First Name" value="{{patient.givenName}}" #newFirstNamePhysio>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputLastName2" class="col-sm-3 col-form-label">Last Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputLastName2" placeholder="Last Name" value="{{patient.familyName}}" #newLastNamePhysio>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputPatientID2" class="col-sm-3 col-form-label">Patient ID</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" readonly class="form-control" id="inputPatientID2" placeholder="Patient ID" value="{{patient.ID}}" placement="left" ngbTooltip="The patient's ID cannot be modified" #physioID>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputEmail2" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputEmail2" placeholder="Email" value="{{patient.email}}" #newEmailPhysio>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputDateHired2" class="col-sm-3 col-form-label">Date Hired</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputDateHired2" placeholder="yyyy/MM/dd" value="{{patient.dateHired  | date: 'yyyy-MM-dd'}}" #newDateHiredPhysio>
+                                      <div *ngIf='invalidFirstName' class='invalInput'>
+                                        Please enter a valid Date of Birth
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="inputDateFinished2" class="col-sm-3 col-form-label">DateFinished</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" class="form-control" id="inputDateFinished2" placeholder="yyyy/MM/dd" value="{{patient.dateFinished | date: 'yyyy-MM-dd'}}" #newDateFinishedPhysio>
+                                      <div *ngIf='invalidFirstName' class='invalInput'>
+                                        Please enter a valid Date of Birth
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </form>
+                                  </div>
+                                  
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="updatePhysio(newFirstNamePhysio.value, newLastNamePhysio.value, newEmailPhysio.value, physioID.value, newDateHiredPhysio.value, newDateFinishedPhysio.value, patient._id);">Confirm</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" (click)="c('Close click')">Cancel</button>
+                                    <button class="hddn" (click)="c('Close click')" id='closeBtn1'></button>
+                                  </div>
+                                  
+                            </ng-template>
+        
+        
+                            <ng-template #emailModal1 let-c="close" let-d="dismiss">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Email {{patient.familyName}}, {{patient.givenName}}</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">To: </label>
+                                  <p class="toemail">{{patient.email}}</p>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="inputSubject" class="col-sm-3 col-form-label">Subject: </label>
+                                  <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputSubject" placeholder="Subject" #emailSubject>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="Emailbody" class="col-form-label tobody">Body: </label>
+                                  <textarea class="form-control myta" rows="5" id="emailBody" #emailBody> </textarea>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-med" (click)="c('Close click')">Do Not Send</button>
+                                <button type="button" class="btn btn-primary btn-med" (click)="SendEmail(patient.email, emailSubject.value, emailBody.value); c('Close click')">Send</button>
+                              </div>
+                            </ng-template>
+
+                          </mat-expansion-panel>
+                        </mat-accordion>
+        
+                      </div>
+                    </mat-card>
+                  </mat-card>
+            </mat-tab>
+          </mat-tab-group>
+      </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

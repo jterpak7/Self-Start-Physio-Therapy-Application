@@ -1,0 +1,133 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<br>
+<br>
+<div class="page col">
+  <div class="row">
+    <div class="col-6">
+      <mat-card>
+        <mat-card-title style="color: #0275d8;">
+          <b>Available Exercise Menus:</b>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter2(searchValue2.value)" placeholder="Search for Menus..." #searchValue2>
+          </mat-form-field>
+        <mat-list>
+            <mat-paginator [length]="length2" [pageSize]="pageSize2" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent2 = $event" (page)="SetOffset2(searchValue2.value, $event)"></mat-paginator>
+          <mat-list-item class="listItems" *ngFor="let plan of rehabPlans">
+              <button class="btn-block button" (click)="assignCurrentPlan(plan)">
+                  <div class="row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-columns" style="color: #0275d8"></i> &nbsp;
+                    </div>
+                    <div>
+                        <h5><b>Menu Name: </b> &nbsp; {{ plan?.name }} </h5>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <mat-divider></mat-divider>
+                  </div>
+                </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class="col-6">
+      <mat-card>
+          <mat-card-title>
+            <div>
+              <div style="color: #0275d8">
+                <b> {{ currPlan?.name }}</b>
+              </div>
+              <div>
+              </div>
+            </div>
+          </mat-card-title>
+          <div >
+            <mat-divider></mat-divider>
+          </div>
+          <br>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-sm-2">
+                <b> Description: </b>
+              </div>
+              <div class="col-sm-9 descrip">
+                {{ currPlan?.description }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <b>Goal: </b>
+              </div>
+              <div class="col-sm-9">
+                {{ currPlan?.goal }}
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+          <br>
+          <h6 style="color: #0275d8">
+            <b>Clients Currently using this Plan:</b>
+          </h6>
+          <mat-list class="currList">
+              <mat-list-item class="listItems col" *ngFor="let client of clients">
+                  <button class="btn-block clientList">
+                      <div class="row">
+                        <div class="col-1">
+                            <i class="fa fa-user"></i> &nbsp;
+                        </div>
+                        <div class="col-6">
+                            <h5><b>Client: </b> &nbsp; {{ client?.familyName }}, {{ client?.givenName }} </h5>
+                        </div>
+                        <div class="col delete" align="end">
+                          <i class="fa fa-times-circle" (click)="removePatient(client)"></i>
+                        </div>
+                      </div>
+                      <div class="divider">
+                        <mat-divider></mat-divider>
+                      </div>
+                  </button>
+              </mat-list-item>
+            </mat-list>
+            <br>
+            <div>
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter(searchValue.value)" placeholder="Search by Last Name..." #searchValue>
+              </mat-form-field>
+              <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event" (page)="SetOffset(searchValue.value, $event)"></mat-paginator>
+              <mat-table [dataSource]="dataSource" class="searchList" matSort>
+                  <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </mat-header-cell>
+                      <mat-cell *matCellDef="let row"> {{row?.name}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="plan">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Current Plan </mat-header-cell>
+                      <mat-cell *matCellDef="let row"> {{ row?.plan }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef> Assign Current Plan </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> 
+                          <button class="btn block" color="primary" mat-raised-button (click)="assignPatientPlan(row?.id, currPlan)">
+                            Assign
+                          </button>
+                        </mat-cell>
+                      </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+            </div>
+            <br>
+      </mat-card>
+      <br>
+    </div>
+  </div>
+</div>

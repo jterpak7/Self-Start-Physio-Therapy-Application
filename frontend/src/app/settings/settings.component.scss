@@ -1,0 +1,51 @@
+.dividers{
+    margin-top: -20px;
+}
+
+.page{
+    margin-left: auto;
+    margin-right: auto;
+    top: -30px;
+}
+
+.mover {
+    margin-right: 5%;
+    margin-left: 1%; 
+}
+
+.center {
+    text-align: center;
+    padding-top: 2rem;
+    color: #0275d8;
+}
+
+h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.moveLeft { 
+    margin-left: 1em; 
+}
+
+.mydropdown {
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding: .5rem, .75rem;
+    padding-left: .5rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #ffffff;
+    background-image: none;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    cursor: pointer;
+}
+
+.success {
+    color: green;
+}

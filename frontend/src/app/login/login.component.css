@@ -1,0 +1,81 @@
+.assessTest {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+  
+.center {
+    text-align: center;
+    padding-top: 2rem;
+    color: #0275d8;
+}
+
+.btns {
+    display: inline;
+    float: right;
+    margin-right: 5%;
+}
+
+.cont {
+    display:inline;
+}
+
+.dangeralrt {
+    height: 44px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;    
+}
+
+.failureMessage {
+    margin-left: 2.5em;
+    color: red;
+    font-size: 16px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+}
+
+.usandpass {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginbtn {
+    width: 85%;
+    margin-top: 1%;
+    margin-left: 10%;
+}
+
+li > a {
+    color: black;
+}
+
+.divider {
+    border-color: #4b0082;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.forgotpass {
+    font-size: 16px;
+}
+
+.backtoblack {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+
+.title {
+    font-size: 70px;
+}

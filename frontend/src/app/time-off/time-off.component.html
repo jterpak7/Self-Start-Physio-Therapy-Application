@@ -1,0 +1,104 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true" style="background-color: #0275d8;">
+        <mat-nav-list style="top: -10px;">
+          <mat-list-item [routerLinkActive]="['active']">
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../home']">Dashboard</button>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']">
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../calendar']">Calendar</button>
+          </mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" >
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../clients']">Client Profiles</button></mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" >
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../exercises']">Exercises</button></mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" >
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../rehabplans']">Rehabilitation Plans</button></mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+          <mat-list-item [routerLinkActive]="['active']" >
+            <button class="btn-primary btn-block" mat-raised-button style="color:white;" [routerLink]="['../assessmenttests']">Assessment Tests</button></mat-list-item>
+          <br>
+          <mat-divider class="dividers"></mat-divider>
+        </mat-nav-list>
+        <mat-divider class="dividers"></mat-divider>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="background-color: #F5F5F5;" class="jumbotron container-fluid">
+          <br>
+          <div style="margin-top: -10px;">
+              <h3 *ngIf="client" class="title" style="color: #0275d8">
+                  Good {{ timeOfDay }}<a *ngIf="client">, {{ client?.givenName }}.</a>
+               </h3>
+               <p class="quote">
+                 Navigate between the tabs to discover more insight on your patients treatment.
+               </p>
+          </div>
+        </div>
+        <div style="min-height: 100vh; margin: 2%;" class="page col-11"></div>
+                  <br>
+                <mat-tab  label="Patient Summary Report">
+                  <div class="col-11 centerme">
+                    <mat-card>
+                        <br>
+                        <h3><b>Patient Summary Report</b></h3> 
+                        <br>
+                        <div class="container">
+                            <div class="row">
+                               <div class="col">
+                                 
+                               </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                      </mat-card>
+                  <br> 
+                  </div>
+                </mat-tab>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+        <!-- Confirmation modal for email -->
+        <div mdbModal #emailModal="mdb-modal" class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100" id="myModalLabel">Email sent to {{ currClient?.givenName }}</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="emailModal.hide()" mdbRippleRadius>Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div mdbModal #emailSummaryModal="mdb-modal" class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100" id="myModalLabel">Email {{ patient?.givenName }} {{patient?.familyName}}</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Message to be included in the email: </p>
+                      <textarea #emailBody='ngModel' ngModel class="form-control" placeholder="Additional comments..." rows="5"></textarea>                      
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="EmailPatientSummary(patient.email, emailBody.value); emailSummaryModal.hide()" mdbRippleRadius>Send Email</button>
+                        <button type="button" class="btn btn-primary btn-sm waves-light" (click)="emailSummaryModal.hide()" mdbRippleRadius>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>

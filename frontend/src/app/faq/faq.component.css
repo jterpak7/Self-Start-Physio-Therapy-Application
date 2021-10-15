@@ -1,0 +1,24 @@
+.title {
+    color: #0275d8;
+    margin: 0.5em;
+}
+
+.header {
+    text-transform: capitalize;
+    font-weight: 500;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+.content {
+    border-top: solid rgba(2,117,216, 0.4) 2px;
+    padding-top: 1em;
+}
+
+#faq-list {
+    margin-bottom: 2em;
+}
+
+.faq-pic {
+    margin-bottom: 2em;
+}
